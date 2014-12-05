@@ -121,3 +121,5 @@ var/
 app/etc/modules/Mage_ConfigurableSwatches.xml
 lib/Pelago/Emogrifier.php
 .htaccess
+
+.idea/

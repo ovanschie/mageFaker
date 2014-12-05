@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<config>
+    <menu>
+        <system>
+            <children>
+                <faker_menu>
+                    <title>Faker Data</title>
+                    <sort_order>10</sort_order>
+                    <action>magefaker/adminhtml_faker</action>
+                </faker_menu>
+            </children>
+        </system>
+    </menu>
+</config>

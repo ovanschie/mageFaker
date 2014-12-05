@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Ovs_MageFaker>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Ovs_MageFaker>
+    </modules>
+</config>
