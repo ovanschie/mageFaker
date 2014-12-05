@@ -118,3 +118,6 @@ skin/frontend/default/modern/
 skin/frontend/enterprise
 skin/install/
 var/
+app/etc/modules/Mage_ConfigurableSwatches.xml
+lib/Pelago/Emogrifier.php
+.htaccess
