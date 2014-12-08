@@ -24,7 +24,7 @@ class Ovs_MageFaker_Model_Faker extends Mage_Core_Model_Abstract{
 
             $product = Mage::getModel('catalog/product');
 
-            $name   = $faker->productName . $i;
+            $name   = $faker->productName;
             $sku    = $faker->sku($name);
             $price  = $faker->price;
 
@@ -82,6 +82,7 @@ class Ovs_MageFaker_Model_Faker extends Mage_Core_Model_Abstract{
                 }
 
         }
+        
         return true;
     }
 }
