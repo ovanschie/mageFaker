@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Threesixty_Customizer_Block_Adminhtml_Customizer_Edit_Tabs_Advanced
+ * Class vs_MageFaker_Block_Adminhtml_Faker_Edit_Tabs_Remove
  */
 class Ovs_MageFaker_Block_Adminhtml_Faker_Edit_Tabs_Remove extends Mage_Adminhtml_Block_Widget_Form
     implements Mage_Adminhtml_Block_Widget_Tab_Interface

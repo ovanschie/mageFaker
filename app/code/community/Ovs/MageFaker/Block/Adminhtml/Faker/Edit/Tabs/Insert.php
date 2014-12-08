@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Threesixty_Customizer_Block_Adminhtml_Customizer_Edit_Tabs_About
+ * Class Ovs_MageFaker_Block_Adminhtml_Faker_Edit_Tabs_Insert
  */
 class Ovs_MageFaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtml_Block_Widget_Form
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
@@ -22,8 +22,9 @@ class Ovs_MageFaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
             'label' => $this->__('Number of products to insert'),
             'required' => true,
             'name' => 'products',
-            'value' => '100',
+            'value' => '0',
             'values' => array(
+                '0' => '0',
                 '1' => '1',
                 '10' => '10',
                 '50' => '50',
@@ -32,8 +33,7 @@ class Ovs_MageFaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
                 '500' => '500',
                 '1000' => '1.000',
                 '5000' => '5.000',
-                '10000' => '10.000',
-                '50000' => '50.000'
+                '10000' => '10.000'
             )
         ));
 

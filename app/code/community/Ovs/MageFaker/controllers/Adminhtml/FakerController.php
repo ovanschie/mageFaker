@@ -26,5 +26,16 @@ class Ovs_MageFaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
      */
     public function saveAction(){
 
+        $model = Mage::getModel('ovs_magefaker/faker');
+
+        if($model->insertProducts($this->getRequest()->getParam('products'))){
+            Mage::getSingleton('adminhtml/session')->addSuccess($this->getRequest()->getParam('products') . ' ' . $this->__('Product(s) inserted'));
+            $this->_redirectReferer();
+        }
+        else{
+            Mage::getSingleton('adminhtml/session')->addError($this->__('An error occurred while inserting'));
+            $this->_redirectReferer();
+        }
+
     }
 }

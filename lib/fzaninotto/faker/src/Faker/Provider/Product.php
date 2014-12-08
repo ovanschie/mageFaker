@@ -11,6 +11,14 @@ class Product extends \Faker\Provider\Base
         return (int) $this->numberBetween(1, 999) .'.'. $this->numberBetween(10,99);
     }
 
+    public function sku($productName = ''){
+        return strtolower(str_replace(' ', '-', $productName)) . '-' . uniqid();
+    }
+
+    public function weight(){
+        return (int) $this->numberBetween(1, 999) . '.0000';
+    }
+
     public function shortDescription(){
         return $this->generator->paragraph(6);
     }

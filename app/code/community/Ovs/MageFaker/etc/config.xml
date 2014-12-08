@@ -9,9 +9,9 @@
 
     <global>
         <models>
-            <Ovs_MageFaker>
+            <ovs_magefaker>
                 <class>Ovs_MageFaker_Model</class>
-            </Ovs_MageFaker>
+            </ovs_magefaker>
         </models>
         <blocks>
             <ovs_magefaker>

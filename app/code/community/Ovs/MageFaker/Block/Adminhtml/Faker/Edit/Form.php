@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Threesixty_Customizer_Block_Adminhtml_Customizer_Edit_Form
+ * Class Ovs_MageFaker_Block_Adminhtml_Faker_Edit_Form
  */
 class Ovs_MageFaker_Block_Adminhtml_Faker_Edit_Form extends Mage_Adminhtml_Block_Widget_Form {
 
