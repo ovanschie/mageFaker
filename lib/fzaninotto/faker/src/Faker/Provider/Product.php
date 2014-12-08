@@ -25,6 +25,10 @@ class Product extends \Faker\Provider\Base
         return static::randomElement(static::$fashionNames);
     }
 
+    public function productImage(){
+        return 'media/mageFaker/'. $this->numberBetween(1, 20) .'.jpg';
+    }
+
     public function price(){
         return (int) $this->numberBetween(1, 999) .'.'. $this->numberBetween(10,99);
     }
