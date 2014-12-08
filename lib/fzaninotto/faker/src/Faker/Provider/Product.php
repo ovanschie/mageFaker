@@ -3,8 +3,7 @@ namespace Faker\Provider;
 
 class Product extends \Faker\Provider\Base
 {
-    public function product_name()
-    {
+    public function productName(){
         return 'Sample product ' . $this->unique()->randomDigit;
     }
 
