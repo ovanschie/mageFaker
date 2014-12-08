@@ -125,3 +125,5 @@ lib/Pelago/Emogrifier.php
 .idea/
 /lib/composer
 /lib/autoload.php
+/.gitignore
+media/catalog/product/1/4/14.jpg
