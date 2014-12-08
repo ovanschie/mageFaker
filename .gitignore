@@ -123,3 +123,5 @@ lib/Pelago/Emogrifier.php
 .htaccess
 
 .idea/
+/lib/composer
+/lib/autoload.php
