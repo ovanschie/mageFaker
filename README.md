@@ -1,4 +1,4 @@
 mageFaker
 =========
 
-Faker data for Magento
+Faker data for Magento [WIP]
