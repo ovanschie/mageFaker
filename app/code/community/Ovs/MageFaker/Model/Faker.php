@@ -24,7 +24,7 @@ class Ovs_MageFaker_Model_Faker extends Mage_Core_Model_Abstract{
 
             $product = Mage::getModel('catalog/product');
 
-            $name   = $faker->productName . $i;
+            $name   = $faker->productName;
             $sku    = $faker->sku($name);
             $price  = $faker->price;
 
@@ -61,7 +61,7 @@ class Ovs_MageFaker_Model_Faker extends Mage_Core_Model_Abstract{
                         ->setDescription($faker->description)
                         ->setShortDescription($faker->shortDescription)
                         ->setMediaGallery(array('images' => array(), 'values' => array()))//media gallery initialization
-                        //->addImageToMediaGallery('media/catalog/product/1/0/10243-1.png', array('image', 'thumbnail', 'small_image'), false, false)//assigning image, thumb and small image to media gallery
+                        ->addImageToMediaGallery($faker->productImage, array('image', 'thumbnail', 'small_image'), false, false)//assigning image, thumb and small image to media gallery
 
                         ->setStockData(array(
                                 'use_config_manage_stock' => 1, //'Use config settings' checkbox
@@ -82,6 +82,7 @@ class Ovs_MageFaker_Model_Faker extends Mage_Core_Model_Abstract{
                 }
 
         }
+
         return true;
     }
 }
