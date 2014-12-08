@@ -4,7 +4,7 @@ namespace Faker\Provider;
 class Product extends \Faker\Provider\Base
 {
     public function productName(){
-        return 'Sample product ' . $this->unique()->randomDigit;
+        return 'Sample product ';
     }
 
     public function price(){

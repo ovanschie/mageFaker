@@ -32,8 +32,7 @@ class Ovs_MageFaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
                 '250' => '250',
                 '500' => '500',
                 '1000' => '1.000',
-                '5000' => '5.000',
-                '10000' => '10.000'
+                '5000' => '5.000'
             )
         ));
 

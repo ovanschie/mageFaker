@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Threesixty_Customizer_Model_Customizer
+ * Class Ovs_MageFaker_Model_Faker
  */
 class Ovs_MageFaker_Model_Faker extends Mage_Core_Model_Abstract{
 
@@ -13,21 +13,20 @@ class Ovs_MageFaker_Model_Faker extends Mage_Core_Model_Abstract{
 
     public function insertProducts($count){
 
+        Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
+
         require_once Mage::getBaseDir('lib') . DS .'fzaninotto'. DS .'faker' . DS . 'src' . DS . 'autoload.php';
+
+        $faker = @Faker\Factory::create();
+        @$faker->addProvider(new \Faker\Provider\Product($faker));
 
         for($i = 0; $i < $count; $i++) {
 
-            Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
             $product = Mage::getModel('catalog/product');
 
-            $faker = Faker\Factory::create();
-            $faker->addProvider(new \Faker\Provider\Product($faker));
-
-            $name   = $faker->productName;
+            $name   = $faker->productName . $i;
             $sku    = $faker->sku($name);
             $price  = $faker->price;
-
-            if (!$product->getIdBySku($sku)){
 
                 try {
                     $product
@@ -82,11 +81,7 @@ class Ovs_MageFaker_Model_Faker extends Mage_Core_Model_Abstract{
                     return false;
                 }
 
-            }
-
         }
-
         return true;
-
     }
 }
