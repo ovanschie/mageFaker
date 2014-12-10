@@ -3,7 +3,7 @@
 /**
  * Class Ovs_MageFaker_Block_Adminhtml_Faker_Edit_Tabs
  */
-class Ovs_MageFaker_Block_Adminhtml_Faker_Edit_Tabs extends Mage_Adminhtml_Block_Widget_Tabs{
+class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs extends Mage_Adminhtml_Block_Widget_Tabs{
     /**
      * config
      */

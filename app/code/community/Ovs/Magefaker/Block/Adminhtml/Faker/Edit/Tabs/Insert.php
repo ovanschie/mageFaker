@@ -3,7 +3,7 @@
 /**
  * Class Ovs_MageFaker_Block_Adminhtml_Faker_Edit_Tabs_Insert
  */
-class Ovs_MageFaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtml_Block_Widget_Form
+class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtml_Block_Widget_Form
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
 

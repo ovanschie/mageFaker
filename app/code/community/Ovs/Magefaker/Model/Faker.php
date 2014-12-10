@@ -3,7 +3,7 @@
 /**
  * Class Ovs_MageFaker_Model_Faker
  */
-class Ovs_MageFaker_Model_Faker extends Mage_Core_Model_Abstract{
+class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
 
     public function _construct()
     {

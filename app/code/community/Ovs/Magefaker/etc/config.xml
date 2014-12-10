@@ -10,19 +10,19 @@
     <global>
         <models>
             <ovs_magefaker>
-                <class>Ovs_MageFaker_Model</class>
+                <class>Ovs_Magefaker_Model</class>
             </ovs_magefaker>
         </models>
         <blocks>
             <ovs_magefaker>
-                <class>Ovs_MageFaker_Block</class>
+                <class>Ovs_Magefaker_Block</class>
             </ovs_magefaker>
         </blocks>
         <resources/>
         <extraconfig/>
         <helpers>
             <ovs_magefaker>
-                <class>Ovs_MageFaker_Helper</class>
+                <class>Ovs_Magefaker_Helper</class>
             </ovs_magefaker>
         </helpers>
     </global>
