@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<config>
+
+    <modules>
+        <ovs_magefaker>
+            <version>0.1.0</version>
+        </ovs_magefaker>
+    </modules>
+
+    <global>
+        <models>
+            <ovs_magefaker>
+                <class>Ovs_Magefaker_Model</class>
+            </ovs_magefaker>
+        </models>
+        <blocks>
+            <ovs_magefaker>
+                <class>Ovs_Magefaker_Block</class>
+            </ovs_magefaker>
+        </blocks>
+        <resources/>
+        <extraconfig/>
+        <helpers>
+            <ovs_magefaker>
+                <class>Ovs_Magefaker_Helper</class>
+            </ovs_magefaker>
+        </helpers>
+    </global>
+
+    <admin>
+        <routers>
+            <ovs_magefaker>
+                <use>admin</use>
+                <args>
+                    <module>Ovs_Magefaker</module>
+                    <frontName>magefaker</frontName>
+                </args>
+            </ovs_magefaker>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <ovs_magefaker>
+                    <file>ovs_magefaker.xml</file>
+                </ovs_magefaker>
+            </updates>
+        </layout>
+        <!--<translate>-->
+            <!--<modules>-->
+                <!--<ovs_magefaker>-->
+                    <!--<files>-->
+                        <!--<default>Ovs_Magefaker.csv</default>-->
+                    <!--</files>-->
+                <!--</ovs_magefaker>-->
+            <!--</modules>-->
+        <!--</translate>-->
+    </adminhtml>
+
+</config>

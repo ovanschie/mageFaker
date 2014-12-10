@@ -3,7 +3,7 @@
 /**
  * Class Ovs_MageFaker_Block_Adminhtml_Faker_Edit_Form
  */
-class Ovs_MageFaker_Block_Adminhtml_Faker_Edit_Form extends Mage_Adminhtml_Block_Widget_Form {
+class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Form extends Mage_Adminhtml_Block_Widget_Form {
 
     /**
      * @return Mage_Core_Block_Abstract

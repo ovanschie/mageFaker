@@ -4,7 +4,7 @@
  *
  * Main controller
  */
-class Ovs_MageFaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_Action{
+class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_Action{
 
     //protected $_publicActions = array('index');
 
@@ -51,7 +51,7 @@ class Ovs_MageFaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
 
         // restore index mode
         foreach ($indexer->getProcessesCollection() as $process) {
-            $process->reindexAll();
+            $process->reindexEverything();
             $process->setData('mode', $processes[$process->getIndexerCode()])->save();
         }
 
