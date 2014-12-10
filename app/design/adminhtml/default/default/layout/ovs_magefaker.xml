@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout version="0.0.1">
+
+    <ovs_magefaker_adminhtml_faker_index>
+
+        <reference name="content">
+            <block type="ovs_magefaker/adminhtml_faker_edit" name="edit" />
+        </reference>
+
+        <reference name="left">
+            <block type="ovs_magefaker/adminhtml_faker_edit_tabs" name="tabs"/>
+        </reference>
+
+    </ovs_magefaker_adminhtml_faker_index>
+
+</layout>
