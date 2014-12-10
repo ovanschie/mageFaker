@@ -32,7 +32,7 @@
             <ovs_magefaker>
                 <use>admin</use>
                 <args>
-                    <module>ovs_magefaker</module>
+                    <module>Ovs_Magefaker</module>
                     <frontName>magefaker</frontName>
                 </args>
             </ovs_magefaker>
@@ -47,15 +47,15 @@
                 </ovs_magefaker>
             </updates>
         </layout>
-        <translate>
-            <modules>
-                <ovs_magefaker>
-                    <files>
-                        <default>ovs_magefaker.csv</default>
-                    </files>
-                </ovs_magefaker>
-            </modules>
-        </translate>
+        <!--<translate>-->
+            <!--<modules>-->
+                <!--<ovs_magefaker>-->
+                    <!--<files>-->
+                        <!--<default>Ovs_Magefaker.csv</default>-->
+                    <!--</files>-->
+                <!--</ovs_magefaker>-->
+            <!--</modules>-->
+        <!--</translate>-->
     </adminhtml>
 
 </config>

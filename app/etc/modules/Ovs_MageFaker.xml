@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <config>
     <modules>
-        <ovs_magefaker>
+        <Ovs_Magefaker>
             <active>true</active>
             <codePool>community</codePool>
-        </ovs_magefaker>
+        </Ovs_Magefaker>
     </modules>
 </config>
