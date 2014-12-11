@@ -15,8 +15,21 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Remove extends Mage_Adminhtm
     protected function _prepareForm()
     {
 
-//        $form->setUseContainer(false);
-//        $this->setForm($form);
+        $form = new Varien_Data_Form();
+
+        $fieldset = $form->addFieldset('product_remove', array(
+            'legend' => $this->__('Product')
+        ));
+
+        $fieldset->addField('products_remove', 'checkbox', array(
+            'label' => $this->__('Remove all MageFaker products'),
+            'name' => 'products_remove',
+            'value' => 'products_remove',
+            'after_element_html' => '</td><td><small><em>' . $this->__("This will remove all products with the 'magefaker-' prefix") . '</em></small>'
+        ));
+
+        $form->setUseContainer(false);
+        $this->setForm($form);
 
         return parent::_prepareForm();
     }

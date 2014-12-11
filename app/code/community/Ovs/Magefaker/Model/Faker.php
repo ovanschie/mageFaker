@@ -85,4 +85,23 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
 
         return true;
     }
+
+    public function removeProducts(){
+        try{
+            $products = Mage::getModel('catalog/product')
+                ->getCollection()
+                ->addAttributeToFilter('sku', array('like' => 'magefaker-%'))
+                ->load();
+
+            foreach($products as $product){
+                    $product->delete();
+            }
+
+        } catch (Exception $e) {
+            Mage::logException($e);
+            return false;
+        }
+
+        return true;
+    }
 }

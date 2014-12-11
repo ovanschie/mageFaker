@@ -40,14 +40,28 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
             }
         }
 
-        $insert = $model->insertProducts($this->getRequest()->getParam('products'));
+        if($this->getRequest()->getParam('products_remove')) {
+            $remove = $model->removeProducts();
 
-        if($insert){
-            Mage::getSingleton('adminhtml/session')->addSuccess($this->getRequest()->getParam('products') . ' ' . $this->__('Product(s) inserted'));
+            if($remove){
+                Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Products removed'));
+            }
+            else{
+                Mage::getSingleton('adminhtml/session')->addError($this->__('An error occurred while removing products'));
+            }
         }
-        else{
-            Mage::getSingleton('adminhtml/session')->addError($this->__('An error occurred while inserting'));
+
+        if($this->getRequest()->getParam('products_insert') > 0){
+            $insert = $model->insertProducts($this->getRequest()->getParam('products_insert'));
+
+            if($insert){
+                Mage::getSingleton('adminhtml/session')->addSuccess($this->getRequest()->getParam('products_insert') . ' ' . $this->__('Product(s) inserted'));
+            }
+            else{
+                Mage::getSingleton('adminhtml/session')->addError($this->__('An error occurred while inserting'));
+            }
         }
+
 
         // restore index mode
         foreach ($indexer->getProcessesCollection() as $process) {

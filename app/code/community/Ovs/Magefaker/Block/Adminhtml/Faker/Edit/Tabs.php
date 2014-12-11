@@ -25,7 +25,7 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs extends Mage_Adminhtml_Block
     {
 
         $this->addTab('adminhtml_tab_insert', 'ovs_magefaker/adminhtml_faker_edit_tabs_insert');
-        //$this->addTab('adminhtml_tab_remove', 'ovs_magefaker/adminhtml_faker_edit_tabs_remove');
+        $this->addTab('adminhtml_tab_remove', 'ovs_magefaker/adminhtml_faker_edit_tabs_remove');
 
         return parent::_beforeToHtml();
     }
