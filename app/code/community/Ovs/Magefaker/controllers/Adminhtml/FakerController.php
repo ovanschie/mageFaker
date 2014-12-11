@@ -35,8 +35,8 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
         foreach ($indexer->getProcessesCollection() as $process) {
             $processes[$process->getIndexerCode()] = $process->getMode();
 
-            if($process->getMode() != Mage_Index_Model_Process::MODE_MANUAL){
-                $process->setData('mode', 'manual')->save();
+            if($process->getMode() !== Mage_Index_Model_Process::MODE_MANUAL){
+                $process->setData('mode', Mage_Index_Model_Process::MODE_MANUAL)->save();
             }
         }
 
