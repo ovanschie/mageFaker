@@ -63,7 +63,7 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
         }
 
 
-        // restore index mode
+        // restore index mode and run indexer
         foreach ($indexer->getProcessesCollection() as $process) {
             $process->reindexEverything();
             $process->setData('mode', $processes[$process->getIndexerCode()])->save();
