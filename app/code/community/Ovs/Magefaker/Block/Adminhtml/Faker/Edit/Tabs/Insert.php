@@ -12,16 +12,16 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
      */
     protected function _prepareForm()
     {
+
         $form = new Varien_Data_Form();
 
-        $fieldset = $form->addFieldset('Product', array(
+        $fieldset = $form->addFieldset('product_insert', array(
             'legend' => $this->__('Product')
         ));
 
-        $fieldset->addField('products', 'select', array(
+        $fieldset->addField('products_insert', 'select', array(
             'label' => $this->__('Number of products to insert'),
-            'required' => true,
-            'name' => 'products',
+            'name' => 'products_insert',
             'value' => '0',
             'values' => array(
                 '0' => '0',
@@ -35,7 +35,6 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
                 '5000' => '5.000'
             )
         ));
-
 
         $form->setUseContainer(false);
         $this->setForm($form);

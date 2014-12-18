@@ -34,7 +34,7 @@ class Product extends \Faker\Provider\Base
     }
 
     public function sku($productName = ''){
-        return strtolower(str_replace(' ', '-', $productName)) . '-' . uniqid();
+        return 'magefaker-' . uniqid();
     }
 
     public function weight(){
@@ -42,13 +42,13 @@ class Product extends \Faker\Provider\Base
     }
 
     public function shortDescription(){
-        return $this->generator->paragraph(6);
+        return $this->generator->paragraph(8);
     }
 
     public function description(){
         $return = '';
-        foreach($this->generator->paragraphs(3) as $paragraph){
-            $return .= '<p>' . $paragraph . '</p>';
+        for($i = 0; $i < 4; $i++){
+            $return .= '<p>' . $this->generator->paragraph(8) . '</p>';
         }
         return $return;
     }
