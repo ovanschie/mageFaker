@@ -62,13 +62,11 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
         }
 
 
-        // restore index mode and run indexer
-        foreach ($processCollection as $process) {
-            $process->setData('mode', $processes[$process->getIndexerCode()])->save();
-        }
+        // run indexer and restore mode
 
-        foreach(Mage::getModel('index/process')->getCollection() as $process){
-            $process->reindexAll();
+        foreach ($processCollection as $process) {
+            $process->reindexEverything();
+            $process->setData('mode', $processes[$process->getIndexerCode()])->save();
         }
 
         $this->_redirectReferer();

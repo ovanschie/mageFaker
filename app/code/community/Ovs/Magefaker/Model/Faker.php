@@ -20,6 +20,12 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
         $faker = @Faker\Factory::create();
         @$faker->addProvider(new \Faker\Provider\Product($faker));
 
+        $rating_options = array(
+            1 => array(1,2,3,4,5),
+            2 => array(6,7,8,9,10),
+            3 => array(11,12,13,14,15)
+        );
+
         for($i = 0; $i < $count; $i++) {
 
             $product = Mage::getModel('catalog/product');
@@ -79,6 +85,38 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
 
                     $product->save();
 
+                    $new_productId = $product->getId();
+
+                    $reviewCount = mt_rand(0, 15);
+
+                    for($y = 0; $y < $reviewCount; $y++) {
+
+                        $review = Mage::getModel('review/review');
+                        $review->setEntityPkValue($new_productId);
+                        $review->setStatusId(1); // approved
+                        $review->setTitle($faker->sentence(3));
+                        $review->setDetail($faker->shortDescription);
+                        $review->setEntityId(1);
+                        $review->setStoreId(0);
+                        $review->setCustomerId(null);
+                        $review->setNickname($faker->name);
+                        $review->setReviewId($review->getId());
+                        $review->setStores(array(0, 1));
+                        $review->save();
+
+                        foreach($rating_options as $rating_id => $option_ids) {
+                            $stars = mt_rand(0, 4);
+
+                            $rate = Mage::getModel('rating/rating')
+                                ->setRatingId($rating_id)
+                                ->setReviewId($review->getId())
+                                ->addOptionVote($option_ids[$stars], $new_productId);
+                        }
+
+                        $review->aggregate();
+
+                    }
+
                 } catch (Exception $e) {
                     Mage::logException($e);
                     return false;
@@ -107,4 +145,5 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
 
         return true;
     }
+
 }
