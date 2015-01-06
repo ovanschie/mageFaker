@@ -6,8 +6,6 @@
  */
 class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_Action{
 
-    //protected $_publicActions = array('index');
-
     /**
      * render main layout
      */

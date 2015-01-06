@@ -15,10 +15,12 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
 
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
-        require_once Mage::getBaseDir('lib') . DS .'fzaninotto'. DS .'faker' . DS . 'src' . DS . 'autoload.php';
+        require_once Mage::getBaseDir('lib') . DS .'fzaninotto'. DS .'faker' . DS . 'faker.php';
 
         $faker = @Faker\Factory::create();
         @$faker->addProvider(new \Faker\Provider\Product($faker));
+
+        var_dump($faker->productName);die;
 
         for($i = 0; $i < $count; $i++) {
 
