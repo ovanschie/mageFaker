@@ -26,14 +26,14 @@ class Product extends \Faker\Provider\Base
     }
 
     public function productImage(){
-        return 'media/mageFaker/'. $this->numberBetween(1, 20) .'.jpg';
+        return 'media/mageFaker/' . $this->numberBetween(1, 20) . '.jpg';
     }
 
     public function price(){
-        return (int) $this->numberBetween(1, 999) .'.'. $this->numberBetween(10,99);
+        return (int) $this->numberBetween(1, 999) . '.' . $this->numberBetween(10,99);
     }
 
-    public function sku($productName = ''){
+    public function sku(){
         return 'magefaker-' . uniqid();
     }
 
@@ -46,10 +46,19 @@ class Product extends \Faker\Provider\Base
     }
 
     public function description(){
-        $return = '';
+        $paragraph = '';
         for($i = 0; $i < 4; $i++){
-            $return .= '<p>' . $this->generator->paragraph(8) . '</p>';
+            $paragraph .= '<p>' . $this->generator->paragraph(8) . '</p>';
         }
-        return $return;
+        return $paragraph;
+    }
+
+    public function metaKeys(){
+        $words = $this->generator->words(4);
+        return implode(', ', $words);
+    }
+
+    public function metaDescription(){
+        return $this->generator->paragraph(4);
     }
 }
