@@ -11,7 +11,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
         $this->_init('ovs_magefaker/faker');
     }
 
-    public function insertProducts($count){
+    public function insertProducts($count, $categories){
 
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
@@ -44,7 +44,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                         ->setName($name)//product name
                         ->setWeight($faker->weight)
                         ->setStatus(1)//product status (1 - enabled, 2 - disabled)
-                        ->setTaxClassId(1)//tax class (0 - none, 1 - default, 2 - taxable, 4 - shipping)
+                        ->setTaxClassId(0)//tax class (0 - none, 1 - default, 2 - taxable, 4 - shipping)
                         ->setVisibility(Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)//catalog and search visibility
                         //->setManufacturer(28)//manufacturer id
                         //->setColor(24)
@@ -80,7 +80,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                                 'qty' => 999 //qty
                             )
                         )
-                        ->setCategoryIds(array(0)) //assign product to categories
+                        ->setCategoryIds($categories) //assign product to categories
                         ->setUrlKey($name . '-' . $sku);
 
                     $product->save();
@@ -95,7 +95,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                         $review->setEntityPkValue($new_productId);
                         $review->setStatusId(1); // approved
                         $review->setTitle($faker->sentence(3));
-                        $review->setDetail($faker->shortDescription);
+                        $review->setDetail($faker->sentence(mt_rand(3, 10)));
                         $review->setEntityId(1);
                         $review->setStoreId(0);
                         $review->setCustomerId(null);
@@ -107,7 +107,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                         foreach($rating_options as $rating_id => $option_ids) {
                             $stars = mt_rand(0, 4);
 
-                            $rate = Mage::getModel('rating/rating')
+                            Mage::getModel('rating/rating')
                                 ->setRatingId($rating_id)
                                 ->setReviewId($review->getId())
                                 ->addOptionVote($option_ids[$stars], $new_productId);

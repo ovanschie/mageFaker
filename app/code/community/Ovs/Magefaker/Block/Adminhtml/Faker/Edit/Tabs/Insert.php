@@ -19,6 +19,14 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
             'legend' => $this->__('Product')
         ));
 
+
+        $fieldset->addField('products_category', 'multiselect', array(
+            'label' => $this->__('Select categories'),
+            'required' => true,
+            'name' => 'products_category',
+            'values' => Mage::getModel('adminhtml/system_config_source_category')->toOptionArray(false)
+        ));
+
         $fieldset->addField('products_insert', 'select', array(
             'label' => $this->__('Number of products to insert'),
             'name' => 'products_insert',

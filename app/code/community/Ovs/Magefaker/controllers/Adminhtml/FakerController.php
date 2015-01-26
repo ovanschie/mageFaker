@@ -51,7 +51,7 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
         }
 
         if($this->getRequest()->getParam('products_insert') > 0){
-            $insert = $model->insertProducts($this->getRequest()->getParam('products_insert'));
+            $insert = $model->insertProducts($this->getRequest()->getParam('products_insert'), $this->getRequest()->getParam('products_category'));
 
             if($insert){
                 Mage::getSingleton('adminhtml/session')->addSuccess($this->getRequest()->getParam('products_insert') . ' ' . $this->__('Product(s) inserted'));
