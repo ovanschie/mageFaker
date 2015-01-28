@@ -6,8 +6,6 @@
  */
 class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_Action{
 
-    //protected $_publicActions = array('index');
-
     /**
      * render main layout
      */
@@ -31,8 +29,9 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
         // set index modes to manual
         $processes = array();
         $indexer = Mage::getSingleton('index/indexer');
+        $processCollection = $indexer->getProcessesCollection();
 
-        foreach ($indexer->getProcessesCollection() as $process) {
+        foreach ($processCollection as $process) {
             $processes[$process->getIndexerCode()] = $process->getMode();
 
             if($process->getMode() !== Mage_Index_Model_Process::MODE_MANUAL){
@@ -52,7 +51,7 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
         }
 
         if($this->getRequest()->getParam('products_insert') > 0){
-            $insert = $model->insertProducts($this->getRequest()->getParam('products_insert'));
+            $insert = $model->insertProducts($this->getRequest()->getParam('products_insert'), $this->getRequest()->getParam('products_category'));
 
             if($insert){
                 Mage::getSingleton('adminhtml/session')->addSuccess($this->getRequest()->getParam('products_insert') . ' ' . $this->__('Product(s) inserted'));
@@ -63,8 +62,9 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
         }
 
 
-        // restore index mode and run indexer
-        foreach ($indexer->getProcessesCollection() as $process) {
+        // run indexer and restore mode
+
+        foreach ($processCollection as $process) {
             $process->reindexEverything();
             $process->setData('mode', $processes[$process->getIndexerCode()])->save();
         }
