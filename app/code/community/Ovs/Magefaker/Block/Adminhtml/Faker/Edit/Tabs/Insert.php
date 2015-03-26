@@ -21,10 +21,11 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
 
 
         $fieldset->addField('products_category', 'multiselect', array(
-            'label' => $this->__('Select categories'),
-            'required' => true,
-            'name' => 'products_category',
-            'values' => Mage::getModel('adminhtml/system_config_source_category')->toOptionArray(false)
+            'label'     => $this->__('Select categories'),
+            'required'  => true,
+            'name'      => 'products_category',
+            'values'    => Mage::getModel('ovs_magefaker/source_category')->toOptionArray(false),
+            'value'     => Mage::getModel('ovs_magefaker/source_category')->getFirstValue()
         ));
 
         $fieldset->addField('products_insert', 'select', array(
