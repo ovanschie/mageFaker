@@ -44,6 +44,7 @@
 /lib/fzaninotto/faker/Provider/ar_JO/Person.php /lib/fzaninotto/faker/Provider/ar_JO/Person.php
 /lib/fzaninotto/faker/Provider/ar_JO/Text.php /lib/fzaninotto/faker/Provider/ar_JO/Text.php
 /lib/fzaninotto/faker/Provider/at_AT/Payment.php /lib/fzaninotto/faker/Provider/at_AT/Payment.php
+/lib/fzaninotto/faker/Provider/be_BE/Payment.php /lib/fzaninotto/faker/Provider/be_BE/Payment.php
 /lib/fzaninotto/faker/Provider/bg_BG/Internet.php /lib/fzaninotto/faker/Provider/bg_BG/Internet.php
 /lib/fzaninotto/faker/Provider/bg_BG/Payment.php /lib/fzaninotto/faker/Provider/bg_BG/Payment.php
 /lib/fzaninotto/faker/Provider/bg_BG/Person.php /lib/fzaninotto/faker/Provider/bg_BG/Person.php
@@ -130,6 +131,9 @@
 /lib/fzaninotto/faker/Provider/es_VE/Internet.php /lib/fzaninotto/faker/Provider/es_VE/Internet.php
 /lib/fzaninotto/faker/Provider/es_VE/Person.php /lib/fzaninotto/faker/Provider/es_VE/Person.php
 /lib/fzaninotto/faker/Provider/es_VE/PhoneNumber.php /lib/fzaninotto/faker/Provider/es_VE/PhoneNumber.php
+/lib/fzaninotto/faker/Provider/fa_IR/Internet.php /lib/fzaninotto/faker/Provider/fa_IR/Internet.php
+/lib/fzaninotto/faker/Provider/fa_IR/Person.php /lib/fzaninotto/faker/Provider/fa_IR/Person.php
+/lib/fzaninotto/faker/Provider/fa_IR/Text.php /lib/fzaninotto/faker/Provider/fa_IR/Text.php
 /lib/fzaninotto/faker/Provider/fi_FI/Address.php /lib/fzaninotto/faker/Provider/fi_FI/Address.php
 /lib/fzaninotto/faker/Provider/fi_FI/Company.php /lib/fzaninotto/faker/Provider/fi_FI/Company.php
 /lib/fzaninotto/faker/Provider/fi_FI/Internet.php /lib/fzaninotto/faker/Provider/fi_FI/Internet.php
@@ -176,6 +180,7 @@
 /lib/fzaninotto/faker/Provider/it_IT/Payment.php /lib/fzaninotto/faker/Provider/it_IT/Payment.php
 /lib/fzaninotto/faker/Provider/it_IT/Person.php /lib/fzaninotto/faker/Provider/it_IT/Person.php
 /lib/fzaninotto/faker/Provider/it_IT/PhoneNumber.php /lib/fzaninotto/faker/Provider/it_IT/PhoneNumber.php
+/lib/fzaninotto/faker/Provider/it_IT/Text.php /lib/fzaninotto/faker/Provider/it_IT/Text.php
 /lib/fzaninotto/faker/Provider/ja_JP/Address.php /lib/fzaninotto/faker/Provider/ja_JP/Address.php
 /lib/fzaninotto/faker/Provider/ja_JP/Company.php /lib/fzaninotto/faker/Provider/ja_JP/Company.php
 /lib/fzaninotto/faker/Provider/ja_JP/Internet.php /lib/fzaninotto/faker/Provider/ja_JP/Internet.php
@@ -204,6 +209,7 @@
 /lib/fzaninotto/faker/Provider/nl_BE/Person.php /lib/fzaninotto/faker/Provider/nl_BE/Person.php
 /lib/fzaninotto/faker/Provider/nl_BE/PhoneNumber.php /lib/fzaninotto/faker/Provider/nl_BE/PhoneNumber.php
 /lib/fzaninotto/faker/Provider/nl_NL/Address.php /lib/fzaninotto/faker/Provider/nl_NL/Address.php
+/lib/fzaninotto/faker/Provider/nl_NL/Color.php /lib/fzaninotto/faker/Provider/nl_NL/Color.php
 /lib/fzaninotto/faker/Provider/nl_NL/Company.php /lib/fzaninotto/faker/Provider/nl_NL/Company.php
 /lib/fzaninotto/faker/Provider/nl_NL/Internet.php /lib/fzaninotto/faker/Provider/nl_NL/Internet.php
 /lib/fzaninotto/faker/Provider/nl_NL/Payment.php /lib/fzaninotto/faker/Provider/nl_NL/Payment.php
