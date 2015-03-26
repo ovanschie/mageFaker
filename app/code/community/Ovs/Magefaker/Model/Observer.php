@@ -6,9 +6,8 @@
  */
 class Ovs_Magefaker_Model_Observer{
 
-
     /**
-     * set the faker autloader
+     * set the faker autoloader
      */
     public function setAutoload(){
 
