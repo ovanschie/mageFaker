@@ -21,4 +21,4 @@ mageFaker
 - Copy module files to your project root
 - Login to your Magento admin
 - Go to system -> Faker data
-- Choose your options and press save
+- Choose your options and press start
