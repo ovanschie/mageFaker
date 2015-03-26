@@ -15,15 +15,15 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
 
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
-        include Mage::getBaseDir('lib') . '/fzaninotto/faker/faker.php';
+        require_once Mage::getBaseDir('lib') . DS .'fzaninotto'. DS .'faker' . DS . 'faker.php';
 
         $faker = @Faker\Factory::create();
         @$faker->addProvider(new \Faker\Provider\Product($faker));
 
         $rating_options = array(
-            1 => array(1, 2, 3, 4, 5),
-            2 => array(6, 7, 8, 9, 10),
-            3 => array(11, 12, 13, 14, 15)
+            1 => array(1,2,3,4,5),
+            2 => array(6,7,8,9,10),
+            3 => array(11,12,13,14,15)
         );
 
         for($i = 0; $i < $count; $i++) {
