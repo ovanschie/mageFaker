@@ -1,7 +1,7 @@
 mageFaker
 =========
 
-##Faker data for Magento [WIP]
+**Faker data for Magento [WIP]**
 
 #Currently supported
 
