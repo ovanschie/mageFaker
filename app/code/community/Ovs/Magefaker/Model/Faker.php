@@ -5,20 +5,26 @@
  */
 class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
 
-    public function _construct()
-    {
+    public function _construct(){
         parent::_construct();
         $this->_init('ovs_magefaker/faker');
     }
 
+    /**
+     * Generates products and product reviews
+     *
+     * @param $count
+     * @param $categories
+     * @return bool
+     */
     public function insertProducts($count, $categories){
 
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
-        require_once Mage::getBaseDir('lib') . DS .'fzaninotto'. DS .'faker' . DS . 'faker.php';
-
-        $faker = @Faker\Factory::create();
-        @$faker->addProvider(new \Faker\Provider\Product($faker));
+        $faker = new Faker\Generator();
+        $faker->addProvider(new Faker\Provider\en_US\Person($faker));
+        $faker->addProvider(new Faker\Provider\Lorem($faker));
+        $faker->addProvider(new Faker\Provider\Product($faker));
 
         $rating_options = array(
             1 => array(1,2,3,4,5),
@@ -46,17 +52,12 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                         ->setStatus(1)//product status (1 - enabled, 2 - disabled)
                         ->setTaxClassId(0)//tax class (0 - none, 1 - default, 2 - taxable, 4 - shipping)
                         ->setVisibility(Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)//catalog and search visibility
-                        //->setManufacturer(28)//manufacturer id
-                        //->setColor(24)
                         ->setNewsFromDate(strtotime('now'))//product set as new from
                         ->setNewsToDate(strtotime("+1 week"))//product set as new to
                         ->setCountryOfManufacture('NL')//country of manufacture (2-letter country code)
 
                         ->setPrice($price)//price in form 11.22
                         ->setCost(($price * 0.66))//price in form 11.22
-                        //->setSpecialPrice(00.44)//special price in form 11.22
-                        //->setSpecialFromDate('06/1/2014')//special price from (MM-DD-YYYY)
-                        //->setSpecialToDate('06/30/2014')//special price to (MM-DD-YYYY)
                         ->setMsrpEnabled(1)//enable MAP
                         ->setMsrpDisplayActualPriceType(4)//display actual price (1 - on gesture, 2 - in cart, 3 - before order confirmation, 4 - use config)
                         ->setMsrp($price)//Manufacturer's Suggested Retail Price
@@ -127,6 +128,12 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
         return true;
     }
 
+
+    /**
+     * Removes products with magefaker prefix
+     *
+     * @return bool
+     */
     public function removeProducts(){
         try{
             $products = Mage::getModel('catalog/product')
@@ -135,7 +142,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                 ->load();
 
             foreach($products as $product){
-                    $product->delete();
+                $product->delete();
             }
 
         } catch (Exception $e) {

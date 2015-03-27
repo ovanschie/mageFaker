@@ -25,6 +25,17 @@
                 <class>Ovs_Magefaker_Helper</class>
             </ovs_magefaker>
         </helpers>
+        <events>
+            <controller_front_init_before>
+                <observers>
+                    <ovs_magefaker>
+                        <type>singleton</type>
+                        <class>ovs_magefaker/observer</class>
+                        <method>setAutoload</method>
+                    </ovs_magefaker>
+                </observers>
+            </controller_front_init_before>
+        </events>
     </global>
 
     <admin>
