@@ -1,7 +1,7 @@
 mageFaker
 =========
 
-**Faker data for Magento [WIP]**
+**Sample data generator for Magento [WIP]**
 
 #Currently supported
 
@@ -14,7 +14,6 @@ mageFaker
 - PHP                >= 5.4
 - Memory limit       >= 512M
 - Unlimited max_execution_time prefered
-- Patience ;)
 
 #How to use
 
