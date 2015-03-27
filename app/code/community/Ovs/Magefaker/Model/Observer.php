@@ -15,7 +15,6 @@ class Ovs_Magefaker_Model_Observer{
         $autoLoader = Zend_Loader_Autoloader::getInstance();
 
         // get all Varien autoloaders an unregister them
-
         $autoloader_callbacks   = spl_autoload_functions();
         $original_autoload      = null;
 
@@ -28,7 +27,6 @@ class Ovs_Magefaker_Model_Observer{
         spl_autoload_unregister($original_autoload);
 
         // the faker autoloader
-
         function fakerLoader($className) {
 
             $className = ltrim($className, '\\');
@@ -37,7 +35,7 @@ class Ovs_Magefaker_Model_Observer{
             if ($lastNsPos = strripos($className, '\\')) {
                 $namespace = substr($className, 0, $lastNsPos);
                 $className = substr($className, $lastNsPos + 1);
-                $fileName  = str_replace('\\', DS, $namespace) . DS;
+                $fileName  = lcfirst(str_replace('\\', DS, $namespace) . DS);
             }
 
             $fileName = Mage::getBaseDir('lib') . DS . 'fzaninotto' . DS . $fileName . DS . $className . '.php';
@@ -54,8 +52,7 @@ class Ovs_Magefaker_Model_Observer{
         $autoLoader->pushAutoloader('fakerLoader', 'Faker\\');
 
         // re-add the original autoloader
-
-        spl_autoload_register($original_autoload);
+        $autoLoader->pushAutoloader($original_autoload);
 
     }
 
