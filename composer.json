@@ -1,0 +1,14 @@
+{
+    "name": "ovs/magefaker",
+    "description": "Sample data generator for Magento",
+    "version": "0.4.0",
+    "type": "magento-module",
+    "authors":[{
+		"name":"Olav van Schie"
+		}
+	],
+    "require": {
+    	"php": ">=5.4",
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
