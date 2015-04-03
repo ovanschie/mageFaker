@@ -1,21 +1,21 @@
-mageFaker
+# mageFaker
 =========
 
 **Sample data generator for Magento [WIP]**
 
-#Currently supported
+## Currently supported
 
  - Simple products
  - Product reviews and ratings
 
-#Requirements
+## Requirements
 
 - Magento            >= 1.9.0 (older versions untested)
 - PHP                >= 5.4
 - Memory limit       >= 512M
 - Unlimited max_execution_time prefered
 
-#How to use
+## How to use
 
 - Copy module files to your project root
 - Login to your Magento admin
