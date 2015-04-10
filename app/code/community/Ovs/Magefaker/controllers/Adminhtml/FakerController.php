@@ -23,9 +23,6 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
      * Process
      */
     public function saveAction(){
-        $startTime  = new DateTime('NOW');
-
-        $model = Mage::getModel('ovs_magefaker/faker');
 
         // set index modes to manual
         $processes = array();
@@ -40,60 +37,112 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
             }
         }
 
+        // remove products
         if($this->getRequest()->getParam('products_remove')) {
-            $remove = $model->removeProducts();
-
-            $endTime = new DateTime('NOW');
-
-            if($remove){
-                Mage::getSingleton('adminhtml/session')->addSuccess(
-                    $this->__('Products removed')
-                    . ' - ' . $this->getElapsedTime($startTime, $endTime)
-                );
-
-                Mage::getSingleton('adminhtml/session')->addNotice($this->__('Reminder: run indexer when done'));
-
-            }
-            else{
-                Mage::getSingleton('adminhtml/session')->addError(
-                    $this->__('An error occurred while removing products')
-                    . ' - ' . $this->getElapsedTime($startTime, $endTime)
-                );
-            }
+            $this->removeProducts();
         }
 
+        // insert products
         if($this->getRequest()->getParam('products_insert') > 0){
-            $insert = $model->insertProducts($this->getRequest()->getParam('products_insert'), $this->getRequest()->getParam('products_category'));
-
-            $endTime = new DateTime('NOW');
-
-            if($insert){
-                Mage::getSingleton('adminhtml/session')->addSuccess(
-                    $this->getRequest()->getParam('products_insert') . ' ' .
-                    $this->__('Product(s) inserted')
-                    . ' - ' . $this->getElapsedTime($startTime, $endTime)
-                );
-
-                Mage::getSingleton('adminhtml/session')->addNotice($this->__('Reminder: run indexer when done'));
-
-            }
-            else{
-                Mage::getSingleton('adminhtml/session')->addError(
-                    $this->__('An error occurred while inserting')
-                    . ' - ' . $this->getElapsedTime($startTime, $endTime)
-                );
-            }
+            $this->insertProducts(
+                $this->getRequest()->getParam('products_insert'),
+                $this->getRequest()->getParam('products_category')
+            );
         }
 
+        // insert categories
+        if($this->getRequest()->getParam('categories_insert') > 0){
+            $this->insertCategories(
+                $this->getRequest()->getParam('categories_insert'),
+                $this->getRequest()->getParam('categories_parent')
+            );
+        }
+
+        Mage::getSingleton('adminhtml/session')->addNotice($this->__('Reminder: run indexer when done'));
 
         // restore index mode
-
         foreach ($processCollection as $process) {
-            //$process->reindexEverything();
             $process->setData('mode', $processes[$process->getIndexerCode()])->save();
         }
 
         $this->_redirectReferer();
+    }
+
+    /**
+     *
+     */
+    private function removeProducts(){
+        $model = Mage::getModel('ovs_magefaker/faker');
+
+        $startTime  = new DateTime('NOW');
+        $remove     = $model->removeProducts();
+        $endTime    = new DateTime('NOW');
+
+        if($remove){
+            Mage::getSingleton('adminhtml/session')->addSuccess(
+                $this->__('Products removed')
+                . ' - ' . $this->getElapsedTime($startTime, $endTime)
+            );
+        }
+        else{
+            Mage::getSingleton('adminhtml/session')->addError(
+                $this->__('An error occurred while removing products')
+                . ' - ' . $this->getElapsedTime($startTime, $endTime)
+            );
+        }
+    }
+
+    /**
+     * @param $count
+     * @param $category
+     */
+    private function insertProducts($count, $category){
+        $model = Mage::getModel('ovs_magefaker/faker');
+
+        $startTime  = new DateTime('NOW');
+        $insert     = $model->insertProducts($count, $category);
+        $endTime    = new DateTime('NOW');
+
+        if($insert){
+            Mage::getSingleton('adminhtml/session')->addSuccess(
+                $count . ' ' .
+                $this->__('Product(s) inserted')
+                . ' - ' . $this->getElapsedTime($startTime, $endTime)
+            );
+        }
+        else{
+            Mage::getSingleton('adminhtml/session')->addError(
+                $this->__('An error occurred while inserting')
+                . ' - ' . $this->getElapsedTime($startTime, $endTime)
+            );
+        }
+    }
+
+    /**
+     *
+     * @param $count
+     * @param $parentCategory
+     */
+    private function insertCategories($count, $parentCategory){
+        $model = Mage::getModel('ovs_magefaker/faker');
+
+        $startTime  = new DateTime('NOW');
+        $insert     = $model->insertCategories($count, $parentCategory);
+        $endTime    = new DateTime('NOW');
+
+        if($insert){
+            Mage::getSingleton('adminhtml/session')->addSuccess(
+                $count . ' ' .
+                $this->__('Categorie(s) inserted')
+                . ' - ' . $this->getElapsedTime($startTime, $endTime)
+            );
+        }
+        else{
+            Mage::getSingleton('adminhtml/session')->addError(
+                $this->__('An error occurred while inserting')
+                . ' - ' . $this->getElapsedTime($startTime, $endTime)
+            );
+        }
     }
 
     /**
@@ -107,4 +156,5 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
         $diff = $start->diff( $end );
         return $diff->format( '%H:%I:%S' );
     }
+
 }

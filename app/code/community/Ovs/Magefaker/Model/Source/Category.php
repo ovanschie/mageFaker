@@ -5,12 +5,16 @@
  */
 class Ovs_Magefaker_Model_Source_Category extends Mage_Core_Model_Abstract{
 
-   public function toOptionArray($addEmpty = true){
-          $tree = Mage::getResourceModel('catalog/category_tree');
-
+    /**
+     * @param bool $addEmpty
+     * @return array
+     * @throws Mage_Core_Exception
+     */
+    public function toOptionArray($addEmpty = true){
           $collection = Mage::getResourceModel('catalog/category_collection');
 
           $collection->addAttributeToSelect('name')
+              ->addAttributeToSort('path', 'asc')
               ->load();
 
           $options = array();
@@ -21,16 +25,24 @@ class Ovs_Magefaker_Model_Source_Category extends Mage_Core_Model_Abstract{
                   'value' => ''
               );
           }
+
           foreach ($collection as $category) {
+
               $options[] = array(
-                 'label' => $category->getName(),
-                 'value' => $category->getId()
+                  'label' => $category->getName(),
+                  'level' => $category->getLevel(),
+                  'value' => $category->getId()
               );
           }
 
           return $options;
     }
 
+    /**
+     * Returns first value of option array
+     *
+     * @return mixed
+     */
     public function getFirstValue(){
         $values = $this->toOptionArray(false);
         return $values[0];

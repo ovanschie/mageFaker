@@ -153,4 +153,44 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
         return true;
     }
 
+    /**
+     * Generates categories
+     *
+     * @param $count
+     * @return bool
+     */
+    public function insertCategories($count, $parentId){
+
+        Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
+
+        $faker = new Faker\Generator();
+        $faker->addProvider(new Faker\Provider\en_US\Person($faker));
+        $faker->addProvider(new Faker\Provider\Lorem($faker));
+        $faker->addProvider(new Faker\Provider\Product($faker));
+
+        for($i = 0; $i < $count; $i++) {
+
+            try{
+                $name = $faker->categoryName();
+                $parentCategory = Mage::getModel('catalog/category')->load($parentId);
+
+                $category = Mage::getModel('catalog/category');
+                $category->setName($name);
+                $category->setUrlKey($faker->categoryUrl($name));
+                $category->setIsActive(1);
+                $category->setDisplayMode('PRODUCTS');
+                $category->setIsAnchor(1);
+                $category->setStoreId(Mage_Core_Model_App::ADMIN_STORE_ID);
+                $category->setPath($parentCategory->getPath());
+                $category->save();
+
+            } catch(Exception $e) {
+                Mage::logException($e);
+                return false;
+            }
+
+        }
+
+        return true;
+    }
 }

@@ -21,6 +21,11 @@ class Product extends \Faker\Provider\Base
         "Prima Pump","Plaza Platform","Annie Pump","Broadway Pump","Ellis Flat","Yuca Sneaker","Black Nolita Cami","NoLIta Cami-Pink","Black Nolita Cami-Black"
     );
 
+    protected static $fashionCategories = array(
+        "Women","Tops & Blouses","Pants & Denim","Dresses & Skirts","Men","Shirts","Tees, Knits and Polos","Pants & Denim","Blazers","Accessories","Eyewear","Jewelry","Shoes","Bags & Luggage","Home & Decor",
+        "Books & Music","Bed & Bath","Electronics","Decorative Accents","Sale","Women","Men","Accessories","Home & Decor","VIP"
+    );
+
     public function productName(){
         return static::randomElement(static::$fashionNames);
     }
@@ -60,5 +65,13 @@ class Product extends \Faker\Provider\Base
 
     public function metaDescription(){
         return $this->generator->paragraph(4);
+    }
+
+    public function categoryName(){
+        return static::randomElement(static::$fashionCategories);
+    }
+
+    public function categoryUrl($name){
+        return 'faker-' . $name . '-' . uniqid();
     }
 }
