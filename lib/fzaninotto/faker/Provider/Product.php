@@ -72,6 +72,6 @@ class Product extends \Faker\Provider\Base
     }
 
     public function categoryUrl($name){
-        return 'faker-' . $name . '-' . uniqid();
+        return $name . '-' . uniqid();
     }
 }

@@ -17,15 +17,29 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Remove extends Mage_Adminhtm
 
         $form = new Varien_Data_Form();
 
-        $fieldset = $form->addFieldset('product_remove', array(
-            'legend' => $this->__('Product')
+        // categories remove
+        $category = $form->addFieldset('category_remove', array(
+            'legend' => $this->__('Categories')
         ));
 
-        $fieldset->addField('products_remove', 'checkbox', array(
+        $category->addField('categories_remove', 'checkbox', array(
+            'label' => $this->__('Remove all MageFaker categories'),
+            'name' => 'categories_remove',
+            'value' => 'categories_remove',
+            'after_element_html' => '</td><td><small><em>' . $this->__("This will remove all categories with the 'magefaker-' prefix in url") . '</em></small>'
+        ));
+
+
+        // products remove
+        $products = $form->addFieldset('product_remove', array(
+            'legend' => $this->__('Products')
+        ));
+
+        $products->addField('products_remove', 'checkbox', array(
             'label' => $this->__('Remove all MageFaker products'),
             'name' => 'products_remove',
             'value' => 'products_remove',
-            'after_element_html' => '</td><td><small><em>' . $this->__("This will remove all products with the 'magefaker-' prefix") . '</em></small>'
+            'after_element_html' => '</td><td><small><em>' . $this->__("This will remove all products with the 'magefaker-' prefix in sku") . '</em></small>'
         ));
 
         $form->setUseContainer(false);

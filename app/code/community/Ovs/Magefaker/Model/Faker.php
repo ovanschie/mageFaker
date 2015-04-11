@@ -176,7 +176,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
 
                 $category = Mage::getModel('catalog/category');
                 $category->setName($name);
-                $category->setUrlKey($faker->categoryUrl($name));
+                $category->setUrlKey('magefaker-' . $faker->categoryUrl($name));
                 $category->setIsActive(1);
                 $category->setDisplayMode('PRODUCTS');
                 $category->setIsAnchor(1);
@@ -189,6 +189,30 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                 return false;
             }
 
+        }
+
+        return true;
+    }
+
+    /**
+     * Removes categories with magefaker prefix
+     *
+     * @return bool
+     */
+    public function removeCategories(){
+        try{
+            $categories = Mage::getModel('catalog/category')
+                ->getCollection()
+                ->addAttributeToFilter('url_key', array('like' => '%magefaker-%'))
+                ->load();
+
+            foreach($categories as $category){
+                $category->delete();
+            }
+
+        } catch (Exception $e) {
+            Mage::logException($e);
+            return false;
         }
 
         return true;

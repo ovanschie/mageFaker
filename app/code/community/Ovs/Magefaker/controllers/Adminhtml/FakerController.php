@@ -50,6 +50,11 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
             );
         }
 
+        // remove categories
+        if($this->getRequest()->getParam('categories_remove')) {
+            $this->removeCategories();
+        }
+
         // insert categories
         if($this->getRequest()->getParam('categories_insert') > 0){
             $this->insertCategories(
@@ -118,6 +123,29 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
         }
     }
 
+    /**
+     *
+     */
+    private function removeCategories(){
+        $model = Mage::getModel('ovs_magefaker/faker');
+
+        $startTime  = new DateTime('NOW');
+        $remove     = $model->removeCategories();
+        $endTime    = new DateTime('NOW');
+
+        if($remove){
+            Mage::getSingleton('adminhtml/session')->addSuccess(
+                $this->__('Categories removed')
+                . ' - ' . $this->getElapsedTime($startTime, $endTime)
+            );
+        }
+        else{
+            Mage::getSingleton('adminhtml/session')->addError(
+                $this->__('An error occurred while removing categories')
+                . ' - ' . $this->getElapsedTime($startTime, $endTime)
+            );
+        }
+    }
     /**
      *
      * @param $count
