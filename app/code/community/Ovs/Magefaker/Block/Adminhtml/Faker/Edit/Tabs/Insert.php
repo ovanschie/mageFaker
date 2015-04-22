@@ -21,11 +21,12 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
         ));
 
         $category->addField('categories_parent', 'select', array(
-            'label'     => $this->__('Select parent category to append new categories'),
+            'label'     => $this->__('Parent'),
             'required'  => true,
             'name'      => 'categories_parent',
             'values'    => Mage::getModel('ovs_magefaker/source_category')->toOptionArray(false),
-            'value'     => Mage::getModel('ovs_magefaker/source_category')->getFirstValue()
+            'value'     => Mage::getModel('ovs_magefaker/source_category')->getFirstValue(),
+            'after_element_html' => 'Will append new categories to this parent',
         ));
 
         $category->addField('categories_insert', 'select', array(
