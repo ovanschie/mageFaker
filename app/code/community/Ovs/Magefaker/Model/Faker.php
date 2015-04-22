@@ -180,6 +180,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                 $category = Mage::getModel('catalog/category');
                 $category->setName($name);
                 $category->setUrlKey('magefaker-' . $faker->categoryUrl($name));
+                $category->setImage('../../../' . $faker->productImage);
                 $category->setIsActive(1);
                 $category->setDisplayMode('PRODUCTS');
                 $category->setIsAnchor(1);
