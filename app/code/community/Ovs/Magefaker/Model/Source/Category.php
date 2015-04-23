@@ -60,18 +60,18 @@ class Ovs_Magefaker_Model_Source_Category extends Mage_Core_Model_Abstract{
 
         foreach ($nodeCollection as $node) {
 
-            $repeat = $node->getLevel() * 2;
+            $times = $node->getLevel() * 2;
 
-            if($repeat <= 4){
-                $repeat = 2;
+            if($times <= 4){
+                $times = 2;
             }
 
-            $prefix = str_repeat(html_entity_decode('&nbsp;'), $repeat);
+            $indent = 3 * $times;
 
             if ($node->hasChildren()) {
                 $this->options[] = array(
-                    'label' => $prefix  . $node->getName(),
-                    'style' => 'font-weight:bold',
+                    'label' => $node->getName(),
+                    'style' => 'font-weight:bold;text-indent:' . $indent . 'px',
                     'value' => $node->getEntityId()
                 );
 
@@ -79,7 +79,8 @@ class Ovs_Magefaker_Model_Source_Category extends Mage_Core_Model_Abstract{
             }
             else{
                 $this->options[] = array(
-                    'label' => $prefix . html_entity_decode('&nbsp;') . $node->getName(),
+                    'label' => $node->getName(),
+                    'style' => 'text-indent:' . ($indent + 2) . 'px',
                     'value' => $node->getEntityId()
                 );
             }
