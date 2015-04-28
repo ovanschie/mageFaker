@@ -1,7 +1,7 @@
 <?php
 namespace Faker\Provider;
 
-class Product extends \Faker\Provider\Base
+class Ecommerce extends \Faker\Provider\Base
 {
     protected static $fashionNames = array(
         "French Cuff Cotton Twill Oxford","Slim fit Dobby Oxford Shirt","Plaid Cotton Shirt","Sullivan Sport Coat","Linen Blazer","Stretch Cotton Blazer","Chelsea Tee",
@@ -26,12 +26,14 @@ class Product extends \Faker\Provider\Base
         "Books & Music","Bed & Bath","Electronics","Decorative Accents","Sale","Women","Men","Accessories","Home & Decor","VIP"
     );
 
+    // product
+
     public function productName(){
         return static::randomElement(static::$fashionNames);
     }
 
     public function productImage(){
-        return 'media/mageFaker/' . $this->numberBetween(1, 20) . '.jpg';
+        return 'media/mageFaker/product/' . $this->numberBetween(1, 29) . '.jpg';
     }
 
     public function price(){
@@ -67,8 +69,14 @@ class Product extends \Faker\Provider\Base
         return $this->generator->paragraph(4);
     }
 
+    // category
+
     public function categoryName(){
         return static::randomElement(static::$fashionCategories);
+    }
+
+    public function categoryImage(){
+        return 'media/mageFaker/category/' . $this->numberBetween(1, 14) . '.jpg';
     }
 
     public function categoryUrl($name){
