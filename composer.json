@@ -1,7 +1,6 @@
 {
     "name": "ovs/magefaker",
     "description": "Sample data generator for Magento",
-    "version": "0.4.0",
     "type": "magento-module",
     "authors":[{
 		"name":"Olav van Schie"
