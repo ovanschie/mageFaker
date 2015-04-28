@@ -15,12 +15,44 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
 
         $form = new Varien_Data_Form();
 
-        $fieldset = $form->addFieldset('product_insert', array(
-            'legend' => $this->__('Product')
+        // category
+        $category = $form->addFieldset('category_insert', array(
+            'legend' => $this->__('Categories')
         ));
 
+        $category->addField('categories_parent', 'select', array(
+            'label'     => $this->__('Parent'),
+            'required'  => true,
+            'name'      => 'categories_parent',
+            'values'    => Mage::getModel('ovs_magefaker/source_category')->toOptionArray(false),
+            'value'     => Mage::getModel('ovs_magefaker/source_category')->getFirstValue(),
+            'after_element_html' => 'Will append new categories to this parent',
+        ));
 
-        $fieldset->addField('products_category', 'multiselect', array(
+        $category->addField('categories_insert', 'select', array(
+            'label' => $this->__('Number of categories to insert'),
+            'name' => 'categories_insert',
+            'value' => '0',
+            'values' => array(
+                '0' => '0',
+                '1' => '1',
+                '5' => '5',
+                '10' => '10',
+                '25' => '25',
+                '50' => '50',
+                '100' => '100',
+                '150' => '150',
+                '250' => '250',
+                '500' => '500'
+            )
+        ));
+
+        // product
+        $product = $form->addFieldset('product_insert', array(
+            'legend' => $this->__('Products')
+        ));
+
+        $product->addField('products_category', 'multiselect', array(
             'label'     => $this->__('Select categories'),
             'required'  => true,
             'name'      => 'products_category',
@@ -28,7 +60,7 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
             'value'     => Mage::getModel('ovs_magefaker/source_category')->getFirstValue()
         ));
 
-        $fieldset->addField('products_insert', 'select', array(
+        $product->addField('products_insert', 'select', array(
             'label' => $this->__('Number of products to insert'),
             'name' => 'products_insert',
             'value' => '0',
