@@ -76,7 +76,7 @@ class Ecommerce extends \Faker\Provider\Base
     }
 
     public function categoryImage(){
-        return 'media/mageFaker/category/' . $this->numberBetween(1, 14) . '.jpg';
+        return '../../../media/mageFaker/category/' . $this->numberBetween(1, 14) . '.jpg';
     }
 
     public function categoryUrl($name){

@@ -24,12 +24,12 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
         $faker = new Faker\Generator();
         $faker->addProvider(new Faker\Provider\en_US\Person($faker));
         $faker->addProvider(new Faker\Provider\Lorem($faker));
-        $faker->addProvider(new Faker\Provider\Product($faker));
+        $faker->addProvider(new Faker\Provider\Ecommerce($faker));
 
         $rating_options = array(
-            1 => array(1,2,3,4,5),
-            2 => array(6,7,8,9,10),
-            3 => array(11,12,13,14,15)
+            1 => array(1, 2, 3, 4, 5),
+            2 => array(6, 7, 8, 9, 10),
+            3 => array(11, 12, 13, 14, 15)
         );
 
         for($i = 0; $i < $count; $i++) {
@@ -109,7 +109,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                         $review->save();
 
                         foreach($rating_options as $rating_id => $option_ids) {
-                            $stars = mt_rand(0, 4);
+                            $stars = mt_rand(1, 3);
 
                             Mage::getModel('rating/rating')
                                 ->setRatingId($rating_id)
@@ -169,7 +169,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
         $faker = new Faker\Generator();
         $faker->addProvider(new Faker\Provider\en_US\Person($faker));
         $faker->addProvider(new Faker\Provider\Lorem($faker));
-        $faker->addProvider(new Faker\Provider\Product($faker));
+        $faker->addProvider(new Faker\Provider\Ecommerce($faker));
 
         for($i = 0; $i < $count; $i++) {
 
@@ -180,7 +180,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                 $category = Mage::getModel('catalog/category');
                 $category->setName($name);
                 $category->setUrlKey('magefaker-' . $faker->categoryUrl($name));
-                $category->setImage('../../../' . $faker->productImage);
+                $category->setImage($faker->categoryImage);
                 $category->setIsActive(1);
                 $category->setDisplayMode('PRODUCTS');
                 $category->setIsAnchor(1);
