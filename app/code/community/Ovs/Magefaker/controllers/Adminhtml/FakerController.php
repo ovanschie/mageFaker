@@ -44,10 +44,23 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
 
         // insert products
         if($this->getRequest()->getParam('products_insert') > 0){
-            $this->insertProducts(
-                $this->getRequest()->getParam('products_insert'),
-                $this->getRequest()->getParam('products_category')
-            );
+
+            if($this->getRequest()->getParam('products_simple')){
+                $this->insertProducts(
+                    'simple',
+                    $this->getRequest()->getParam('products_insert'),
+                    $this->getRequest()->getParam('products_category')
+                );
+            }
+
+            if($this->getRequest()->getParam('products_configurable')){
+                $this->insertProducts(
+                    'configurable',
+                    $this->getRequest()->getParam('products_insert'),
+                    $this->getRequest()->getParam('products_category')
+                );
+            }
+
         }
 
         // remove categories
@@ -77,7 +90,7 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
      *
      */
     private function removeProducts(){
-        $model = Mage::getModel('ovs_magefaker/faker');
+        $model = Mage::getModel('ovs_magefaker/remove');
 
         $startTime  = new DateTime('NOW');
         $remove     = $model->removeProducts();
@@ -101,12 +114,19 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
      * @param $count
      * @param $category
      */
-    private function insertProducts($count, $category){
+    private function insertProducts($type, $count, $category){
         $model = Mage::getModel('ovs_magefaker/faker');
 
-        $startTime  = new DateTime('NOW');
-        $insert     = $model->insertProducts($count, $category);
-        $endTime    = new DateTime('NOW');
+        $startTime = new DateTime('NOW');
+
+        if($type == 'simple'){
+            $insert = $model->insertSimpleProducts($count, $category);
+        }
+        else if($type == 'configurable'){
+            $insert = $model->insertConfigurableProducts($count, $category);
+        }
+
+        $endTime = new DateTime('NOW');
 
         if($insert){
             Mage::getSingleton('adminhtml/session')->addSuccess(
@@ -127,7 +147,7 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
      *
      */
     private function removeCategories(){
-        $model = Mage::getModel('ovs_magefaker/faker');
+        $model = Mage::getModel('ovs_magefaker/remove');
 
         $startTime  = new DateTime('NOW');
         $remove     = $model->removeCategories();

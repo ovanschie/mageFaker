@@ -78,6 +78,20 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
             )
         ));
 
+        $product->addField('products_simple', 'checkbox', array(
+            'label'     => $this->__('Include simple products'),
+            'name'      => 'products_simple',
+            'value'     => 1,
+            'checked'   => true
+        ));
+
+        $product->addField('products_configurable', 'checkbox', array(
+            'label'     => $this->__('Include configurable products'),
+            'name'      => 'products_configurable',
+            'value'     => 1,
+            'checked'   => true
+        ));
+
         $form->setUseContainer(false);
         $this->setForm($form);
 
