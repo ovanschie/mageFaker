@@ -441,16 +441,16 @@ p {
 }
 
 a {
-  color: #2879d0;
+  color: #F57B20;
 }
 a:hover {
-  color: #2268b2;
+  color: #E05F00;
 }
 
 header {
   padding-top: 40px;
   padding-bottom: 40px;
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, serif;
   background: #2e7bcf url(../images/header-bg.jpg) 0 0 repeat-x;
   border-bottom: solid 1px #275da1;
 }
@@ -483,6 +483,12 @@ header h2 {
   margin: 0 auto;
 }
 
+.right{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 #content-wrapper {
   padding-top: 30px;
   border-top: solid 1px #fff;
@@ -504,7 +510,7 @@ aside#sidebar {
   padding-left: 20px;
   font-size: 12px;
   line-height: 1.3;
-  background: transparent url(../images/sidebar-bg.jpg) 0 0 no-repeat;
+  border-left: 1px solid #C9C9C9;
 }
 
 aside#sidebar p.repo-owner,
@@ -517,24 +523,26 @@ aside#sidebar p.repo-owner a {
 }
 
 a.button {
-  width: 134px;
-  height: 58px;
-  padding-top: 22px;
-  padding-left: 68px;
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+  padding: 12px 14px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 23px;
   line-height: 1.2;
   color: #fff;
+  margin: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
 }
+
+a.button:hover{
+  border: 1px solid white;
+}
+
 a.button small {
   display: block;
   font-size: 11px;
 }
 header a.button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: transparent url(../images/github-button.png) 0 0 no-repeat;
+  float:left;
 }
 aside a.button {
   display: block;
@@ -614,10 +622,10 @@ form {
 #main-content h1 {
   margin-top: 0;
   margin-bottom: 0;
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 2.8em;
   font-weight: normal;
-  color: #474747;
+  color: #F57B20;
   text-indent: 6px;
   letter-spacing: -1px;
 }
@@ -625,13 +633,13 @@ form {
 #main-content h1:before {
   padding-right: 0.3em;
   margin-left: -0.9em;
-  color: #9ddcff;
+  color: #F57B20;
   content: "/";
 }
 
 #main-content h2 {
   margin-bottom: 8px;
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 22px;
   font-weight: bold;
   color: #474747;
@@ -647,7 +655,7 @@ form {
 #main-content h3 {
   margin-top: 24px;
   margin-bottom: 8px;
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 18px;
   font-weight: bold;
   color: #474747;
@@ -663,7 +671,7 @@ form {
 
 #main-content h4 {
   margin-bottom: 8px;
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 15px;
   font-weight: bold;
   color: #474747;
@@ -679,7 +687,7 @@ h4:before {
 
 #main-content h5 {
   margin-bottom: 8px;
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 14px;
   color: #474747;
   text-indent: 3px;
@@ -693,7 +701,7 @@ h5:before {
 
 #main-content h6 {
   margin-bottom: 8px;
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: .8em;
   color: #474747;
   text-indent: 3px;
@@ -830,7 +838,7 @@ footer a:hover {
     display: inline-block;
     width: auto;
     height: auto;
-    padding: 5px 10px;
+    padding: 5px;
     margin-top: 15px;
     font-size: 13px;
     line-height: 1;
