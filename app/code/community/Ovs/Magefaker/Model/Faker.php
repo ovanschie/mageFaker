@@ -175,6 +175,26 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                     )
                 );
 
+            if($type == 'configurable'){
+                $product->getTypeInstance()->setUsedProductAttributeIds(array(193)); //attribute ID of attribute 'color' in my store
+                $configurableAttributesData = $product->getTypeInstance()->getConfigurableAttributesAsArray();
+
+                $product->setCanSaveConfigurableAttributes(true);
+                $product->setConfigurableAttributesData($configurableAttributesData);
+
+                $configurableProductsData = array();
+                $configurableProductsData['920'] = array( //['920'] = id of a simple product associated with this configurable
+                    '0' => array(
+                        'label' => 'Green', //attribute label
+                        'attribute_id' => '92', //attribute ID of attribute 'color' in my store
+                        'value_index' => '24', //value of 'Green' index of the attribute 'color'
+                        'is_percent' => '0', //fixed/percent price for this option
+                        'pricing_value' => '21' //value for the pricing
+                    )
+                );
+                $product->setConfigurableProductsData($configurableProductsData);
+            }
+
             $product->save();
 
             $new_productId = $product->getId();
