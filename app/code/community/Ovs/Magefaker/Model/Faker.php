@@ -18,6 +18,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
      * @return bool
      */
     public function insertSimpleProducts($count, $category){
+
         for($i = 0; $i < $count; $i++) {
             $this->insertProduct($category, 'simple');
         }
@@ -35,20 +36,6 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
      * @throws Mage_Core_Exception
      */
     public function insertConfigurableProducts($count, $category){
-        $color_code = 'magefaker_color';
-        $size_code  = 'magefaker_size';
-
-        $color  = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $color_code);
-        $size   = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $size_code);
-
-        // check if attributes exist
-        if(!$color->getId()){
-            $this->insertAttribute($color_code, 'select');
-        }
-
-        if(!$size->getId()){
-            $this->insertAttribute($size_code, 'select');
-        }
 
         for($i = 0; $i < $count; $i++) {
             $this->insertProduct($category, 'configurable');
@@ -148,6 +135,8 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                 ->setNewsToDate(strtotime("+1 week"))
                 ->setCountryOfManufacture('NL')
 
+
+                ->setColor(3)
                 ->setPrice($price)
                 ->setCost(($price * 0.66))
                 ->setMsrpEnabled(1)
@@ -176,23 +165,43 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                 );
 
             if($type == 'configurable'){
-                $product->getTypeInstance()->setUsedProductAttributeIds(array(193)); //attribute ID of attribute 'color' in my store
+
+                $color_code = 'magefaker_color';
+                $size_code  = 'magefaker_size';
+
+                $color      = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $color_code);
+                $size       = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $size_code);
+
+                // check if attributes exist
+                if(!$color->getId()){
+                    Mage::log('Faker color attribute not found');
+                    return false;
+                }
+
+                if(!$size->getId()){
+                    Mage::log('Faker size attribute not found');
+                    return false;
+                }
+
+                $product->getTypeInstance()->setUsedProductAttributeIds(array(92));
                 $configurableAttributesData = $product->getTypeInstance()->getConfigurableAttributesAsArray();
 
                 $product->setCanSaveConfigurableAttributes(true);
                 $product->setConfigurableAttributesData($configurableAttributesData);
 
                 $configurableProductsData = array();
-                $configurableProductsData['920'] = array( //['920'] = id of a simple product associated with this configurable
+                $configurableProductsData['590'] = array( // id of a simple product associated with this configurable
                     '0' => array(
-                        'label' => 'Green', //attribute label
-                        'attribute_id' => '92', //attribute ID of attribute 'color' in my store
-                        'value_index' => '24', //value of 'Green' index of the attribute 'color'
-                        'is_percent' => '0', //fixed/percent price for this option
-                        'pricing_value' => '21' //value for the pricing
+                        'label'             => 'Red', // attribute label
+                        'attribute_id'      => '92', // attribute ID of attribute 'color'
+                        'value_index'       => '3', // value of red index of the attribute 'color'
+                        'is_percent'        => '0', // fixed/percent price for this option
+                        'pricing_value'     => '15' // ppricing
                     )
                 );
+
                 $product->setConfigurableProductsData($configurableProductsData);
+
             }
 
             $product->save();
@@ -240,41 +249,81 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
      *
      * @param $code
      * @param $input
+     * @param $defaultValue
+     * @param $label
+     * @param $attr_setName
+     * @param $attr_groupName
+     * @return mixed attribute id
      * @throws Exception
      */
-    private function insertAttribute($code, $input){
+    private function insertAttribute($code, $input, $defaultValue, $label, $attr_setName = 'Default', $attr_groupName = 'General'){
 
-        $_attribute_data = array(
-            'attribute_code' => $code,
-            'is_global' => '1',
-            'frontend_input' => $input,
-            'default_value' => 'white',
-            'is_unique' => '0',
-            'is_required' => '0',
-            'is_configurable' => '1',
-            'is_filterable' => '1',
-            'is_searchable' => '1',
-            'is_filterable_in_search' => '1',
-            'is_visible_in_advanced_search' => '0',
-            'is_comparable' => '0',
-            'is_used_for_price_rules' => '0',
-            'is_wysiwyg_enabled' => '0',
-            'is_html_allowed_on_front' => '1',
-            'is_visible_on_front' => '0',
-            'used_in_product_listing' => '0',
-            'used_for_sort_by' => '0',
-            'frontend_label' => array('Fake color')
+        // set attribute data
+        $attr_data = array(
+            'attribute_code'                    => $code,
+            'frontend_input'                    => $input,
+            'default_value'                     => $defaultValue,
+            'frontend_label'                    => array($label),
+            'is_global'                         => 1,
+            'is_unique'                         => 0,
+            'is_required'                       => 0,
+            'is_configurable'                   => 1,
+            'is_filterable'                     => 1,
+            'is_searchable'                     => 1,
+            'is_filterable_in_search'           => 1,
+            'is_visible_in_advanced_search'     => 0,
+            'is_comparable'                     => 0,
+            'is_used_for_price_rules'           => 0,
+            'is_wysiwyg_enabled'                => 0,
+            'is_html_allowed_on_front'          => 1,
+            'is_visible_on_front'               => 0,
+            'used_in_product_listing'           => 0,
+            'used_for_sort_by'                  => 0
         );
 
-        $attr_model = Mage::getModel('catalog/resource_eav_attribute');
 
-        $_attribute_data['backend_type'] = $attr_model->getBackendTypeByInput('select');
+        // get attribute set
+        $attr_set = Mage::getModel('eav/entity_attribute_set')
+            ->getCollection()
+            ->addFieldToFilter('attribute_set_name', $attr_setName)
+            ->getFirstItem();
 
-        $attr_model->addData($_attribute_data);
+        $attr_setId = $attr_set->getId();
 
-        $attr_model->setEntityTypeId(Mage::getModel('eav/entity')->setType('catalog_product')->getTypeId());
-        $attr_model->setIsUserDefined(1);
+        // get attribute group
+        $attr_group = Mage::getModel('eav/entity_attribute_group')
+            ->getCollection()
+            ->addFieldToFilter('attribute_set_id', $attr_setId)
+            ->addFieldToFilter('attribute_group_name', $attr_groupName)
+            ->getFirstItem();
 
-        $attr_model->save();
+        $attr_groupId = $attr_group->getId();
+
+//        $update_attr = Mage::getModel('eav/entity_attribute');
+//        $update_attr
+//            ->setEntityTypeId($entityId) // catalog_product eav_entity_type id ( usually 10 )
+//            ->setAttributeSetId($attr_setId) // Attribute Set ID
+//            ->setAttributeGroupId($attr_groupId) // Attribute Group ID ( usually general or whatever based on the query i automate to get the first attribute group in each attribute set )
+//            ->setAttributeId($attributeId) // Attribute ID that need to be added manually
+//            ->setSortOrder(10) // Sort Order for the attribute in the tab form edit
+//            ->save();
+
+        $entityId = Mage::getModel('eav/entity')->setType('catalog_product')->getTypeId();
+
+        // make attribute
+        $attribute = Mage::getModel('catalog/resource_eav_attribute');
+
+        $attr_data['backend_type'] = $attribute->getBackendTypeByInput($input);
+
+        $attribute
+            ->addData($attr_data)
+            ->setEntityTypeId($entityId)
+            ->setIsUserDefined(1)
+            ->setAttributeSetId($attr_setId)
+            ->setAttributeGroupId($attr_groupId);
+
+        $attribute->save();
+
+        return $attribute->getId();
     }
 }
