@@ -111,6 +111,7 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
     }
 
     /**
+     * @param $type
      * @param $count
      * @param $category
      */
@@ -131,7 +132,7 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
         if($insert){
             Mage::getSingleton('adminhtml/session')->addSuccess(
                 $count . ' ' .
-                $this->__('Product(s) inserted')
+                $this->__('%s product(s) inserted', $type)
                 . ' - ' . $this->getElapsedTime($startTime, $endTime)
             );
         }

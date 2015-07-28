@@ -21,16 +21,16 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
         ));
 
         $category->addField('categories_parent', 'select', array(
-            'label'     => $this->__('Parent'),
+            'label'     => $this->__('Parent category'),
             'required'  => true,
             'name'      => 'categories_parent',
             'values'    => Mage::getModel('ovs_magefaker/source_category')->toOptionArray(false),
             'value'     => Mage::getModel('ovs_magefaker/source_category')->getFirstValue(),
-            'after_element_html' => 'Will append new categories to this parent',
+            'after_element_html' => 'Appends new categories to this parent'
         ));
 
         $category->addField('categories_insert', 'select', array(
-            'label' => $this->__('Number of categories to insert'),
+            'label' => $this->__('Amount of categories to insert'),
             'name' => 'categories_insert',
             'value' => '0',
             'values' => array(
@@ -41,7 +41,6 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
                 '25' => '25',
                 '50' => '50',
                 '100' => '100',
-                '150' => '150',
                 '250' => '250',
                 '500' => '500'
             )
@@ -53,21 +52,24 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
         ));
 
         $product->addField('products_category', 'multiselect', array(
-            'label'     => $this->__('Select categories'),
+            'label'     => $this->__('Categories'),
             'required'  => true,
             'name'      => 'products_category',
             'values'    => Mage::getModel('ovs_magefaker/source_category')->toOptionArray(false),
-            'value'     => Mage::getModel('ovs_magefaker/source_category')->getFirstValue()
+            'value'     => Mage::getModel('ovs_magefaker/source_category')->getFirstValue(),
+            'after_element_html' => 'Appends new products to these categories',
         ));
 
         $product->addField('products_insert', 'select', array(
-            'label' => $this->__('Number of products to insert'),
+            'label' => $this->__('Amount of products to insert of each type'),
             'name' => 'products_insert',
             'value' => '0',
             'values' => array(
                 '0' => '0',
                 '1' => '1',
+                '5' => '5',
                 '10' => '10',
+                '25' => '25',
                 '50' => '50',
                 '100' => '100',
                 '250' => '250',
@@ -79,14 +81,14 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
         ));
 
         $product->addField('products_simple', 'checkbox', array(
-            'label'     => $this->__('Include simple products'),
+            'label'     => $this->__('Insert simple products'),
             'name'      => 'products_simple',
             'value'     => 1,
             'checked'   => true
         ));
 
         $product->addField('products_configurable', 'checkbox', array(
-            'label'     => $this->__('Include configurable products'),
+            'label'     => $this->__('Insert configurable products'),
             'name'      => 'products_configurable',
             'value'     => 1,
             'checked'   => true
