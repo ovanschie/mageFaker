@@ -173,7 +173,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                 $color_code = 'magefaker_color';
                 $color      = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $color_code);
 
-                if(!$color->getId()){
+                if(!$color){
 
                     $colorValues = array(
                             0 => 'Blue',
@@ -228,7 +228,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                 $size_code = 'magefaker_size';
                 $size      = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $size_code);
 
-                if(!$size->getId()){
+                if(!$size){
 
                     $sizeValues = array(
                         0 => 'S',
