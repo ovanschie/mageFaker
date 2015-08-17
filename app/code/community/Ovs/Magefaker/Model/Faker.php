@@ -173,18 +173,18 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                 $color_code = 'magefaker_color';
                 $color      = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $color_code);
 
-                if(!$color){
+                if(is_object($color) && $color->getId()){
+                    $color_id = $color->getId();
+                }
+                else{
 
                     $colorValues = array(
-                            0 => 'Blue',
-                            1 => 'Green',
-                            2 => 'Red'
+                        0 => 'Blue',
+                        1 => 'Green',
+                        2 => 'Red'
                     );
 
                     $color_id = $this->insertAttribute($color_code, 'select', $colorValues, 'Blue', 'Fake Color');
-                }
-                else{
-                    $color_id = $color->getId();
                 }
 
                 $color_options = Mage::getModel('eav/config')
@@ -228,7 +228,10 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                 $size_code = 'magefaker_size';
                 $size      = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $size_code);
 
-                if(!$size){
+                if(is_object($size) && $size->getId()){
+                    $size_id = $size->getId();
+                }
+                else{
 
                     $sizeValues = array(
                         0 => 'S',
@@ -237,9 +240,6 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                     );
 
                     $size_id = $this->insertAttribute($size_code, 'select', $sizeValues, 'S', 'Fake Size');
-                }
-                else{
-                    $size_id = $size->getId();
                 }
 
                 $size_options = Mage::getModel('eav/config')
@@ -297,8 +297,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                     for($x = 1; $x < 4; $x++){
                         $configurableProductsData[$this->insertProduct($categories, 'simple', $color_options[$p]['value'], $size_options[$x]['value'],  1)]  = $colors_data[$p];
                     }
-                    //$configurableProductsData[$this->insertProduct($categories, 'simple', $color_options[$p]['value'], 1)]  = $colors_data[$p];
-                    //$configurableProductsData[$this->insertProduct($categories, 'simple', $color_options[$p]['value'], 1)]  = $size_data[$p];
+
                 }
 
                 $product->setConfigurableProductsData($configurableProductsData);
@@ -351,6 +350,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
      * @param $code
      * @param $input
      * @param $defaultValue
+     * @param $optionValues
      * @param $label
      * @param $attr_setName
      * @param $attr_groupName
