@@ -91,9 +91,11 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
      * @param $categories
      * @param $type
      * @param $color_id
+     * @param $size_id
+     * @param $visibility
      * @return int
      */
-    private function insertProduct($categories, $type = 'simple', $color_id = 0){
+    private function insertProduct($categories, $type = 'simple', $color_id = 0, $size_id = 0, $visibility = 4){
 
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
@@ -129,14 +131,13 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
 
                 ->setStatus(1) // product status (1 - enabled, 2 - disabled)
                 ->setTaxClassId(0) //tax class (0 - none, 1 - default, 2 - taxable, 4 - shipping)
-                ->setVisibility(Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
+                ->setVisibility($visibility)
                 ->setNewsFromDate(strtotime('now'))
                 ->setNewsToDate(strtotime("+1 week"))
                 ->setCountryOfManufacture('NL')
 
-
-                ->setColor(1)
                 ->setData('magefaker_color', $color_id)
+                ->setData('magefaker_size', $size_id)
                 ->setPrice($price)
                 ->setCost(($price * 0.66))
                 ->setMsrpEnabled(1)
@@ -166,19 +167,30 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
 
             if($type == 'configurable'){
 
+                // check if attributes exist
+
+                // Color
                 $color_code = 'magefaker_color';
                 $color      = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $color_code);
 
-                // check if attributes exist
                 if(!$color->getId()){
-                    $color_id = $this->insertAttribute($color_code, 'select', 'Blue', 'Color');
+
+                    $colorValues = array(
+                            0 => 'Blue',
+                            1 => 'Green',
+                            2 => 'Red'
+                    );
+
+                    $color_id = $this->insertAttribute($color_code, 'select', $colorValues, 'Blue', 'Fake Color');
                 }
                 else{
                     $color_id = $color->getId();
                 }
 
-                $color_options = Mage::getModel('eav/config')->getAttribute('catalog_product', $color_code);
-                $color_options = $color_options->getSource()->getAllOptions();
+                $color_options = Mage::getModel('eav/config')
+                    ->getAttribute('catalog_product', $color_code)
+                    ->getSource()
+                    ->getAllOptions();
 
                 $colors_data = array();
 
@@ -212,9 +224,67 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                     )
                 );
 
+                // Size
+                $size_code = 'magefaker_size';
+                $size      = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $size_code);
+
+                if(!$size->getId()){
+
+                    $sizeValues = array(
+                        0 => 'S',
+                        1 => 'M',
+                        2 => 'L'
+                    );
+
+                    $size_id = $this->insertAttribute($size_code, 'select', $sizeValues, 'S', 'Fake Size');
+                }
+                else{
+                    $size_id = $size->getId();
+                }
+
+                $size_options = Mage::getModel('eav/config')
+                    ->getAttribute('catalog_product', $size_code)
+                    ->getSource()
+                    ->getAllOptions();
+
+                $size_data = array();
+
+                $size_data[1] = array(
+                    '0' => array(
+                        'label'             => $size_options[1]['label'],
+                        'attribute_id'      => $size_id,
+                        'value_index'       => $size_options[1]['value'],
+                        'is_percent'        => '0',
+                        'pricing_value'     => '0'
+                    )
+                );
+
+                $size_data[2] = array(
+                    '0' => array(
+                        'label'             => $size_options[2]['label'],
+                        'attribute_id'      => $size_id,
+                        'value_index'       => $size_options[2]['value'],
+                        'is_percent'        => '0',
+                        'pricing_value'     => '5.00'
+                    )
+                );
+
+                $size_data[3] = array(
+                    '0' => array(
+                        'label'             => $size_options[3]['label'],
+                        'attribute_id'      => $size_id,
+                        'value_index'       => $size_options[3]['value'],
+                        'is_percent'        => '0',
+                        'pricing_value'     => '10.00'
+                    )
+                );
+
                 // create configurable product
-                $product->getTypeInstance()->setUsedProductAttributeIds(array($color_id));
-                $configurableAttributesData = $product->getTypeInstance()->getConfigurableAttributesAsArray();
+                $product->getTypeInstance()
+                    ->setUsedProductAttributeIds(array($color_id, $size_id));
+
+                $configurableAttributesData = $product->getTypeInstance()
+                                            ->getConfigurableAttributesAsArray();
 
                 $product->setCanSaveConfigurableAttributes(true);
                 $product->setConfigurableAttributesData($configurableAttributesData);
@@ -223,7 +293,12 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
 
                 // create simple associated products
                 for($p = 1; $p < 4; $p++){
-                    $configurableProductsData[$this->insertProduct($categories, 'simple', $color_options[$p]['value'])] = $colors_data[$p];
+
+                    for($x = 1; $x < 4; $x++){
+                        $configurableProductsData[$this->insertProduct($categories, 'simple', $color_options[$p]['value'], $size_options[$x]['value'],  1)]  = $colors_data[$p];
+                    }
+                    //$configurableProductsData[$this->insertProduct($categories, 'simple', $color_options[$p]['value'], 1)]  = $colors_data[$p];
+                    //$configurableProductsData[$this->insertProduct($categories, 'simple', $color_options[$p]['value'], 1)]  = $size_data[$p];
                 }
 
                 $product->setConfigurableProductsData($configurableProductsData);
@@ -282,7 +357,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
      * @return mixed attribute id
      * @throws Exception
      */
-    private function insertAttribute($code, $input, $defaultValue, $label, $attr_setName = 'Default', $attr_groupName = 'General'){
+    private function insertAttribute($code, $input, $optionValues, $defaultValue, $label, $attr_setName = 'Default', $attr_groupName = 'General'){
 
         // set attribute data
         $attr_data = array(
@@ -308,16 +383,11 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
             'used_for_sort_by'                  => 0,
             'option' =>
                 array (
-                    'values' =>
-                        array (
-                            0 => 'Blue',
-                            1 => 'Green',
-                            2 => 'Red',
-                        ),
+                    'values' => $optionValues
                 )
         );
 
-        $objModel = Mage::getModel('eav/entity_setup','core_setup');
+        $objModel = Mage::getModel('eav/entity_setup', 'core_setup');
 
         $objModel->addAttribute('catalog_product', $code, $attr_data);
 
@@ -325,7 +395,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
         $attributeSetId     = $objModel->getAttributeSetId('catalog_product', $attr_setName);
         $attributeGroupId   = $objModel->getAttributeGroupId('catalog_product', $attributeSetId, $attr_groupName);
 
-        $objModel->addAttributeToSet('catalog_product',$attributeSetId, $attributeGroupId, $attributeId);
+        $objModel->addAttributeToSet('catalog_product', $attributeSetId, $attributeGroupId, $attributeId);
 
         return $attributeId;
     }
