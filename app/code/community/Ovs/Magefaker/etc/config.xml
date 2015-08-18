@@ -3,28 +3,30 @@
 
     <modules>
         <ovs_magefaker>
-            <version>0.1.0</version>
+            <version>0.6.0</version>
         </ovs_magefaker>
     </modules>
 
     <global>
+
         <models>
             <ovs_magefaker>
                 <class>Ovs_Magefaker_Model</class>
             </ovs_magefaker>
         </models>
+
         <blocks>
             <ovs_magefaker>
                 <class>Ovs_Magefaker_Block</class>
             </ovs_magefaker>
         </blocks>
-        <resources/>
-        <extraconfig/>
+
         <helpers>
             <ovs_magefaker>
                 <class>Ovs_Magefaker_Helper</class>
             </ovs_magefaker>
         </helpers>
+
         <events>
             <controller_front_init_before>
                 <observers>
@@ -36,6 +38,7 @@
                 </observers>
             </controller_front_init_before>
         </events>
+
     </global>
 
     <admin>
@@ -58,15 +61,6 @@
                 </ovs_magefaker>
             </updates>
         </layout>
-        <!--<translate>-->
-            <!--<modules>-->
-                <!--<ovs_magefaker>-->
-                    <!--<files>-->
-                        <!--<default>Ovs_Magefaker.csv</default>-->
-                    <!--</files>-->
-                <!--</ovs_magefaker>-->
-            <!--</modules>-->
-        <!--</translate>-->
     </adminhtml>
 
 </config>
