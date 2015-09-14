@@ -90,12 +90,12 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
      *
      * @param $categories
      * @param $type
-     * @param $color_id
-     * @param $size_id
+     * @param $color_value
+     * @param $size_value
      * @param $visibility
      * @return int
      */
-    private function insertProduct($categories, $type = 'simple', $color_id = 0, $size_id = 0, $visibility = 4){
+    private function insertProduct($categories, $type = 'simple', $color_value = 0, $size_value = 0, $visibility = 4){
 
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
@@ -104,19 +104,127 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
         $faker->addProvider(new Faker\Provider\Lorem($faker));
         $faker->addProvider(new Faker\Provider\Ecommerce($faker));
 
-        $rating_options = array(
-            1 => array(1, 2, 3, 4, 5),
-            2 => array(6, 7, 8, 9, 10),
-            3 => array(11, 12, 13, 14, 15)
-        );
-
-        $product = Mage::getModel('catalog/product');
-
-        $name   = $faker->productName;
-        $sku    = $faker->sku($name);
-        $price  = $faker->price;
+        $name       = $faker->productName;
+        $sku        = $faker->sku($name);
+        $price      = $faker->price;
 
         try {
+
+            if($type == 'configurable') {
+
+                // check attributes first
+
+                // Color
+                $color_code = 'magefaker_color';
+                $color      = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $color_code);
+
+                if (is_object($color) && $color->getId()) {
+                    $color_id = $color->getId();
+                } else {
+
+                    $colorValues = array(
+                        0 => 'Blue',
+                        1 => 'Green',
+                        2 => 'Red'
+                    );
+
+                    $color_id = $this->_insertAttribute($color_code, 'select', $colorValues, 'Blue', 'Fake Color');
+                }
+
+                $color_options = Mage::getModel('eav/config')
+                    ->getAttribute('catalog_product', $color_code)
+                    ->getSource()
+                    ->getAllOptions();
+
+                $colors_data = array();
+
+                $colors_data[1] = array(
+                    '0' => array(
+                        'label' => $color_options[1]['label'],
+                        'attribute_id' => $color_id,
+                        'value_index' => $color_options[1]['value'],
+                        'is_percent' => '0',
+                        'pricing_value' => '0'
+                    )
+                );
+
+                $colors_data[2] = array(
+                    '0' => array(
+                        'label' => $color_options[2]['label'],
+                        'attribute_id' => $color_id,
+                        'value_index' => $color_options[2]['value'],
+                        'is_percent' => '0',
+                        'pricing_value' => '0'
+                    )
+                );
+
+                $colors_data[3] = array(
+                    '0' => array(
+                        'label' => $color_options[3]['label'],
+                        'attribute_id' => $color_id,
+                        'value_index' => $color_options[3]['value'],
+                        'is_percent' => '0',
+                        'pricing_value' => '0'
+                    )
+                );
+
+                // Size
+                $size_code  = 'magefaker_size';
+                $size       = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $size_code);
+
+                if (is_object($size) && $size->getId()) {
+                    $size_id = $size->getId();
+                } else {
+
+                    $sizeValues = array(
+                        0 => 'S',
+                        1 => 'M',
+                        2 => 'L'
+                    );
+
+                    $size_id = $this->_insertAttribute($size_code, 'select', $sizeValues, 'S', 'Fake Size');
+                }
+
+                $size_options = Mage::getModel('eav/config')
+                    ->getAttribute('catalog_product', $size_code)
+                    ->getSource()
+                    ->getAllOptions();
+
+                $size_data = array();
+
+                $size_data[1] = array(
+                    '0' => array(
+                        'label' => $size_options[1]['label'],
+                        'attribute_id' => $size_id,
+                        'value_index' => $size_options[1]['value'],
+                        'is_percent' => '0',
+                        'pricing_value' => '0'
+                    )
+                );
+
+                $size_data[2] = array(
+                    '0' => array(
+                        'label' => $size_options[2]['label'],
+                        'attribute_id' => $size_id,
+                        'value_index' => $size_options[2]['value'],
+                        'is_percent' => '0',
+                        'pricing_value' => '5.00'
+                    )
+                );
+
+                $size_data[3] = array(
+                    '0' => array(
+                        'label' => $size_options[3]['label'],
+                        'attribute_id' => $size_id,
+                        'value_index' => $size_options[3]['value'],
+                        'is_percent' => '0',
+                        'pricing_value' => '10.00'
+                    )
+                );
+            }
+
+            $product = Mage::getModel('catalog/product');
+
             $product
                 ->setWebsiteIds(array(1))
                 ->setAttributeSetId(4) // default set
@@ -130,14 +238,14 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                 ->setWeight($faker->weight)
 
                 ->setStatus(1) // product status (1 - enabled, 2 - disabled)
-                ->setTaxClassId(0) //tax class (0 - none, 1 - default, 2 - taxable, 4 - shipping)
+                ->setTaxClassId(1) //tax class (0 - none, 1 - default, 2 - taxable, 4 - shipping)
                 ->setVisibility($visibility)
                 ->setNewsFromDate(strtotime('now'))
                 ->setNewsToDate(strtotime("+1 week"))
                 ->setCountryOfManufacture('NL')
 
-                ->setData('magefaker_color', $color_id)
-                ->setData('magefaker_size', $size_id)
+                ->setData('magefaker_color', $color_value)
+                ->setData('magefaker_size', $size_value)
                 ->setPrice($price)
                 ->setCost(($price * 0.66))
                 ->setMsrpEnabled(1)
@@ -167,118 +275,6 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
 
             if($type == 'configurable'){
 
-                // check if attributes exist
-
-                // Color
-                $color_code = 'magefaker_color';
-                $color      = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $color_code);
-
-                if(is_object($color) && $color->getId()){
-                    $color_id = $color->getId();
-                }
-                else{
-
-                    $colorValues = array(
-                        0 => 'Blue',
-                        1 => 'Green',
-                        2 => 'Red'
-                    );
-
-                    $color_id = $this->insertAttribute($color_code, 'select', $colorValues, 'Blue', 'Fake Color');
-                }
-
-                $color_options = Mage::getModel('eav/config')
-                    ->getAttribute('catalog_product', $color_code)
-                    ->getSource()
-                    ->getAllOptions();
-
-                $colors_data = array();
-
-                $colors_data[1] = array(
-                    '0' => array(
-                        'label'             => $color_options[1]['label'],
-                        'attribute_id'      => $color_id,
-                        'value_index'       => $color_options[1]['value'],
-                        'is_percent'        => '0',
-                        'pricing_value'     => '0'
-                    )
-                );
-
-                $colors_data[2] = array(
-                    '0' => array(
-                        'label'             => $color_options[2]['label'],
-                        'attribute_id'      => $color_id,
-                        'value_index'       => $color_options[2]['value'],
-                        'is_percent'        => '0',
-                        'pricing_value'     => '0'
-                    )
-                );
-
-                $colors_data[3] = array(
-                    '0' => array(
-                        'label'             => $color_options[3]['label'],
-                        'attribute_id'      => $color_id,
-                        'value_index'       => $color_options[3]['value'],
-                        'is_percent'        => '0',
-                        'pricing_value'     => '0'
-                    )
-                );
-
-                // Size
-                $size_code = 'magefaker_size';
-                $size      = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $size_code);
-
-                if(is_object($size) && $size->getId()){
-                    $size_id = $size->getId();
-                }
-                else{
-
-                    $sizeValues = array(
-                        0 => 'S',
-                        1 => 'M',
-                        2 => 'L'
-                    );
-
-                    $size_id = $this->insertAttribute($size_code, 'select', $sizeValues, 'S', 'Fake Size');
-                }
-
-                $size_options = Mage::getModel('eav/config')
-                    ->getAttribute('catalog_product', $size_code)
-                    ->getSource()
-                    ->getAllOptions();
-
-                $size_data = array();
-
-                $size_data[1] = array(
-                    '0' => array(
-                        'label'             => $size_options[1]['label'],
-                        'attribute_id'      => $size_id,
-                        'value_index'       => $size_options[1]['value'],
-                        'is_percent'        => '0',
-                        'pricing_value'     => '0'
-                    )
-                );
-
-                $size_data[2] = array(
-                    '0' => array(
-                        'label'             => $size_options[2]['label'],
-                        'attribute_id'      => $size_id,
-                        'value_index'       => $size_options[2]['value'],
-                        'is_percent'        => '0',
-                        'pricing_value'     => '5.00'
-                    )
-                );
-
-                $size_data[3] = array(
-                    '0' => array(
-                        'label'             => $size_options[3]['label'],
-                        'attribute_id'      => $size_id,
-                        'value_index'       => $size_options[3]['value'],
-                        'is_percent'        => '0',
-                        'pricing_value'     => '10.00'
-                    )
-                );
-
                 // create configurable product
                 $product->getTypeInstance()
                     ->setUsedProductAttributeIds(array($color_id, $size_id));
@@ -305,42 +301,15 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
             }
 
             $product->save();
-
             $new_productId = $product->getId();
 
-            $reviewCount = mt_rand(0, 10);
-
-            for($y = 0; $y < $reviewCount; $y++) {
-
-                $review = Mage::getModel('review/review');
-                $review->setEntityPkValue($new_productId);
-                $review->setStatusId(1); // approved
-                $review->setTitle($faker->sentence(3));
-                $review->setDetail($faker->sentence(mt_rand(3, 10)));
-                $review->setEntityId(1);
-                $review->setStoreId(0);
-                $review->setCustomerId(null);
-                $review->setNickname($faker->name);
-                $review->setReviewId($review->getId());
-                $review->setStores(array(0, 1));
-                $review->save();
-
-                foreach($rating_options as $rating_id => $option_ids) {
-                    $stars = mt_rand(1, 3);
-
-                    Mage::getModel('rating/rating')
-                        ->setRatingId($rating_id)
-                        ->setReviewId($review->getId())
-                        ->addOptionVote($option_ids[$stars], $new_productId);
-                }
-
-                $review->aggregate();
-            }
+            $this->_addProductReviews($new_productId);
 
             return $new_productId;
 
         } catch (Exception $e) {
             Mage::logException($e);
+            return false;
         }
     }
 
@@ -357,7 +326,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
      * @return mixed attribute id
      * @throws Exception
      */
-    private function insertAttribute($code, $input, $optionValues, $defaultValue, $label, $attr_setName = 'Default', $attr_groupName = 'General'){
+    protected function _insertAttribute($code, $input, $optionValues, $defaultValue, $label, $attr_setName = 'Default', $attr_groupName = 'General'){
 
         // set attribute data
         $attr_data = array(
@@ -398,5 +367,52 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
         $objModel->addAttributeToSet('catalog_product', $attributeSetId, $attributeGroupId, $attributeId);
 
         return $attributeId;
+    }
+
+    /**
+     * Add reviews to product
+     *
+     * @param $productId
+     */
+    protected function _addProductReviews($productId){
+
+        $faker = new Faker\Generator();
+        $faker->addProvider(new Faker\Provider\en_US\Person($faker));
+        $faker->addProvider(new Faker\Provider\Lorem($faker));
+
+        $reviewCount    = mt_rand(0, 10);
+
+        $rating_options = array(
+            1 => array(1, 2, 3, 4, 5),
+            2 => array(6, 7, 8, 9, 10),
+            3 => array(11, 12, 13, 14, 15)
+        );
+
+        for($y = 0; $y < $reviewCount; $y++) {
+
+            $review = Mage::getModel('review/review');
+            $review->setEntityPkValue($productId);
+            $review->setStatusId(1); // approved
+            $review->setTitle($faker->sentence(3));
+            $review->setDetail($faker->sentence(mt_rand(3, 10)));
+            $review->setEntityId(1);
+            $review->setStoreId(0);
+            $review->setCustomerId(null);
+            $review->setNickname($faker->name);
+            $review->setReviewId($review->getId());
+            $review->setStores(array(0, 1));
+            $review->save();
+
+            foreach($rating_options as $rating_id => $option_ids) {
+                $stars = mt_rand(1, 3);
+
+                Mage::getModel('rating/rating')
+                    ->setRatingId($rating_id)
+                    ->setReviewId($review->getId())
+                    ->addOptionVote($option_ids[$stars], $productId);
+            }
+
+            $review->aggregate();
+        }
     }
 }
