@@ -238,7 +238,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                 ->setWeight($faker->weight)
 
                 ->setStatus(1) // product status (1 - enabled, 2 - disabled)
-                ->setTaxClassId(1) //tax class (0 - none, 1 - default, 2 - taxable, 4 - shipping)
+                ->setTaxClassId(2) //tax class (0 - none, 1 - default, 2 - taxable, 4 - shipping)
                 ->setVisibility($visibility)
                 ->setNewsFromDate(strtotime('now'))
                 ->setNewsToDate(strtotime("+1 week"))
