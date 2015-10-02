@@ -12,7 +12,7 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs extends Mage_Adminhtml_Block
 
         $this->setId('faker_tabs');
         $this->setDestElementId('edit_form');
-        $this->setTitle($this->__('Faker data'));
+        $this->setTitle(' ');
     }
 
     /**
@@ -21,8 +21,7 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs extends Mage_Adminhtml_Block
      * @return Mage_Core_Block_Abstract
      * @throws Exception
      */
-    protected function _beforeToHtml()
-    {
+    protected function _beforeToHtml() {
 
         $this->addTab('adminhtml_tab_insert', 'ovs_magefaker/adminhtml_faker_edit_tabs_insert');
         $this->addTab('adminhtml_tab_remove', 'ovs_magefaker/adminhtml_faker_edit_tabs_remove');

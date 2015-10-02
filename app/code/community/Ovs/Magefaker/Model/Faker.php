@@ -15,12 +15,13 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
      *
      * @param $count
      * @param $category
+     * @param $incReviews
      * @return bool
      */
-    public function insertSimpleProducts($count, $category){
+    public function insertSimpleProducts($count, $category, $incReviews){
 
         for($i = 0; $i < $count; $i++) {
-            $this->insertProduct($category, 'simple');
+            $this->insertProduct($category, 'simple', $incReviews);
         }
 
         return true;
@@ -30,13 +31,14 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
      *
      * @param $count
      * @param $category
+     * @param $incReviews
      * @return bool
      * @throws Mage_Core_Exception
      */
-    public function insertConfigurableProducts($count, $category){
+    public function insertConfigurableProducts($count, $category, $incReviews){
 
         for($i = 0; $i < $count; $i++) {
-            $this->insertProduct($category, 'configurable');
+            $this->insertProduct($category, 'configurable', $incReviews);
         }
 
         return true;
@@ -48,16 +50,18 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
      * @param $count
      * @param $parentId
      * @param $customNames
+     * @param $anchor
+     * @param $thumbnail
      * @return bool
      */
-    public function insertCategories($count, $parentId, $customNames = null){
+    public function insertCategories($count, $parentId, $customNames, $anchor, $thumbnail){
 
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
         if($customNames){
             foreach($customNames as $name){
                 if(!empty($name)){
-                    $this->_insertCategory($name, $parentId);
+                    $this->_insertCategory($name, $parentId, $anchor, $thumbnail);
                 }
                 else{
                     Mage::getSingleton('adminhtml/session')->addError(
@@ -73,7 +77,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
             $faker->addProvider(new Faker\Provider\Ecommerce($faker));
 
             for($i = 0; $i < $count; $i++) {
-                $this->_insertCategory($faker->categoryName(), $parentId);
+                $this->_insertCategory($faker->categoryName(), $parentId, $anchor, $thumbnail);
             }
 
         }
@@ -81,53 +85,19 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
         return true;
     }
 
-    /**
-     * Insert single category
-     *
-     * @param $name
-     * @param $parentId
-     * @return bool
-     */
-    protected function _insertCategory($name, $parentId){
-
-        try{
-            $faker = new Faker\Generator();
-            $faker->addProvider(new Faker\Provider\en_US\Person($faker));
-            $faker->addProvider(new Faker\Provider\Lorem($faker));
-            $faker->addProvider(new Faker\Provider\Ecommerce($faker));
-
-            $parentCategory = Mage::getModel('catalog/category')->load($parentId);
-
-            $category = Mage::getModel('catalog/category');
-            $category->setName($name);
-            $category->setUrlKey('magefaker-' . $faker->categoryUrl($name));
-            $category->setImage($faker->categoryImage);
-            $category->setIsActive(1);
-            $category->setDisplayMode('PRODUCTS');
-            $category->setIsAnchor(1);
-            $category->setStoreId(Mage_Core_Model_App::ADMIN_STORE_ID);
-            $category->setPath($parentCategory->getPath());
-            $category->save();
-
-            return true;
-
-        } catch(Exception $e) {
-            Mage::logException($e);
-            return false;
-        }
-    }
 
     /**
      * Generates a product and product reviews
      *
      * @param $categories
      * @param $type
+     * @param $incReviews
      * @param $color_value
      * @param $size_value
      * @param $visibility
      * @return int
      */
-    protected function insertProduct($categories, $type = 'simple', $color_value = 0, $size_value = 0, $visibility = 4){
+    protected function insertProduct($categories, $type = 'simple', $incReviews, $color_value = 0, $size_value = 0, $visibility = 4){
 
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
@@ -323,7 +293,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
                 for($p = 1; $p < 4; $p++){
 
                     for($x = 1; $x < 4; $x++){
-                        $configurableProductsData[$this->insertProduct($categories, 'simple', $color_options[$p]['value'], $size_options[$x]['value'],  1)]  = $colors_data[$p];
+                        $configurableProductsData[$this->insertProduct($categories, 'simple', $incReviews, $color_options[$p]['value'], $size_options[$x]['value'],  1)]  = $colors_data[$p];
                     }
 
                 }
@@ -335,11 +305,61 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
             $product->save();
             $new_productId = $product->getId();
 
-            $this->_addProductReviews($new_productId);
+            if($incReviews){
+                $this->_addProductReviews($new_productId);
+            }
 
             return $new_productId;
 
         } catch (Exception $e) {
+            Mage::logException($e);
+            return false;
+        }
+    }
+
+    /**
+     * Insert single category
+     *
+     * @param $name
+     * @param $parentId
+     * @param $anchor
+     * @param $thumbnail
+     * @return bool
+     */
+    protected function _insertCategory($name, $parentId, $anchor, $thumbnail){
+
+        try{
+            $faker = new Faker\Generator();
+            $faker->addProvider(new Faker\Provider\en_US\Person($faker));
+            $faker->addProvider(new Faker\Provider\Lorem($faker));
+            $faker->addProvider(new Faker\Provider\Ecommerce($faker));
+
+            $parentCategory = Mage::getModel('catalog/category')->load($parentId);
+
+            $category = Mage::getModel('catalog/category');
+            $category->setName($name);
+            $category->setUrlKey('magefaker-' . $faker->categoryUrl($name));
+            $category->setIsActive(1);
+            $category->setDisplayMode('PRODUCTS');
+            $category->setStoreId(Mage_Core_Model_App::ADMIN_STORE_ID);
+            $category->setPath($parentCategory->getPath());
+
+            if($anchor){
+                $category->setIsAnchor(1);
+            }
+            else{
+                $category->setIsAnchor(0);
+            }
+
+            if($thumbnail){
+                $category->setImage($faker->categoryImage);
+            }
+
+            $category->save();
+
+            return true;
+
+        } catch(Exception $e) {
             Mage::logException($e);
             return false;
         }
