@@ -30,7 +30,7 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
         ));
 
         $category->addField('categories_insert', 'select', array(
-            'label' => $this->__('Amount of categories to insert'),
+            'label' => $this->__('Amount of fake categories to insert'),
             'name' => 'categories_insert',
             'value' => '0',
             'values' => array(
@@ -43,7 +43,14 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
                 '100' => '100',
                 '250' => '250',
                 '500' => '500'
-            )
+            ),
+            'after_element_html' => 'Ignored when using custom categories'
+        ));
+
+        $category->addField('categories_custom', 'text', array(
+            'label' => $this->__('Quick create custom categories'),
+            'name' => 'categories_custom',
+            'after_element_html' => 'Use this categories instead of default Faker categories. Comma separated. '
         ));
 
         // product

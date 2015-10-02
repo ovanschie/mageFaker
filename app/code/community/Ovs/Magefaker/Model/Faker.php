@@ -46,37 +46,34 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
      * Generates categories
      *
      * @param $count
+     * @param $parentId
+     * @param $customNames
      * @return bool
      */
-    public function insertCategories($count, $parentId){
+    public function insertCategories($count, $parentId, $customNames = null){
 
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
-        $faker = new Faker\Generator();
-        $faker->addProvider(new Faker\Provider\en_US\Person($faker));
-        $faker->addProvider(new Faker\Provider\Lorem($faker));
-        $faker->addProvider(new Faker\Provider\Ecommerce($faker));
+        if($customNames){
+            foreach($customNames as $name){
+                if(!empty($name)){
+                    $this->_insertCategory($name, $parentId);
+                }
+                else{
+                    Mage::getSingleton('adminhtml/session')->addError(
+                        __('Skipped empty category name')
+                    );
+                }
+            }
+        }
+        else{
+            $faker = new Faker\Generator();
+            $faker->addProvider(new Faker\Provider\en_US\Person($faker));
+            $faker->addProvider(new Faker\Provider\Lorem($faker));
+            $faker->addProvider(new Faker\Provider\Ecommerce($faker));
 
-        for($i = 0; $i < $count; $i++) {
-
-            try{
-                $name = $faker->categoryName();
-                $parentCategory = Mage::getModel('catalog/category')->load($parentId);
-
-                $category = Mage::getModel('catalog/category');
-                $category->setName($name);
-                $category->setUrlKey('magefaker-' . $faker->categoryUrl($name));
-                $category->setImage($faker->categoryImage);
-                $category->setIsActive(1);
-                $category->setDisplayMode('PRODUCTS');
-                $category->setIsAnchor(1);
-                $category->setStoreId(Mage_Core_Model_App::ADMIN_STORE_ID);
-                $category->setPath($parentCategory->getPath());
-                $category->save();
-
-            } catch(Exception $e) {
-                Mage::logException($e);
-                return false;
+            for($i = 0; $i < $count; $i++) {
+                $this->_insertCategory($faker->categoryName(), $parentId);
             }
 
         }
@@ -84,6 +81,41 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
         return true;
     }
 
+    /**
+     * Insert single category
+     *
+     * @param $name
+     * @param $parentId
+     * @return bool
+     */
+    protected function _insertCategory($name, $parentId){
+
+        try{
+            $faker = new Faker\Generator();
+            $faker->addProvider(new Faker\Provider\en_US\Person($faker));
+            $faker->addProvider(new Faker\Provider\Lorem($faker));
+            $faker->addProvider(new Faker\Provider\Ecommerce($faker));
+
+            $parentCategory = Mage::getModel('catalog/category')->load($parentId);
+
+            $category = Mage::getModel('catalog/category');
+            $category->setName($name);
+            $category->setUrlKey('magefaker-' . $faker->categoryUrl($name));
+            $category->setImage($faker->categoryImage);
+            $category->setIsActive(1);
+            $category->setDisplayMode('PRODUCTS');
+            $category->setIsAnchor(1);
+            $category->setStoreId(Mage_Core_Model_App::ADMIN_STORE_ID);
+            $category->setPath($parentCategory->getPath());
+            $category->save();
+
+            return true;
+
+        } catch(Exception $e) {
+            Mage::logException($e);
+            return false;
+        }
+    }
 
     /**
      * Generates a product and product reviews
@@ -95,7 +127,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
      * @param $visibility
      * @return int
      */
-    private function insertProduct($categories, $type = 'simple', $color_value = 0, $size_value = 0, $visibility = 4){
+    protected function insertProduct($categories, $type = 'simple', $color_value = 0, $size_value = 0, $visibility = 4){
 
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 

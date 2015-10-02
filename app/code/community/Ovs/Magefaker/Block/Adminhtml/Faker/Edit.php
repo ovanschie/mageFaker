@@ -5,8 +5,10 @@
  */
 class Ovs_Magefaker_Block_Adminhtml_Faker_Edit extends Mage_Adminhtml_Block_Widget_Form_Container {
 
-    public function __construct()
-    {
+    /**
+     * Set basic config
+     */
+    public function __construct() {
         parent::__construct();
 
         $this->_objectId    = 'id';
@@ -24,19 +26,21 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit extends Mage_Adminhtml_Block_Widg
         ), -100);
     }
 
-    protected function _prepareLayout() {
-        parent::_prepareLayout();
-        if (Mage::getSingleton('cms/wysiwyg_config')->isEnabled()) {
-            $this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
-        }
+    /**
+     * Set header
+     *
+     * @return string
+     */
+    public function getHeaderText() {
+        return $this->__('MageFaker - Fake data generator');
     }
 
     /**
+     * Remove icon from header class
+     *
      * @return string
      */
-    public function getHeaderText()
-    {
-            return $this->__('Faker data');
+    public function getHeaderCssClass() {
+        return 'head-' . strtr($this->_controller, '_', '-');
     }
-
 }

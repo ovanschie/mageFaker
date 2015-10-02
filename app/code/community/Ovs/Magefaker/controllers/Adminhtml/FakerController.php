@@ -5,7 +5,7 @@
  * Main controller
  */
 class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_Action{
-    
+
     protected function _isAllowed() {
         return Mage::getSingleton('admin/session')->isAllowed('system/magefaker');
     }
@@ -73,9 +73,17 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
         }
 
         // insert categories
-        if($this->getRequest()->getParam('categories_insert') > 0){
+        $_customCategories = $this->getRequest()->getParam('categories_custom');
+
+        if($this->getRequest()->getParam('categories_insert') > 0 && empty($_customCategories)){
             $this->insertCategories(
                 $this->getRequest()->getParam('categories_insert'),
+                $this->getRequest()->getParam('categories_parent')
+            );
+        }
+        else if(!empty($_customCategories)){
+            $this->insertCategories(
+                $_customCategories,
                 $this->getRequest()->getParam('categories_parent')
             );
         }
@@ -176,14 +184,24 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
     /**
      * Insert categories
      *
-     * @param $count
+     * @param $data
      * @param $parentCategory
      */
-    private function insertCategories($count, $parentCategory){
-        $model = Mage::getModel('ovs_magefaker/faker');
+    private function insertCategories($data, $parentCategory){
+
+        if(is_numeric($data)){
+            $customNames    = null;
+            $count          = $data;
+        }
+        else{
+            $customNames    = array_map('trim', explode(',', $data));
+            $count          = count($customNames);
+        }
+
+        $model      = Mage::getModel('ovs_magefaker/faker');
 
         $startTime  = new DateTime('NOW');
-        $insert     = $model->insertCategories($count, $parentCategory);
+        $insert     = $model->insertCategories($data, $parentCategory, $customNames);
         $endTime    = new DateTime('NOW');
 
         if($insert){
