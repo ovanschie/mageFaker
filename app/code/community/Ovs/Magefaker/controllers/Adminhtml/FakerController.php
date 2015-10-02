@@ -5,6 +5,10 @@
  * Main controller
  */
 class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_Action{
+    
+    protected function _isAllowed() {
+        return Mage::getSingleton('admin/session')->isAllowed('system/magefaker');
+    }
 
     /**
      * render main layout
@@ -20,7 +24,7 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
     }
 
     /**
-     * Process
+     * Process save
      */
     public function saveAction(){
 
@@ -87,7 +91,7 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
     }
 
     /**
-     *
+     * Remove all Magefaker products
      */
     private function removeProducts(){
         $model = Mage::getModel('ovs_magefaker/remove');
@@ -111,6 +115,8 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
     }
 
     /**
+     * insert products by type
+     *
      * @param $type
      * @param $count
      * @param $category
@@ -145,7 +151,7 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
     }
 
     /**
-     *
+     * Removes categories
      */
     private function removeCategories(){
         $model = Mage::getModel('ovs_magefaker/remove');
@@ -168,6 +174,7 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
         }
     }
     /**
+     * Insert categories
      *
      * @param $count
      * @param $parentCategory
