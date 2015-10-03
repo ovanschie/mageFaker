@@ -3,7 +3,7 @@
 
     <modules>
         <ovs_magefaker>
-            <version>0.6.0</version>
+            <version>0.7.0</version>
         </ovs_magefaker>
     </modules>
 

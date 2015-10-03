@@ -3,12 +3,28 @@
     <menu>
         <system>
             <children>
-                <faker_menu>
-                    <title>Faker Data</title>
+                <magefaker>
+                    <title>MageFaker</title>
                     <sort_order>10</sort_order>
                     <action>magefaker/adminhtml_faker</action>
-                </faker_menu>
+                </magefaker>
             </children>
         </system>
     </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <magefaker translate="title" module="ovs_magefaker">
+                                <title>MageFaker - manage fake data</title>
+                                <sort_order>10</sort_order>
+                            </magefaker>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
 </config>

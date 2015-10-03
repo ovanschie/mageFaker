@@ -30,7 +30,7 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
         ));
 
         $category->addField('categories_insert', 'select', array(
-            'label' => $this->__('Amount of categories to insert'),
+            'label' => $this->__('Amount of fake categories to insert'),
             'name' => 'categories_insert',
             'value' => '0',
             'values' => array(
@@ -43,7 +43,28 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
                 '100' => '100',
                 '250' => '250',
                 '500' => '500'
-            )
+            ),
+            'after_element_html' => 'Ignored when using custom categories'
+        ));
+
+        $category->addField('categories_custom', 'text', array(
+            'label' => $this->__('Custom category names'),
+            'name' => 'categories_custom',
+            'after_element_html' => 'Use this categories instead of default Faker categories. Comma separated. '
+        ));
+
+        $category->addField('categories_anchor', 'checkbox', array(
+            'label'     => $this->__('Make anchor'),
+            'name'      => 'categories_anchor',
+            'value'     => 1,
+            'checked'   => true
+        ));
+
+        $category->addField('categories_image', 'checkbox', array(
+            'label'     => $this->__('Include image'),
+            'name'      => 'categories_image',
+            'value'     => 1,
+            'checked'   => true
         ));
 
         // product
@@ -90,6 +111,13 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
         $product->addField('products_configurable', 'checkbox', array(
             'label'     => $this->__('Include configurable products'),
             'name'      => 'products_configurable',
+            'value'     => 1,
+            'checked'   => true
+        ));
+
+        $product->addField('products_reviews', 'checkbox', array(
+            'label'     => $this->__('Include reviews and ratings'),
+            'name'      => 'products_reviews',
             'value'     => 1,
             'checked'   => true
         ));

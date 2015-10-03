@@ -6,6 +6,10 @@
  */
 class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_Action{
 
+    protected function _isAllowed() {
+        return Mage::getSingleton('admin/session')->isAllowed('system/magefaker');
+    }
+
     /**
      * render main layout
      */
@@ -20,7 +24,7 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
     }
 
     /**
-     * Process
+     * Process save
      */
     public function saveAction(){
 
@@ -49,7 +53,8 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
                 $this->insertProducts(
                     'simple',
                     $this->getRequest()->getParam('products_insert'),
-                    $this->getRequest()->getParam('products_category')
+                    $this->getRequest()->getParam('products_category'),
+                    $this->getRequest()->getParam('products_reviews')
                 );
             }
 
@@ -57,7 +62,8 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
                 $this->insertProducts(
                     'configurable',
                     $this->getRequest()->getParam('products_insert'),
-                    $this->getRequest()->getParam('products_category')
+                    $this->getRequest()->getParam('products_category'),
+                    $this->getRequest()->getParam('products_reviews')
                 );
             }
 
@@ -69,10 +75,22 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
         }
 
         // insert categories
-        if($this->getRequest()->getParam('categories_insert') > 0){
+        $_customCategories = $this->getRequest()->getParam('categories_custom');
+
+        if($this->getRequest()->getParam('categories_insert') > 0 && empty($_customCategories)){
             $this->insertCategories(
                 $this->getRequest()->getParam('categories_insert'),
-                $this->getRequest()->getParam('categories_parent')
+                $this->getRequest()->getParam('categories_parent'),
+                $this->getRequest()->getParam('categories_anchor'),
+                $this->getRequest()->getParam('categories_image')
+            );
+        }
+        else if(!empty($_customCategories)){
+            $this->insertCategories(
+                $_customCategories,
+                $this->getRequest()->getParam('categories_parent'),
+                $this->getRequest()->getParam('categories_anchor'),
+                $this->getRequest()->getParam('categories_image')
             );
         }
 
@@ -87,7 +105,7 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
     }
 
     /**
-     *
+     * Remove all Magefaker products
      */
     private function removeProducts(){
         $model = Mage::getModel('ovs_magefaker/remove');
@@ -111,20 +129,22 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
     }
 
     /**
+     * insert products by type
+     *
      * @param $type
      * @param $count
      * @param $category
      */
-    private function insertProducts($type, $count, $category){
+    private function insertProducts($type, $count, $category, $incReviews){
         $model = Mage::getModel('ovs_magefaker/faker');
 
         $startTime = new DateTime('NOW');
 
         if($type == 'simple'){
-            $insert = $model->insertSimpleProducts($count, $category);
+            $insert = $model->insertSimpleProducts($count, $category, $incReviews);
         }
         else if($type == 'configurable'){
-            $insert = $model->insertConfigurableProducts($count, $category);
+            $insert = $model->insertConfigurableProducts($count, $category, $incReviews);
         }
 
         $endTime = new DateTime('NOW');
@@ -145,7 +165,7 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
     }
 
     /**
-     *
+     * Removes categories
      */
     private function removeCategories(){
         $model = Mage::getModel('ovs_magefaker/remove');
@@ -168,15 +188,26 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
         }
     }
     /**
+     * Insert categories
      *
-     * @param $count
+     * @param $data
      * @param $parentCategory
      */
-    private function insertCategories($count, $parentCategory){
-        $model = Mage::getModel('ovs_magefaker/faker');
+    private function insertCategories($data, $parentCategory, $anchor, $thumbnail){
+
+        if(is_numeric($data)){
+            $customNames    = null;
+            $count          = $data;
+        }
+        else{
+            $customNames    = array_map('trim', explode(',', $data));
+            $count          = count($customNames);
+        }
+
+        $model      = Mage::getModel('ovs_magefaker/faker');
 
         $startTime  = new DateTime('NOW');
-        $insert     = $model->insertCategories($count, $parentCategory);
+        $insert     = $model->insertCategories($data, $parentCategory, $customNames, $anchor, $thumbnail);
         $endTime    = new DateTime('NOW');
 
         if($insert){
@@ -202,8 +233,8 @@ class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_
      * @return mixed
      */
     private function getElapsedTime($start, $end){
-        $diff = $start->diff( $end );
-        return $diff->format( '%H:%I:%S' );
+        $diff = $start->diff($end);
+        return $diff->format('%H:%I:%S');
     }
 
 }
