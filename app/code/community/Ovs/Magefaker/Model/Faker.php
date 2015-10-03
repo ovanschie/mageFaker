@@ -382,33 +382,33 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
 
         // set attribute data
         $attr_data = array(
-            'type'                              => 'text',
+            'type'                              => 'varchar',
             'input'                             => $input,
             'default_value'                     => $defaultValue,
             'label'                             => $label,
             'user_defined'                      => 1,
-            'is_global'                         => 1,
-            'is_unique'                         => 0,
-            'is_required'                       => 0,
-            'is_configurable'                   => 1,
-            'is_filterable'                     => 1,
-            'is_searchable'                     => 1,
-            'is_filterable_in_search'           => 1,
-            'is_visible_in_advanced_search'     => 0,
-            'is_comparable'                     => 0,
-            'is_used_for_price_rules'           => 0,
-            'is_wysiwyg_enabled'                => 0,
+            'global'                            => 1,
+            'unique'                            => 0,
+            'required'                          => 0,
+            'configurable'                      => 1,
+            'filterable'                        => 1,
+            'filterable_in_search'              => 1,
+            'visible_in_advanced_search'        => 1,
+            'comparable'                        => 0,
+            'used_for_price_rules'              => 0,
+            'wysiwyg_enabled'                   => 0,
             'is_html_allowed_on_front'          => 1,
-            'is_visible_on_front'               => 0,
-            'used_in_product_listing'           => 0,
-            'used_for_sort_by'                  => 0,
+            'visible_on_front'                  => 1,
+            'used_in_product_listing'           => 1,
             'option' =>
                 array (
                     'values' => $optionValues
                 )
         );
+        
 
-        $objModel = Mage::getModel('eav/entity_setup', 'core_setup');
+        //$objModel = Mage::getModel('eav/entity_setup', 'core_setup');
+        $objModel = new Mage_Catalog_Model_Resource_Eav_Mysql4_Setup('core_setup');
 
         $objModel->addAttribute('catalog_product', $code, $attr_data);
 
