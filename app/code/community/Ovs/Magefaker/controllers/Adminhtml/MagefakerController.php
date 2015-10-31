@@ -4,7 +4,7 @@
  *
  * Main controller
  */
-class Ovs_Magefaker_Adminhtml_FakerController extends Mage_Adminhtml_Controller_Action{
+class Ovs_Magefaker_Adminhtml_MagefakerController extends Mage_Adminhtml_Controller_Action{
 
     protected function _isAllowed() {
         return Mage::getSingleton('admin/session')->isAllowed('system/magefaker');

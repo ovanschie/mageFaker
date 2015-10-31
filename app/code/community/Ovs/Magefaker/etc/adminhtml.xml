@@ -6,7 +6,7 @@
                 <magefaker>
                     <title>MageFaker</title>
                     <sort_order>10</sort_order>
-                    <action>magefaker/adminhtml_faker</action>
+                    <action>adminhtml/magefaker</action>
                 </magefaker>
             </children>
         </system>
