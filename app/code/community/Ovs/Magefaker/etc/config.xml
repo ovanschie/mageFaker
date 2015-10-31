@@ -3,7 +3,7 @@
 
     <modules>
         <ovs_magefaker>
-            <version>0.7.0</version>
+            <version>0.7.1</version>
         </ovs_magefaker>
     </modules>
 
@@ -43,13 +43,13 @@
 
     <admin>
         <routers>
-            <ovs_magefaker>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>Ovs_Magefaker</module>
-                    <frontName>magefaker</frontName>
+                    <modules>
+                        <ovs_magefaker after="Mage_Adminhtml">Ovs_Magefaker_Adminhtml</ovs_magefaker>
+                    </modules>
                 </args>
-            </ovs_magefaker>
+            </adminhtml>
         </routers>
     </admin>
 

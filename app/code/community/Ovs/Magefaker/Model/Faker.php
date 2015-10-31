@@ -112,118 +112,117 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
 
         try {
 
-            if($type == 'configurable') {
+            // check attributes first
 
-                // check attributes first
+            // Color
+            $color_code = 'magefaker_color';
+            $color      = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $color_code);
 
-                // Color
-                $color_code = 'magefaker_color';
-                $color      = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $color_code);
+            if (is_object($color) && $color->getId()) {
+                $color_id = $color->getId();
+            } else {
 
-                if (is_object($color) && $color->getId()) {
-                    $color_id = $color->getId();
-                } else {
-
-                    $colorValues = array(
-                        0 => 'Blue',
-                        1 => 'Green',
-                        2 => 'Red'
-                    );
-
-                    $color_id = $this->_insertAttribute($color_code, 'select', $colorValues, 'Blue', 'Fake Color');
-                }
-
-                $color_options = Mage::getModel('eav/config')
-                    ->getAttribute('catalog_product', $color_code)
-                    ->getSource()
-                    ->getAllOptions();
-
-                $colors_data = array();
-
-                $colors_data[1] = array(
-                    '0' => array(
-                        'label' => $color_options[1]['label'],
-                        'attribute_id' => $color_id,
-                        'value_index' => $color_options[1]['value'],
-                        'is_percent' => '0',
-                        'pricing_value' => '0'
-                    )
+                $colorValues = array(
+                    0 => 'Blue',
+                    1 => 'Green',
+                    2 => 'Red'
                 );
 
-                $colors_data[2] = array(
-                    '0' => array(
-                        'label' => $color_options[2]['label'],
-                        'attribute_id' => $color_id,
-                        'value_index' => $color_options[2]['value'],
-                        'is_percent' => '0',
-                        'pricing_value' => '0'
-                    )
-                );
-
-                $colors_data[3] = array(
-                    '0' => array(
-                        'label' => $color_options[3]['label'],
-                        'attribute_id' => $color_id,
-                        'value_index' => $color_options[3]['value'],
-                        'is_percent' => '0',
-                        'pricing_value' => '0'
-                    )
-                );
-
-                // Size
-                $size_code  = 'magefaker_size';
-                $size       = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $size_code);
-
-                if (is_object($size) && $size->getId()) {
-                    $size_id = $size->getId();
-                } else {
-
-                    $sizeValues = array(
-                        0 => 'S',
-                        1 => 'M',
-                        2 => 'L'
-                    );
-
-                    $size_id = $this->_insertAttribute($size_code, 'select', $sizeValues, 'S', 'Fake Size');
-                }
-
-                $size_options = Mage::getModel('eav/config')
-                    ->getAttribute('catalog_product', $size_code)
-                    ->getSource()
-                    ->getAllOptions();
-
-                $size_data = array();
-
-                $size_data[1] = array(
-                    '0' => array(
-                        'label' => $size_options[1]['label'],
-                        'attribute_id' => $size_id,
-                        'value_index' => $size_options[1]['value'],
-                        'is_percent' => '0',
-                        'pricing_value' => '0'
-                    )
-                );
-
-                $size_data[2] = array(
-                    '0' => array(
-                        'label' => $size_options[2]['label'],
-                        'attribute_id' => $size_id,
-                        'value_index' => $size_options[2]['value'],
-                        'is_percent' => '0',
-                        'pricing_value' => '5.00'
-                    )
-                );
-
-                $size_data[3] = array(
-                    '0' => array(
-                        'label' => $size_options[3]['label'],
-                        'attribute_id' => $size_id,
-                        'value_index' => $size_options[3]['value'],
-                        'is_percent' => '0',
-                        'pricing_value' => '10.00'
-                    )
-                );
+                $color_id = $this->_insertAttribute($color_code, 'select', $colorValues, 'Blue', 'Fake Color');
             }
+
+            $color_options = Mage::getModel('eav/config')
+                ->getAttribute('catalog_product', $color_code)
+                ->getSource()
+                ->getAllOptions();
+
+            $colors_data = array();
+
+            $colors_data[1] = array(
+                '0' => array(
+                    'label' => $color_options[1]['label'],
+                    'attribute_id' => $color_id,
+                    'value_index' => $color_options[1]['value'],
+                    'is_percent' => '0',
+                    'pricing_value' => '0'
+                )
+            );
+
+            $colors_data[2] = array(
+                '0' => array(
+                    'label' => $color_options[2]['label'],
+                    'attribute_id' => $color_id,
+                    'value_index' => $color_options[2]['value'],
+                    'is_percent' => '0',
+                    'pricing_value' => '0'
+                )
+            );
+
+            $colors_data[3] = array(
+                '0' => array(
+                    'label' => $color_options[3]['label'],
+                    'attribute_id' => $color_id,
+                    'value_index' => $color_options[3]['value'],
+                    'is_percent' => '0',
+                    'pricing_value' => '0'
+                )
+            );
+
+            // Size
+            $size_code  = 'magefaker_size';
+            $size       = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product', $size_code);
+
+            if (is_object($size) && $size->getId()) {
+                $size_id = $size->getId();
+            } else {
+
+                $sizeValues = array(
+                    0 => 'S',
+                    1 => 'M',
+                    2 => 'L'
+                );
+
+                $size_id = $this->_insertAttribute($size_code, 'select', $sizeValues, 'S', 'Fake Size');
+            }
+
+            $size_options = Mage::getModel('eav/config')
+                ->getAttribute('catalog_product', $size_code)
+                ->getSource()
+                ->getAllOptions();
+
+            $size_data = array();
+
+            $size_data[1] = array(
+                '0' => array(
+                    'label' => $size_options[1]['label'],
+                    'attribute_id' => $size_id,
+                    'value_index' => $size_options[1]['value'],
+                    'is_percent' => '0',
+                    'pricing_value' => '0'
+                )
+            );
+
+            $size_data[2] = array(
+                '0' => array(
+                    'label' => $size_options[2]['label'],
+                    'attribute_id' => $size_id,
+                    'value_index' => $size_options[2]['value'],
+                    'is_percent' => '0',
+                    'pricing_value' => '5.00'
+                )
+            );
+
+            $size_data[3] = array(
+                '0' => array(
+                    'label' => $size_options[3]['label'],
+                    'attribute_id' => $size_id,
+                    'value_index' => $size_options[3]['value'],
+                    'is_percent' => '0',
+                    'pricing_value' => '10.00'
+                )
+            );
+
+            // insert the product
 
             $product = Mage::getModel('catalog/product');
 
