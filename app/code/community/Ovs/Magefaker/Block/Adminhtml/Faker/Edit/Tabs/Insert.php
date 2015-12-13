@@ -36,6 +36,8 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
             'values' => array(
                 '0' => '0',
                 '1' => '1',
+                '2' => '2',
+                '3' => '3',
                 '5' => '5',
                 '10' => '10',
                 '25' => '25',
@@ -88,6 +90,8 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
             'values' => array(
                 '0' => '0',
                 '1' => '1',
+                '2' => '2',
+                '3' => '3',
                 '5' => '5',
                 '10' => '10',
                 '25' => '25',

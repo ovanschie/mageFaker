@@ -1,8 +1,8 @@
 <?php
 namespace Faker\Provider;
 
-class Ecommerce extends \Faker\Provider\Base
-{
+class MageFaker extends \Faker\Provider\Base {
+
     protected static $fashionNames = array(
         "French Cuff Cotton Twill Oxford","Slim fit Dobby Oxford Shirt","Plaid Cotton Shirt","Sullivan Sport Coat","Linen Blazer","Stretch Cotton Blazer","Chelsea Tee",
         "Merino V-neck Pullover Sweater","Lexington Cardigan Sweater","Core Striped Sport Shirt","Bowery Chino Pants","The Essential Boot Cut Jean","Flat Front Trouser",
@@ -22,8 +22,22 @@ class Ecommerce extends \Faker\Provider\Base
     );
 
     protected static $fashionCategories = array(
-        "Women","Tops & Blouses","Pants & Denim","Dresses & Skirts","Men","Shirts","Tees, Knits and Polos","Pants & Denim","Blazers","Accessories","Eyewear","Jewelry","Shoes","Bags & Luggage","Home & Decor",
-        "Books & Music","Bed & Bath","Electronics","Decorative Accents","Sale","Women","Men","Accessories","Home & Decor","VIP"
+        "Tops & Blouses",
+        "Dresses & Skirts",
+        "Shirts",
+        "Tees, Knits and Polos",
+        "Pants",
+        "Jeans",
+        "Blazers",
+        "Accessories",
+        "Eyewear",
+        "Shoes",
+        "Sneakers",
+        "Bags & Luggage",
+        "Sale",
+        "Women",
+        "Men",
+        "VIP"
     );
 
     // product
