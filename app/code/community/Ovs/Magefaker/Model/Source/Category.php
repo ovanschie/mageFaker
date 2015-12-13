@@ -22,10 +22,11 @@ class Ovs_Magefaker_Model_Source_Category extends Mage_Core_Model_Abstract{
         }
 
         $depth      = 6;
-        $parentId   = 1;
+        $store      = Mage::app()->getWebsite(true)->getDefaultGroup()->getDefaultStoreId();
+        $rootId     = Mage::app()->getStore($store)->getRootCategoryId();
 
         $category   = Mage::getModel('catalog/category');
-        $categories = $category->getCategories($parentId, $depth, TRUE, FALSE, TRUE);
+        $categories = $category->getCategories(($rootId - 1), $depth, true, false, true);
 
         foreach ($categories as $node) {
 
