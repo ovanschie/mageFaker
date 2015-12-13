@@ -33,7 +33,7 @@ class Ecommerce extends \Faker\Provider\Base
     }
 
     public function productImage(){
-        return 'media/mageFaker/product/' . $this->numberBetween(1, 29) . '.jpg';
+        return 'media/mageFaker/product/' . $this->numberBetween(1, 30) . '.jpg';
     }
 
     public function price(){
