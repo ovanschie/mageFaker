@@ -1,8 +1,12 @@
 <?php
+
 namespace Faker\Provider;
 
 class MageFaker extends \Faker\Provider\Base {
 
+    /**
+     * @var array
+     */
     protected static $fashionNames = array(
         "French Cuff Cotton Twill Oxford","Slim fit Dobby Oxford Shirt","Plaid Cotton Shirt","Sullivan Sport Coat","Linen Blazer","Stretch Cotton Blazer","Chelsea Tee",
         "Merino V-neck Pullover Sweater","Lexington Cardigan Sweater","Core Striped Sport Shirt","Bowery Chino Pants","The Essential Boot Cut Jean","Flat Front Trouser",
@@ -21,6 +25,9 @@ class MageFaker extends \Faker\Provider\Base {
         "Prima Pump","Plaza Platform","Annie Pump","Broadway Pump","Ellis Flat","Yuca Sneaker","Black Nolita Cami","NoLIta Cami-Pink","Black Nolita Cami-Black"
     );
 
+    /**
+     * @var array
+     */
     protected static $fashionCategories = array(
         "Tops & Blouses",
         "Dresses & Skirts",
@@ -42,30 +49,51 @@ class MageFaker extends \Faker\Provider\Base {
 
     // product
 
+    /**
+     * @return mixed
+     */
     public function productName(){
         return static::randomElement(static::$fashionNames);
     }
 
+    /**
+     * @return string
+     */
     public function productImage(){
-        return 'media/mageFaker/product/' . $this->numberBetween(1, 30) . '.jpg';
+        return 'media/mageFaker/product/' . mt_rand(1, 30) . '.jpg';
     }
 
+    /**
+     * @return string
+     */
     public function price(){
-        return (int) $this->numberBetween(1, 999) . '.' . $this->numberBetween(10,99);
+        return (int) mt_rand(1, 999) . '.' . round(mt_rand(0, 99), 2, PHP_ROUND_HALF_EVEN);
     }
 
+    /**
+     * @return string
+     */
     public function sku(){
         return 'magefaker-' . uniqid();
     }
 
+    /**
+     * @return string
+     */
     public function weight(){
-        return (int) $this->numberBetween(1, 999) . '.0000';
+        return (int) mt_rand(1, 999) . '.0000';
     }
 
+    /**
+     * @return string
+     */
     public function shortDescription(){
         return $this->generator->paragraph(8);
     }
 
+    /**
+     * @return string
+     */
     public function description(){
         $paragraph = '';
         for($i = 0; $i < 4; $i++){
@@ -74,25 +102,39 @@ class MageFaker extends \Faker\Provider\Base {
         return $paragraph;
     }
 
+    /**
+     * @return string
+     */
     public function metaKeys(){
         $words = $this->generator->words(4);
         return implode(', ', $words);
     }
 
+    /**
+     * @return string
+     */
     public function metaDescription(){
         return $this->generator->paragraph(4);
     }
-
-    // category
-
+    
+    /**
+     * @return mixed
+     */
     public function categoryName(){
         return static::randomElement(static::$fashionCategories);
     }
 
+    /**
+     * @return string
+     */
     public function categoryImage(){
-        return '../../../media/mageFaker/category/' . $this->numberBetween(1, 14) . '.jpg';
+        return '../../../media/mageFaker/category/' . mt_rand(1, 5) . '.jpg';
     }
 
+    /**
+     * @param $name
+     * @return string
+     */
     public function categoryUrl($name){
         return $name . '-' . uniqid();
     }
