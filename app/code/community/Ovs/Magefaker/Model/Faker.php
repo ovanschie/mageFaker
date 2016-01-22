@@ -74,7 +74,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
             $faker = new Faker\Generator();
             $faker->addProvider(new Faker\Provider\en_US\Person($faker));
             $faker->addProvider(new Faker\Provider\Lorem($faker));
-            $faker->addProvider(new Faker\Provider\Ecommerce($faker));
+            $faker->addProvider(new Faker\Provider\MageFaker($faker));
 
             for($i = 0; $i < $count; $i++) {
                 $this->_insertCategory($faker->categoryName(), $parentId, $anchor, $thumbnail);
@@ -104,7 +104,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
         $faker = new Faker\Generator();
         $faker->addProvider(new Faker\Provider\en_US\Person($faker));
         $faker->addProvider(new Faker\Provider\Lorem($faker));
-        $faker->addProvider(new Faker\Provider\Ecommerce($faker));
+        $faker->addProvider(new Faker\Provider\MageFaker($faker));
 
         $name       = $faker->productName;
         $sku        = $faker->sku($name);
@@ -331,7 +331,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract{
             $faker = new Faker\Generator();
             $faker->addProvider(new Faker\Provider\en_US\Person($faker));
             $faker->addProvider(new Faker\Provider\Lorem($faker));
-            $faker->addProvider(new Faker\Provider\Ecommerce($faker));
+            $faker->addProvider(new Faker\Provider\MageFaker($faker));
 
             $parentCategory = Mage::getModel('catalog/category')->load($parentId);
 

@@ -24,10 +24,8 @@ More to come.
 
 #Requirements
 
-- Magento            >= 1.9.0 (older versions untested)
+- Magento            >= 1.9.x (older versions untested)
 - PHP                >= 5.4
-- Memory limit       >= 512M
-- Unlimited max_execution_time preferred
 
 #How to use
 
