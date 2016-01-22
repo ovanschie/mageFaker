@@ -28,6 +28,9 @@ class Ovs_Magefaker_Adminhtml_MagefakerController extends Mage_Adminhtml_Control
      */
     public function saveAction(){
 
+        ini_set('memory_limit', '768M');
+        set_time_limit(0);
+
         // set index modes to manual
         $processes = array();
         $indexer = Mage::getSingleton('index/indexer');
