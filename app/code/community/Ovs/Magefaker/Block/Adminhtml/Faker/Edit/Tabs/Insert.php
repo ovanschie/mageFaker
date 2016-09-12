@@ -46,13 +46,13 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Insert extends Mage_Adminhtm
                 '250' => '250',
                 '500' => '500'
             ),
-            'after_element_html' => 'Ignored when using custom categories'
+            'after_element_html' => '(Ignored when using custom categories)'
         ));
 
         $category->addField('categories_custom', 'text', array(
-            'label' => $this->__('Custom category names'),
+            'label' => $this->__('Custom categories'),
             'name' => 'categories_custom',
-            'after_element_html' => 'Use this categories instead of default Faker categories. Comma separated. '
+            'after_element_html' => 'Use these categories instead of the default MageFaker categories. Comma separated. '
         ));
 
         $category->addField('categories_anchor', 'checkbox', array(
