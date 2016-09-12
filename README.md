@@ -36,7 +36,7 @@ Names and images come from the Magento sample data package and Magento 2.0.
 
 **Using composer**
 
-1. Add the firegento repo if you haven't already: 
+1 Add the firegento repo if you haven't already: 
 ```javascript
 {
     "repositories": [
@@ -47,11 +47,11 @@ Names and images come from the Magento sample data package and Magento 2.0.
     ]
 }
 ```
-2. Include MageFaker:
+2 Include MageFaker:
 ```
 composer require ovs/magefaker
 ```
-3. Clear caches and logout from the backend
+3 Clear caches and logout from the backend
 
 #How to use
 
