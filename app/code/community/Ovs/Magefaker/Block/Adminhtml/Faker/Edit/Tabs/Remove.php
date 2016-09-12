@@ -26,7 +26,7 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Remove extends Mage_Adminhtm
             'label' => $this->__('Remove all MageFaker categories'),
             'name' => 'categories_remove',
             'value' => 'categories_remove',
-            'after_element_html' => '</td><td><small><em>' . $this->__("This will remove all categories with the 'magefaker-' prefix in url") . '</em></small>'
+            'after_element_html' => '</td><td><small><em>' . $this->__("This will remove all categories with the 'magefaker-' prefix in the url") . '</em></small>'
         ));
 
 
@@ -39,7 +39,7 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Tabs_Remove extends Mage_Adminhtm
             'label' => $this->__('Remove all MageFaker products'),
             'name' => 'products_remove',
             'value' => 'products_remove',
-            'after_element_html' => '</td><td><small><em>' . $this->__("This will remove all products with the 'magefaker-' prefix in sku") . '</em></small>'
+            'after_element_html' => '</td><td><small><em>' . $this->__("This will remove all the products with the 'magefaker-' prefix in the sku") . '</em></small>'
         ));
 
         $form->setUseContainer(false);
