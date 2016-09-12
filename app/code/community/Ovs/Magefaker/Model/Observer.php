@@ -14,7 +14,7 @@ class Ovs_Magefaker_Model_Observer{
         require_once Mage::getBaseDir('lib') . DS . 'Zend' . DS . 'Loader.php';
         $autoLoader = Zend_Loader_Autoloader::getInstance();
 
-        // get all Varien autoloaders an unregister them
+        // get all Varien autoloaders and unregister them
         $autoloader_callbacks   = spl_autoload_functions();
         $original_autoload      = null;
 
