@@ -18,7 +18,7 @@
                     <system>
                         <children>
                             <magefaker translate="title" module="ovs_magefaker">
-                                <title>MageFaker - manage fake data</title>
+                                <title>MageFaker - Generate and delete fake data</title>
                                 <sort_order>10</sort_order>
                             </magefaker>
                         </children>
