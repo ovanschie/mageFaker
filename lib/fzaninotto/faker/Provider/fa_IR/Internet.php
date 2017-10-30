@@ -4,25 +4,25 @@ namespace Faker\Provider\fa_IR;
 
 class Internet extends \Faker\Provider\Internet
 {
-    protected static $userNameFormats = array(
+    protected static $userNameFormats = [
         '{{lastNameAscii}}.{{firstNameAscii}}',
         '{{firstNameAscii}}.{{lastNameAscii}}',
         '{{firstNameAscii}}##',
         '?{{lastNameAscii}}',
-    );
+    ];
 
-    protected static $safeEmailTld = array(
+    protected static $safeEmailTld = [
         'com', 'ir', 'me', 'net', 'org',
-    );
+    ];
 
-    protected static $tld = array(
+    protected static $tld = [
         'biz', 'com', 'info', 'ir', 'net', 'org',
-    );
+    ];
 
     /**
      * @link http://en.wikipedia.org/wiki/Category:Iranian-language_surnames
      */
-    protected static $lastNameAscii = array(
+    protected static $lastNameAscii = [
         'abdullahi', 'abbasi', 'abedini', 'ahadi', 'ahmadi', 'akbari', 'alizadeh', 'asadi',
         'baraghani', 'babaei',
         'chamran',
@@ -41,12 +41,12 @@ class Internet extends \Faker\Provider\Internet
         'tabatabaei', 'talebi', 'tousi',
         'yazdani', 'yazdi', 'yousefi',
         'zandi', 'zare',
-    );
+    ];
 
     /*
      * @link http://en.wikipedia.org/wiki/Persian_name
      */
-    protected static $firstNameAscii = array(
+    protected static $firstNameAscii = [
         'abbas', 'afshin', 'ahmad', 'ali', 'amir', 'anahita', 'anousheh', 'arash', 'ardeshir', 'arezu', 'aria', 'arian', 'arman', 'ashraf', 'atoosa', 'azadeh', 'azar',
         'babak', 'bahar', 'bahare', 'bardia', 'behnaz', 'benyamin', 'bita',
         'dalir', 'dariush', 'davoud', 'donya',
@@ -67,7 +67,7 @@ class Internet extends \Faker\Provider\Internet
         'vahid',
         'yaghoub', 'yahya', 'yasamin', 'yasaman', 'younes', 'yousef',
         'zahra', 'zarine', 'zeynab', 'zhila',
-    );
+    ];
 
     public static function lastNameAscii()
     {
@@ -94,6 +94,6 @@ class Internet extends \Faker\Provider\Internet
      */
     public function domainName()
     {
-        return static::randomElement(static::$lastNameAscii) . '.' . $this->tld();
+        return static::randomElement(static::$lastNameAscii).'.'.$this->tld();
     }
 }

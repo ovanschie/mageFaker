@@ -4,15 +4,17 @@ namespace Faker\Provider\ar_JO;
 
 class Text extends \Faker\Provider\Text
 {
-
     /**
-     * generates text string in arabic
+     * generates text string in arabic.
      *
      * @example ' ولا النوم ولا القرار وكان يقال: لا يجد المريض لذة الطعام والشراب'
-     * @param  integer                   $maxNbChars
-     * @param  integer                   $indexSize
-     * @return string
+     *
+     * @param int $maxNbChars
+     * @param int $indexSize
+     *
      * @throws \InvalidArgumentException
+     *
+     * @return string
      */
     public function realText($maxNbChars = 200, $indexSize = 2)
     {
@@ -29,7 +31,7 @@ class Text extends \Faker\Provider\Text
         }
 
         $words = $this->getConsecutiveWords($indexSize);
-        $result = array();
+        $result = [];
         $resultLength = 0;
         // take a random starting point
         $next = static::randomKey($words);
@@ -62,13 +64,14 @@ class Text extends \Faker\Provider\Text
     }
 
     /**
-     * License: Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+     * License: Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0).
      *
      * Title: حي بن يقظان
      * Author: ابن الطفيل
      * Language: Arabic
      *
      * @see https://ar.wikisource.org/wiki/%D8%A7%D8%A8%D9%86_%D8%A7%D9%84%D8%B7%D9%81%D9%8A%D9%84_-_%D8%AD%D9%8A_%D8%A8%D9%86_%D9%8A%D9%82%D8%B8%D8%A7%D9%86
+     *
      * @var string
      */
     protected static $baseText = <<<'EOT'

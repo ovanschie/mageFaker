@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Class Ovs_MageFaker_Block_Adminhtml_Faker_Edit_Form
+ * Class Ovs_MageFaker_Block_Adminhtml_Faker_Edit_Form.
  */
-class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Form extends Mage_Adminhtml_Block_Widget_Form {
-
+class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Form extends Mage_Adminhtml_Block_Widget_Form
+{
     /**
      * @return Mage_Core_Block_Abstract
      */
@@ -14,25 +14,25 @@ class Ovs_Magefaker_Block_Adminhtml_Faker_Edit_Form extends Mage_Adminhtml_Block
     }
 
     /**
-     * create the form
+     * create the form.
+     *
+     * @throws Exception
      *
      * @return Mage_Adminhtml_Block_Widget_Form
-     * @throws Exception
      */
     protected function _prepareForm()
     {
         // edit form
-        $edit_form = new Varien_Data_Form(array(
-            'id'        => 'edit_form',
-            'action'    => $this->getUrl('*/*/save', array('id' => $this->getRequest()->getParam('id'))),
-            'method'    => 'post',
-            'enctype'   => 'multipart/form-data'
-        ));
+        $edit_form = new Varien_Data_Form([
+            'id'      => 'edit_form',
+            'action'  => $this->getUrl('*/*/save', ['id' => $this->getRequest()->getParam('id')]),
+            'method'  => 'post',
+            'enctype' => 'multipart/form-data',
+        ]);
 
         $edit_form->setUseContainer(true);
         $this->setForm($edit_form);
 
         return parent::_prepareForm();
     }
-
 }
