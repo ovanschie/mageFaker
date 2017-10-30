@@ -4,7 +4,6 @@ namespace Faker\ORM\CakePHP;
 
 class Populator
 {
-
     protected $generator;
     protected $entities = [];
     protected $quantities = [];
@@ -30,6 +29,7 @@ class Populator
         if ($this->guessers[$name]) {
             unset($this->guessers[$name]);
         }
+
         return $this;
     }
 
@@ -40,10 +40,11 @@ class Populator
         }
 
         if (!method_exists($class, 'guessFormat')) {
-            throw new \Exception('Missing required custom guesser method: ' . get_class($class) . '::guessFormat()');
+            throw new \Exception('Missing required custom guesser method: '.get_class($class).'::guessFormat()');
         }
 
         $this->guessers[get_class($class)] = $class;
+
         return $this;
     }
 
@@ -66,6 +67,7 @@ class Populator
         $class = $entity->class;
         $this->entities[$class] = $entity;
         $this->quantities[$class] = $number;
+
         return $this;
     }
 

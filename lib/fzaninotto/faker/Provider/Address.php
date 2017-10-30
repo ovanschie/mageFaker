@@ -4,24 +4,24 @@ namespace Faker\Provider;
 
 class Address extends \Faker\Provider\Base
 {
-    protected static $citySuffix = array('Ville');
-    protected static $streetSuffix = array('Street');
-    protected static $cityFormats = array(
+    protected static $citySuffix = ['Ville'];
+    protected static $streetSuffix = ['Street'];
+    protected static $cityFormats = [
         '{{firstName}}{{citySuffix}}',
-    );
-    protected static $streetNameFormats = array(
-        '{{lastName}} {{streetSuffix}}'
-    );
-    protected static $streetAddressFormats = array(
-        '{{buildingNumber}} {{streetName}}'
-    );
-    protected static $addressFormats = array(
+    ];
+    protected static $streetNameFormats = [
+        '{{lastName}} {{streetSuffix}}',
+    ];
+    protected static $streetAddressFormats = [
+        '{{buildingNumber}} {{streetName}}',
+    ];
+    protected static $addressFormats = [
         '{{streetAddress}} {{postcode}} {{city}}',
-    );
+    ];
 
-    protected static $buildingNumber = array('##');
-    protected static $postcode = array('#####');
-    protected static $country = array();
+    protected static $buildingNumber = ['##'];
+    protected static $postcode = ['#####'];
+    protected static $country = [];
 
     /**
      * @example 'town'
@@ -105,6 +105,7 @@ class Address extends \Faker\Provider\Base
 
     /**
      * @example 77.147489
+     *
      * @return float Uses signed degrees format (returns a float number between -90 and 90)
      */
     public static function latitude()
@@ -114,6 +115,7 @@ class Address extends \Faker\Provider\Base
 
     /**
      * @example 86.211205
+     *
      * @return float Uses signed degrees format (returns a float number between -180 and 180)
      */
     public static function longitude()

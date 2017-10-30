@@ -5,9 +5,9 @@ namespace Faker\Provider\lv_LV;
 class Person extends \Faker\Provider\Person
 {
     /**
-     * {@link} http://ru.wikipedia.org/wiki/%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%BE%D0%B5_%D0%BB%D0%B8%D1%87%D0%BD%D0%BE%D0%B5_%D0%B8%D0%BC%D1%8F
+     * {@link} http://ru.wikipedia.org/wiki/%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%BE%D0%B5_%D0%BB%D0%B8%D1%87%D0%BD%D0%BE%D0%B5_%D0%B8%D0%BC%D1%8F.
      **/
-    protected static $firstNameMale = array(
+    protected static $firstNameMale = [
         'Enno', 'Eriks', 'Ernests', 'Ero', 'Ervis', 'Mārtiņš', 'Ādams', 'Āris', 'Āvo', 'Ēriks', 'Enriko', 'Enriks',  'Ēro', 'Ģirts', 'Īra',
         // below are unknown gender firstnames
         'Agris', 'Dainis', 'Dzintars', 'Emīls', 'Enijs', 'Enoks', 'Enrijs', 'Eralds', 'Erasts', 'Erberts', 'Erhards',
@@ -19,9 +19,9 @@ class Person extends \Faker\Provider\Person
         'Ērmanis', 'Ēstere', 'Ēvalds', 'Ēvija', 'Ēvisa', 'Ģederts', 'Ģedimins', 'Ģintars', 'Ģints', 'Īrisa', 'Īvija', 'Ņikifors',
         'Šandors', 'Ūnika', 'Ūva', 'Žaklīne', 'Žanija', 'Žanna', 'Žanneta', 'Žene', 'Ženija', 'Žermena', 'Žermēna', 'Žozefina',
         'Žuanete', 'Žubīte',
-    );
+    ];
 
-    protected static $firstNameFemale = array(
+    protected static $firstNameFemale = [
         'Āra', 'Ārika', 'Čarita', 'Ērika', 'Ēva', 'Ēvī', 'Īda', 'Īna', 'Īva', 'Īvis', 'Īģe', 'Ņikita', 'Ūna',
         'Žaklina', 'Žaklīna', 'Žana', 'Žaneta', 'Žanete',
         // below are unknown gender firstnames
@@ -34,12 +34,12 @@ class Person extends \Faker\Provider\Person
         'Ērmanis', 'Ēstere', 'Ēvalds', 'Ēvija', 'Ēvisa', 'Ģederts', 'Ģedimins', 'Ģintars', 'Ģints', 'Īrisa', 'Īvija', 'Ņikifors',
         'Šandors', 'Ūnika', 'Ūva', 'Žaklīne', 'Žanija', 'Žanna', 'Žanneta', 'Žene', 'Ženija', 'Žermena', 'Žermēna', 'Žozefina',
         'Žuanete', 'Žubīte',
-    );
+    ];
 
     /**
-     * {@link} http://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BE%D0%B1%D1%89%D0%B5%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B8%D1%85_%D1%84%D0%B0%D0%BC%D0%B8%D0%BB%D0%B8%D0%B9
+     * {@link} http://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BE%D0%B1%D1%89%D0%B5%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B8%D1%85_%D1%84%D0%B0%D0%BC%D0%B8%D0%BB%D0%B8%D0%B9.
      **/
-    protected static $lastName = array(
+    protected static $lastName = [
         'Raņķi', 'Muižeļi', 'Dumpji', 'Ozoliņi', 'Kalniņi', 'Sēļi', 'Kreši', 'Dāles', 'Rungaiņi',
         'Kalniņš', 'Lejiņš', 'Celmiņš', 'Bērziņš', 'Ozoliņš', 'Liepiņš', 'Siliņš', 'Vilciņš', 'Lācītis',
         'Priedīte', 'Saulīte', 'Gailītis', 'Muciņš', 'Krieviņš', 'Zviedrītis', 'Polītis',
@@ -47,15 +47,15 @@ class Person extends \Faker\Provider\Person
         'Jankevics', 'Baldunčiks', 'Šileiko', 'Budreiko', 'Andreiko', 'Blaumanis', 'Silmanis', 'Staltmanis',
         'Andersons', 'Kirhenšteins', 'Švarcbahs', 'Bendorfs', 'Veinbergs', 'Rozentāls', 'Neilands', 'Freidenfelds',
         'Veidenbaums', 'Kronvalds',
-    );
+    ];
 
     public function driverLicence()
     {
-        return $this->bothify("??######");
+        return $this->bothify('??######');
     }
 
     public function passportNumber()
     {
-        return $this->bothify("??#######");
+        return $this->bothify('??#######');
     }
 }

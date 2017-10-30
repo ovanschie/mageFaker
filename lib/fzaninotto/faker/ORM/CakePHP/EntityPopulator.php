@@ -3,7 +3,6 @@
 namespace Faker\ORM\CakePHP;
 
 use Cake\ORM\TableRegistry;
-use Faker\Guesser\Name as NameGuesser;
 
 class EntityPopulator
 {
@@ -51,9 +50,9 @@ class EntityPopulator
                     return true;
                 }
             }
+
             return false;
         };
-
 
         foreach ($schema->columns() as $column) {
             if ($column == $pk[0] || $isForeignKey($column)) {
@@ -78,12 +77,13 @@ class EntityPopulator
 
         $belongsTo = $table->associations()->type('BelongsTo');
         foreach ($belongsTo as $assoc) {
-            $modifiers['belongsTo' . $assoc->name()] = function ($data, $insertedEntities) use ($assoc) {
+            $modifiers['belongsTo'.$assoc->name()] = function ($data, $insertedEntities) use ($assoc) {
                 $table = $assoc->target();
                 $foreignModel = $table->alias();
                 $foreignKey = $insertedEntities[$foreignModel][array_rand($insertedEntities[$foreignModel])];
                 $primaryKey = $table->primaryKey();
                 $data[$assoc->foreignKey()] = $foreignKey;
+
                 return $data;
             };
         }
@@ -113,6 +113,7 @@ class EntityPopulator
         }
 
         $pk = $table->primaryKey();
+
         return $entity->{$pk};
     }
 
@@ -127,6 +128,7 @@ class EntityPopulator
         if (!empty($this->connectionName)) {
             $options['connection'] = $this->connectionName;
         }
+
         return TableRegistry::get($class, $options);
     }
 }

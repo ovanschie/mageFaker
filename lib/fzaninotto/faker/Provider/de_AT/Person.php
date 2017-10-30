@@ -4,7 +4,7 @@ namespace Faker\Provider\de_AT;
 
 class Person extends \Faker\Provider\Person
 {
-    protected static $maleNameFormats = array(
+    protected static $maleNameFormats = [
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
@@ -12,9 +12,9 @@ class Person extends \Faker\Provider\Person
         '{{titleMale}} {{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}} {{suffix}}',
         '{{titleMale}} {{firstNameMale}} {{lastName}} {{suffix}}',
-    );
+    ];
 
-    protected static $femaleNameFormats = array(
+    protected static $femaleNameFormats = [
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
@@ -22,9 +22,9 @@ class Person extends \Faker\Provider\Person
         '{{titleFemale}} {{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}} {{suffix}}',
         '{{titleFemale}} {{firstNameFemale}} {{lastName}} {{suffix}}',
-    );
+    ];
 
-    protected static $firstNameMale = array(
+    protected static $firstNameMale = [
         'Abel', 'Abraham', 'Adalbero', 'Adam', 'Adamo', 'Adolfo', 'Adrian', 'Adriano', 'Adrianus', 'Adrien', 'Alain', 'Alajos', 'Alan', 'Albain', 'Alban', 'Albano', 'Alberto', 'Albin', 'Alec', 'Alejandro', 'Alessandro', 'Alessio', 'Alex', 'Alexander', 'Alexandre', 'Alexandros', 'Alexej', 'Alexis', 'Alfons', 'Alfonso', 'Aljoscha', 'Allan', 'Allen', 'Alois', 'Alon', 'Alonzo', 'Alphonse', 'Alwin', 'Amadeo', 'Amadeus', 'Amandus', 'Amos', 'Anatol', 'Anatole', 'Anatolij', 'Anders', 'Andi', 'Andor', 'Andre', 'Andreas', 'Andrej', 'Andrew', 'Andrijan', 'Andy', 'Angelus', 'Ansgar', 'Anthony', 'Antoine', 'Anton', 'Antonio', 'Araldo', 'Aram', 'Argus', 'Arjan', 'Armin', 'Arminio', 'Arnaldo', 'Arnault', 'Arndt', 'Arne', 'Arno', 'Arnold', 'Arrigo', 'Art', 'Arthur', 'Artur', 'Arturo', 'August', 'Auguste', 'Augustin', 'Aurelius', 'Axel',
         'Balduin', 'Balthasar', 'Bardo', 'Barnabas', 'Barnard', 'Barney', 'Baruch', 'Basil', 'Basilius', 'Bastian', 'Bastien', 'Battista', 'Beatus', 'Beltrame', 'Beltran', 'Ben', 'Benedetto', 'Benedict', 'Benedikt', 'Bengt', 'Beniamino', 'Benignus', 'Benito', 'Benjamin', 'Benjy', 'Bennett', 'Benno', 'Benny', 'Benoit', 'Beppe', 'Bernard', 'Bernardo', 'Bernd', 'Bernhard', 'Bernie', 'Bert', 'Berthold', 'Bertoldo', 'Bertram', 'Bertrame', 'Bill', 'Billy', 'Birger', 'Bjarne', 'Björn', 'Bob', 'Bobby', 'Bodo', 'Bonifatius', 'Boris', 'Bosco', 'Brendan', 'Brian', 'Bruno', 'Bryan', 'Burkhard',
         'Camillo', 'Camilo', 'Carl', 'Carlo', 'Carlos', 'Carol', 'Carsten', 'Cäsar', 'Casimir', 'Caspar', 'Cecil', 'Ceddric', 'Cedric', 'Celestino', 'Charles', 'Charlie', 'Chico', 'Chip', 'Chris', 'Christian', 'Christoph', 'Christophe', 'Christopher', 'Christy', 'Chuck', 'Cian', 'Cillian', 'Clarence', 'Clark', 'Clas', 'Claude', 'Claudio', 'Claudius', 'Claus', 'Clayton', 'Clemens', 'Cliff', 'Clifford', 'Clint', 'Clinton', 'Cody', 'Colin', 'Collin', 'Conan', 'Connor', 'Conny', 'Conor', 'Conrad', 'Constantine', 'Cooper', 'Cordell', 'Cornelius', 'Corvinus', 'Cristobal', 'Curd', 'Curt', 'Curtis', 'Curtiz', 'Cyril', 'Cyrill',
@@ -49,9 +49,9 @@ class Person extends \Faker\Provider\Person
         'Valentiano', 'Valentin', 'Valentino', 'Valerian', 'Valerio', 'Valerius', 'Valery', 'Vasco', 'Veit', 'Veltin', 'Vernon', 'Vicente', 'Vico', 'Victor', 'Viktor', 'Vincent', 'Vincenzo', 'Vinzenez', 'Vinzenz', 'Virgil', 'Vitalis', 'Vito', 'Vittore', 'Vittoriano', 'Vittorio', 'Volker',
         'Wallace', 'Walt', 'Warner', 'Warren', 'Wido', 'Wigand', 'Wilbur', 'Willi', 'William', 'Wilpert', 'Winston', 'Wolf', 'Wolfgang', 'Woodrow', 'Woody',
         'Xaver',
-    );
+    ];
 
-    protected static $firstNameFemale = array(
+    protected static $firstNameFemale = [
         'Abby', 'Abelina', 'Abigail', 'Adelaide', 'Adeline', 'Adina', 'Adriana', 'Adrienne', 'Afra', 'Agatha', 'Agnes', 'Aida', 'Aimee', 'Aischa', 'Albertine', 'Alea', 'Aleksandra', 'Alena', 'Alessa', 'Alessandra', 'Alessia', 'Alexa', 'Alexandra', 'Alexia', 'Alexis', 'Alice', 'Alicia', 'Alida', 'Alina', 'Aline', 'Alisa', 'Alissa', 'Alisson', 'Amabella', 'Amadea', 'Amanda', 'Amelia', 'Amelie', 'Amina', 'Amy', 'Ana', 'Anastasia', 'Andrea', 'Andrina', 'Anette', 'Angela', 'Angelika', 'Angelina', 'Angelique', 'Anina', 'Anine', 'Anita', 'Anja', 'Anjalie', 'Anke', 'Ann', 'Anna', 'Annabel', 'Annabell', 'Annabella', 'Annabelle', 'Anne', 'Annett', 'Annette', 'Annika', 'Annina', 'Antje', 'Antoinette', 'Antonella', 'Antonia', 'Arabella', 'Ariadne', 'Ariana', 'Ariane', 'Arianna', 'Ariella', 'Arielle', 'Arlene', 'Arlette', 'Arwenna', 'Ashley', 'Asta', 'Astrid', 'Audrey', 'Aurelia',
         'Barbara', 'Bärbel', 'Bastiane', 'Bea', 'Beata', 'Beatrice', 'Beatrix', 'Becky', 'Belinda', 'Bella', 'Bellana', 'Belle', 'Benedikta', 'Benita', 'Bente', 'Beppina', 'Berenike', 'Berit', 'Bernadett', 'Bernadette', 'Bernadine', 'Betina', 'Betsy', 'Bettina', 'Betty', 'Bianca', 'Bianka', 'Bibiana', 'Bibiane', 'Birgit', 'Birgitt', 'Bodil', 'Bridget', 'Brigitta', 'Brigitte', 'Britta',
         'Caitlin', 'Cameron', 'Camilla', 'Camille', 'Cammy', 'Cara', 'Carin', 'Carina', 'Carinna', 'Carla', 'Carmela', 'Carmelia', 'Carmen', 'Carol', 'Carola', 'Carole', 'Carolin', 'Carolina', 'Caroline', 'Carolyn', 'Carolyne', 'Cassandra', 'Cassie', 'Catalin', 'Caterina', 'Catharina', 'Catherine', 'Cathrin', 'Cathrine', 'Cathy', 'Catina', 'Catrin', 'Catriona', 'Cecile', 'Cecilia', 'Cecilie', 'Celeste', 'Celestine', 'Celina', 'Celine', 'Chantal', 'Charleen', 'Charlotte', 'Chatrina', 'Chelsea', 'Chiara', 'Chloe', 'Chrissy', 'Christa', 'Christiana', 'Christiane', 'Christin', 'Christina', 'Christine', 'Chyna', 'Ciara', 'Cinderella', 'Cindy', 'Cinja', 'Cira', 'Claire', 'Clara', 'Clarissa', 'Claudette', 'Claudia', 'Claudine', 'Clea', 'Cleannis', 'Clementia', 'Clementine', 'Cleo', 'Clio', 'Cliona', 'Clodia', 'Cloris', 'Coletta', 'Colette', 'Connie', 'Conny', 'Constance', 'Constanze', 'Cora', 'Coral', 'Coralie', 'Cordelia', 'Cordula', 'Corin', 'Corina', 'Corinna', 'Corinne', 'Cornelia', 'Cosette', 'Cosima', 'Cynthia',
@@ -74,9 +74,9 @@ class Person extends \Faker\Provider\Person
         'Ulla', 'Ulli', 'Ulrica', 'Ulrike', 'Undine', 'Urania', 'Ursel', 'Ursina', 'Ursula', 'Ursule', 'Uschi', 'Uta', 'Ute',
         'Valentina', 'Valentine', 'Valeria', 'Valerie', 'Valeska', 'Vanadis', 'Vanessa', 'Vanja', 'Varinka', 'Venetia', 'Vera', 'Verena', 'Verona', 'Veronica', 'Veronika', 'Veronique', 'Vesla', 'Vicky', 'Victoire', 'Victoria', 'Viki', 'Viktoria', 'Vilja', 'Viola', 'Violet', 'Violetta', 'Violette', 'Virginia', 'Virginie', 'Vittoria', 'Viviana', 'Viviane', 'Vivien', 'Vivienne', 'Vreneli', 'Vreni', 'Vroni',
         'Wencke', 'Weneke', 'Wibke', 'Wilja', 'Willow', 'Wilma',
-    );
+    ];
 
-    protected static $lastName = array(
+    protected static $lastName = [
         'Ackermann', 'Adler', 'Adolph', 'Albers', 'Anders', 'Atzler', 'Aumann', 'Austermühle',
         'Bachmann', 'Bähr', 'Bärer', 'Barkholz', 'Barth', 'Bauer', 'Baum', 'Becker', 'Beckmann', 'Beer', 'Beier', 'Bender', 'Benthin', 'Berger', 'Beyer', 'Bien', 'Biggen', 'Binner', 'Birnbaum', 'Bloch', 'Blümel', 'Bohlander', 'Bonbach', 'Bolander', 'Bolnbach', 'Bolzmann', 'Börner', 'Bohnbach', 'Boucsein', 'Briemer', 'Bruder', 'Buchholz', 'Budig', 'Butte',
         'Carsten', 'Caspar', 'Christoph', 'Cichorius', 'Conradi',
@@ -99,12 +99,12 @@ class Person extends \Faker\Provider\Person
         'van der Dussen', 'Vogt', 'Vollbrecht',
         'Wagenknecht', 'Wagner', 'Wähner', 'Walter', 'Warmer', 'Weihmann', 'Weimer', 'Weinhage', 'Weinhold', 'Weiß', 'Weitzel', 'Weller', 'Wende', 'Wernecke', 'Werner', 'Wesack', 'Wiek', 'Wieloch', 'Wilms', 'Wilmsen', 'Winkler', 'Wirth', 'Wohlgemut', 'Wulf', 'Wulff',
         'Zahn', 'Zänker', 'Ziegert', 'Zimmer', 'Zirme', 'Zobel', 'Zorbach',
-    );
+    ];
 
-    protected static $titleMale = array('Herr', 'Dr.', 'Mag.', 'Ing.', 'Dipl.-Ing.', 'Prof.', 'Univ.Prof.');
-    protected static $titleFemale = array('Frau', 'Dr.', 'Maga.', 'Ing.', 'Dipl.-Ing.', 'Prof.', 'Univ.Prof.');
+    protected static $titleMale = ['Herr', 'Dr.', 'Mag.', 'Ing.', 'Dipl.-Ing.', 'Prof.', 'Univ.Prof.'];
+    protected static $titleFemale = ['Frau', 'Dr.', 'Maga.', 'Ing.', 'Dipl.-Ing.', 'Prof.', 'Univ.Prof.'];
 
-    protected static $suffix = array('B.Sc.', 'B.A.', 'B.Eng.', 'MBA.');
+    protected static $suffix = ['B.Sc.', 'B.A.', 'B.Eng.', 'MBA.'];
 
     /**
      * @example 'PhD'

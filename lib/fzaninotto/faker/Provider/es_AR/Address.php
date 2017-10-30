@@ -4,20 +4,20 @@ namespace Faker\Provider\es_AR;
 
 class Address extends \Faker\Provider\Address
 {
-    protected static $cityPrefix = array('San', 'Puerto', 'Villa', 'Gral.', 'Don');
-    protected static $citySuffix = array('del Mar', 'del Norte', 'del Este', 'del Sur', 'del Oeste', 'del Mirador');
-    protected static $buildingNumber = array('#####', '####', '###', '##', '#');
-    protected static $streetSuffix = array(
-        ''
-    );
-    protected static $postcode = array('####', '#####');
-    protected static $state = array(
-        'Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Córdoba', 'Corrientes', 'Entre Ríos', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquén', 'Río Negro', 'Salta', 'San Juan', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego, Antártida e Islas del Atlántico Sur', 'Tucumán'
-    );
-    protected static $stateAbbr = array(
-        'AR-B', 'AR-K', 'AR-H', 'AR-U', 'AR-X', 'AR-W', 'AR-E', 'AR-P', 'AR-Y', 'AR-L', 'AR-F', 'AR-M', 'AR-N', 'AR-Q', 'AR-R', 'AR-A', 'AR-J', 'AR-D', 'AR-Z', 'AR-S', 'AR-G', 'AR-V', 'AR-T'
-    );
-    protected static $country = array(
+    protected static $cityPrefix = ['San', 'Puerto', 'Villa', 'Gral.', 'Don'];
+    protected static $citySuffix = ['del Mar', 'del Norte', 'del Este', 'del Sur', 'del Oeste', 'del Mirador'];
+    protected static $buildingNumber = ['#####', '####', '###', '##', '#'];
+    protected static $streetSuffix = [
+        '',
+    ];
+    protected static $postcode = ['####', '#####'];
+    protected static $state = [
+        'Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Córdoba', 'Corrientes', 'Entre Ríos', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquén', 'Río Negro', 'Salta', 'San Juan', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego, Antártida e Islas del Atlántico Sur', 'Tucumán',
+    ];
+    protected static $stateAbbr = [
+        'AR-B', 'AR-K', 'AR-H', 'AR-U', 'AR-X', 'AR-W', 'AR-E', 'AR-P', 'AR-Y', 'AR-L', 'AR-F', 'AR-M', 'AR-N', 'AR-Q', 'AR-R', 'AR-A', 'AR-J', 'AR-D', 'AR-Z', 'AR-S', 'AR-G', 'AR-V', 'AR-T',
+    ];
+    protected static $country = [
         'Afganistán', 'Albania', 'Alemania', 'Andorra', 'Angola', 'Antigua y Barbuda', 'Arabia Saudí', 'Argelia', 'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaiyán',
         'Bahamas', 'Bangladés', 'Barbados', 'Baréin', 'Belice', 'Benín', 'Bielorrusia', 'Birmania', 'Bolivia', 'Bosnia-Herzegovina', 'Botsuana', 'Brasil', 'Brunéi Darusalam', 'Bulgaria', 'Burkina Faso', 'Burundi', 'Bután', 'Bélgica',
         'Cabo Verde', 'Camboya', 'Camerún', 'Canadá', 'Catar', 'Chad', 'Chile', 'China', 'Chipre', 'Ciudad del Vaticano', 'Colombia', 'Comoras', 'Congo', 'Corea del Norte', 'Corea del Sur', 'Costa Rica', 'Costa de Marfil', 'Croacia', 'Cuba',
@@ -40,26 +40,26 @@ class Address extends \Faker\Provider\Address
         'Ucrania', 'Uganda', 'Uruguay', 'Uzbekistán',
         'Vanuatu', 'Venezuela', 'Vietnam',
         'Yemen', 'Yibuti',
-        'Zambia', 'Zimbabue'
-    );
-    protected static $cityFormats = array(
+        'Zambia', 'Zimbabue',
+    ];
+    protected static $cityFormats = [
         '{{cityPrefix}} {{firstName}}{{citySuffix}}',
         '{{cityPrefix}} {{firstName}}',
         '{{firstName}}{{citySuffix}}',
         '{{lastName}}{{citySuffix}}',
-    );
-    protected static $streetNameFormats = array(
+    ];
+    protected static $streetNameFormats = [
         '{{firstName}} {{streetSuffix}}',
-        '{{lastName}} {{streetSuffix}}'
-    );
-    protected static $streetAddressFormats = array(
+        '{{lastName}} {{streetSuffix}}',
+    ];
+    protected static $streetAddressFormats = [
         '{{buildingNumber}} {{streetName}}',
         '{{buildingNumber}} {{streetName}} {{secondaryAddress}}',
-    );
-    protected static $addressFormats = array(
+    ];
+    protected static $addressFormats = [
         "{{streetAddress}}\n{{city}}, {{stateAbbr}} {{postcode}}",
-    );
-    protected static $secondaryAddressFormats = array('Depto. ###', 'Hab. ###', 'Piso #', 'Piso ##', 'PB A', '# A', '# B', '# C', '# D', '# E', '# F', '## A', '## B', '## C', '## D', '## E', '## F', '# #', '## #');
+    ];
+    protected static $secondaryAddressFormats = ['Depto. ###', 'Hab. ###', 'Piso #', 'Piso ##', 'PB A', '# A', '# B', '# C', '# D', '# E', '# F', '## A', '## B', '## C', '## D', '## E', '## F', '# #', '## #'];
 
     /**
      * @example 'San'

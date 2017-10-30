@@ -8,7 +8,7 @@ abstract class Text extends \Faker\Provider\Base
     protected static $separator = ' ';
     protected static $separatorLen = 1;
     protected $explodedText = null;
-    protected $consecutiveWords = array();
+    protected $consecutiveWords = [];
 
     /**
      * Generate a text string by the Markov chain algorithm.
@@ -18,11 +18,13 @@ abstract class Text extends \Faker\Provider\Base
      * possible following words as the value.
      *
      * @example 'Alice, swallowing down her flamingo, and began by taking the little golden key'
-     * @param integer $maxNbChars Maximum number of characters the text should contain (minimum: 10)
-     * @param integer $indexSize  Determines how many words are considered for the generation of the next word.
-     *                             The minimum is 1, and it produces the higher level of randomness, although the
-     *                             generated text usually doesn't make sense. Higher index sizes (up to 5)
-     *                             produce more correct text, at the price of less randomness.
+     *
+     * @param int $maxNbChars Maximum number of characters the text should contain (minimum: 10)
+     * @param int $indexSize  Determines how many words are considered for the generation of the next word.
+     *                        The minimum is 1, and it produces the higher level of randomness, although the
+     *                        generated text usually doesn't make sense. Higher index sizes (up to 5)
+     *                        produce more correct text, at the price of less randomness.
+     *
      * @return string
      */
     public function realText($maxNbChars = 200, $indexSize = 2)
@@ -39,9 +41,8 @@ abstract class Text extends \Faker\Provider\Base
             throw new \InvalidArgumentException('indexSize must be at most 5');
         }
 
-
         $words = $this->getConsecutiveWords($indexSize);
-        $result = array();
+        $result = [];
         $resultLength = 0;
         // take a random starting point
         $next = static::randomKey($words);
@@ -78,8 +79,8 @@ abstract class Text extends \Faker\Provider\Base
     {
         if (!isset($this->consecutiveWords[$indexSize])) {
             $parts = $this->getExplodedText();
-            $words = array();
-            $index = array();
+            $words = [];
+            $index = [];
             for ($i = 0; $i < $indexSize; $i++) {
                 $index[] = array_shift($parts);
             }
@@ -87,7 +88,7 @@ abstract class Text extends \Faker\Provider\Base
             for ($i = 0, $count = count($parts); $i < $count; $i++) {
                 $stringIndex = static::implode($index);
                 if (!isset($words[$stringIndex])) {
-                    $words[$stringIndex] = array();
+                    $words[$stringIndex] = [];
                 }
                 $word = $parts[$i];
                 $words[$stringIndex][] = $word;

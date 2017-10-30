@@ -41,6 +41,7 @@ class ColumnTypeGuesser
             case 'string':
                 $columnData = $schema->column($column);
                 $length = $columnData['length'];
+
                 return function () use ($generator, $length) {
                     return $generator->text($length);
                 };
@@ -58,7 +59,7 @@ class ColumnTypeGuesser
 
             case 'binary':
             default:
-                return null;
+                return;
         }
     }
 }

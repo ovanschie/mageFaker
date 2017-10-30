@@ -3,17 +3,17 @@
 namespace Faker\Provider;
 
 /**
- * Depends on image generation from http://lorempixel.com/
+ * Depends on image generation from http://lorempixel.com/.
  */
 class Image extends Base
 {
-    protected static $categories = array(
+    protected static $categories = [
         'abstract', 'animals', 'business', 'cats', 'city', 'food', 'nightlife',
-        'fashion', 'people', 'nature', 'sports', 'technics', 'transport'
-    );
+        'fashion', 'people', 'nature', 'sports', 'technics', 'transport',
+    ];
 
     /**
-     * Generate the URL that will return a random image
+     * Generate the URL that will return a random image.
      *
      * Set randomize to false to remove the random GET parameter at the end of the url.
      *
@@ -30,14 +30,14 @@ class Image extends Base
         }
 
         if ($randomize) {
-            $url .= '?' . static::randomNumber(5, true);
+            $url .= '?'.static::randomNumber(5, true);
         }
 
         return $url;
     }
 
     /**
-     * Download a remote random image to disk and return its location
+     * Download a remote random image to disk and return its location.
      *
      * Requires curl, or allow_url_fopen to be on in php.ini.
      *
@@ -53,8 +53,8 @@ class Image extends Base
         // Generate a random filename. Use the server address so that a file
         // generated at the same time on a different server won't have a collision.
         $name = md5(uniqid(empty($_SERVER['SERVER_ADDR']) ? '' : $_SERVER['SERVER_ADDR'], true));
-        $filename = $name .'.jpg';
-        $filepath = $dir . DIRECTORY_SEPARATOR . $filename;
+        $filename = $name.'.jpg';
+        $filepath = $dir.DIRECTORY_SEPARATOR.$filename;
 
         $url = static::imageUrl($width, $height, $category);
 

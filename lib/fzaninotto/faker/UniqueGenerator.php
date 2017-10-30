@@ -4,13 +4,13 @@ namespace Faker;
 
 /**
  * Proxy for other generators, to return only unique values. Works with
- * Faker\Generator\Base->unique()
+ * Faker\Generator\Base->unique().
  */
 class UniqueGenerator
 {
     protected $generator;
     protected $maxRetries;
-    protected $uniques = array();
+    protected $uniques = [];
 
     public function __construct(Generator $generator, $maxRetries)
     {
@@ -19,30 +19,30 @@ class UniqueGenerator
     }
 
     /**
-     * Catch and proxy all generator calls but return only unique values
+     * Catch and proxy all generator calls but return only unique values.
      */
     public function __get($attribute)
     {
-        return $this->__call($attribute, array());
+        return $this->__call($attribute, []);
     }
 
     /**
-     * Catch and proxy all generator calls with arguments but return only unique values
+     * Catch and proxy all generator calls with arguments but return only unique values.
      */
     public function __call($name, $arguments)
     {
         if (!isset($this->uniques[$name])) {
-            $this->uniques[$name] = array();
+            $this->uniques[$name] = [];
         }
         $i = 0;
         do {
-            $res = call_user_func_array(array($this->generator, $name), $arguments);
+            $res = call_user_func_array([$this->generator, $name], $arguments);
             $i++;
             if ($i > $this->maxRetries) {
                 throw new \OverflowException(sprintf('Maximum retries of %d reached without finding a unique value', $this->maxRetries));
             }
         } while (array_key_exists($res, $this->uniques[$name]));
-        $this->uniques[$name][$res]= null;
+        $this->uniques[$name][$res] = null;
 
         return $res;
     }

@@ -4,20 +4,20 @@ namespace Faker\Provider\es_VE;
 
 class Address extends \Faker\Provider\Address
 {
-    protected static $cityPrefix = array('San', 'Santa', 'Puerto', 'Valle', 'Villa', 'Parroquia', 'El', 'Los', 'La', 'Las');
-    protected static $citySuffix = array('del Valle', 'de Mara', 'de Altagracia', 'de Asis', 'del Tuy', 'de Mata');
-    protected static $buildingNumber = array('###', '##', '#');
-    protected static $streetPrefix = array(
-        'Calle', 'Avenida', 'Av.', 'Cl.', 'Carretera', 'Callejón', 'Vereda'
-    );
-    protected static $streetSuffix = array('Norte', 'Este', ' Sur', ' Oeste');
-    protected static $postcode = array('####');
-    protected static $state = array(
+    protected static $cityPrefix = ['San', 'Santa', 'Puerto', 'Valle', 'Villa', 'Parroquia', 'El', 'Los', 'La', 'Las'];
+    protected static $citySuffix = ['del Valle', 'de Mara', 'de Altagracia', 'de Asis', 'del Tuy', 'de Mata'];
+    protected static $buildingNumber = ['###', '##', '#'];
+    protected static $streetPrefix = [
+        'Calle', 'Avenida', 'Av.', 'Cl.', 'Carretera', 'Callejón', 'Vereda',
+    ];
+    protected static $streetSuffix = ['Norte', 'Este', ' Sur', ' Oeste'];
+    protected static $postcode = ['####'];
+    protected static $state = [
         'Amazonas', 'Anzoátegui', 'Apure', 'Aragua', 'Barinas', 'Bolívar', 'Carabobo', 'Cojedes', 'Delta Amacuro',
         'Distrito Capital', 'Falcón', 'Guárico', 'Lara', 'Mérida', 'Miranda', 'Monagas', 'Nueva Esparta', 'Portuguesa',
-        'Sucre', 'Táchira', 'Trujillo', 'Vargas', 'Yaracuy', 'Zulia'
-    );
-    protected static $country = array(
+        'Sucre', 'Táchira', 'Trujillo', 'Vargas', 'Yaracuy', 'Zulia',
+    ];
+    protected static $country = [
         'Afganistán', 'Albania', 'Alemania', 'Andorra', 'Angola', 'Antigua y Barbuda', 'Arabia Saudí', 'Argelia', 'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaiyán',
         'Bahamas', 'Bangladés', 'Barbados', 'Baréin', 'Belice', 'Benín', 'Bielorrusia', 'Birmania', 'Bolivia', 'Bosnia-Herzegovina', 'Botsuana', 'Brasil', 'Brunéi Darusalam', 'Bulgaria', 'Burkina Faso', 'Burundi', 'Bután', 'Bélgica',
         'Cabo Verde', 'Camboya', 'Camerún', 'Canadá', 'Catar', 'Chad', 'Chile', 'China', 'Chipre', 'Ciudad del Vaticano', 'Colombia', 'Comoras', 'Congo', 'Corea del Norte', 'Corea del Sur', 'Costa Rica', 'Costa de Marfil', 'Croacia', 'Cuba',
@@ -40,28 +40,28 @@ class Address extends \Faker\Provider\Address
         'Ucrania', 'Uganda', 'Uruguay', 'Uzbekistán',
         'Vanuatu', 'Venezuela', 'Vietnam',
         'Yemen', 'Yibuti',
-        'Zambia', 'Zimbabue'
-    );
-    protected static $cityFormats = array(
+        'Zambia', 'Zimbabue',
+    ];
+    protected static $cityFormats = [
         '{{cityPrefix}} {{firstName}}{{citySuffix}}',
         '{{cityPrefix}} {{firstName}}',
         '{{firstName}} {{citySuffix}}',
         '{{lastName}} {{citySuffix}}',
-    );
-    protected static $streetNameFormats = array(
+    ];
+    protected static $streetNameFormats = [
         '{{streetPrefix}} {{firstName}}',
         '{{streetPrefix}} {{lastName}}',
-        '{{streetPrefix}} {{firstName}} {{lastName}}'
-    );
-    protected static $streetAddressFormats = array(
+        '{{streetPrefix}} {{firstName}} {{lastName}}',
+    ];
+    protected static $streetAddressFormats = [
         '{{streetName}}, {{buildingNumber}}, {{secondaryAddress}}',
         '{{streetName}}, {{secondaryAddress}}',
-    );
-    protected static $addressFormats = array(
-        "{{streetAddress}}, {{city}} Edo. {{state}}",
-        "{{streetAddress}}, {{city}} Edo. {{state}}, {{postcode}}"
-    );
-    protected static $secondaryAddressFormats = array('Nro #', 'Piso #', 'Casa #', 'Hab. #', 'Apto #', 'Nro ##', 'Piso ##', 'Casa ##', 'Hab. ##', 'Apto ##');
+    ];
+    protected static $addressFormats = [
+        '{{streetAddress}}, {{city}} Edo. {{state}}',
+        '{{streetAddress}}, {{city}} Edo. {{state}}, {{postcode}}',
+    ];
+    protected static $secondaryAddressFormats = ['Nro #', 'Piso #', 'Casa #', 'Hab. #', 'Apto #', 'Nro ##', 'Piso ##', 'Casa ##', 'Hab. ##', 'Apto ##'];
 
     /**
      * @example 'Avenida'
