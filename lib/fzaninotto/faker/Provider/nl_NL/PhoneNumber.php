@@ -4,7 +4,7 @@ namespace Faker\Provider\nl_NL;
 
 class PhoneNumber extends \Faker\Provider\PhoneNumber
 {
-    protected static $formats = array(
+    protected static $formats = [
         '+31(0)#########',
         '+31(0)### ######',
         '+31(0)## #######',
@@ -31,5 +31,5 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '06-########',
         '(0###)-######',
         '(0##)-#######',
-    );
+    ];
 }

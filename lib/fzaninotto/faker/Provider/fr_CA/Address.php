@@ -4,13 +4,13 @@ namespace Faker\Provider\fr_CA;
 
 class Address extends \Faker\Provider\Address
 {
-    protected static $cityPrefix = array('Saint-', 'Sainte-', 'St-', 'Ste-');
+    protected static $cityPrefix = ['Saint-', 'Sainte-', 'St-', 'Ste-'];
 
     /**
      * The suffixes come from this list of communities in Québec
-     * http://fr.wikipedia.org/wiki/Liste_des_municipalités_locales_du_Québec
+     * http://fr.wikipedia.org/wiki/Liste_des_municipalités_locales_du_Québec.
      */
-    protected static $citySuffix = array(
+    protected static $citySuffix = [
         // Bas-Saint-Laurent
         '-des-Sables', '-sur-Mer', '-des-Neiges', '-des-Sept-Douleurs', '-du-Portage', '-du-Loup', '-des-Lacs', '-de-Lessard',
         '-de-Kamourasca', '-de-Témiscouata', '-de-Ladrière', '-de-Rimouski', '-de-Rivière-du-Loup', '-du-Lac', '-du-Ha! Ha!',
@@ -37,56 +37,56 @@ class Address extends \Faker\Provider\Address
         '-de-Forsyth', '-de-Panet', '-de-la-Rivière-du-Sud', '-de-Dorset', '-de-Shenley', '-de-Leeds', '-de-Wolfestown',
         '-de-Joly', '-de-Brébeuf', '-de-Coleraine', '-des-Érables', '-Bretenières', '-de-Lauzon', '-de-Standon',
         '-de-Gonzague', '-de-Beaurivage', '-de-Dorchester', '-de-Cranbourne', '-de-Broughton', '-de-la-Rivière-du-Sud',
-        '-des-Aulnaies', '-les-Mines', '-de-Lotbinière', '-de-Patton', '-sur-Rivière-du-Sud', '-de-Beauregard', '-de-Watford'
-    );
+        '-des-Aulnaies', '-les-Mines', '-de-Lotbinière', '-de-Patton', '-sur-Rivière-du-Sud', '-de-Beauregard', '-de-Watford',
+    ];
 
     /**
      * @example 'Saint-Marc-des-Carrières' or 'Sainte-Monique'
      */
-    protected static $cityFormats = array(
+    protected static $cityFormats = [
         '{{cityPrefix}}{{firstName}}{{citySuffix}}',
         '{{cityPrefix}}{{firstName}}',
-    );
+    ];
 
-    protected static $buildingNumber = array('#####', '####', '###', '##', '#');
+    protected static $buildingNumber = ['#####', '####', '###', '##', '#'];
 
-    protected static $streetSuffix = array(
-        'Autoroute', 'Avenue', 'Boulevard', 'Chemin', 'Route', 'Rue', 'Pont'
-    );
+    protected static $streetSuffix = [
+        'Autoroute', 'Avenue', 'Boulevard', 'Chemin', 'Route', 'Rue', 'Pont',
+    ];
 
-    protected static $postcode = array('?#? #?#', '?#?#?#');
+    protected static $postcode = ['?#? #?#', '?#?#?#'];
 
     /**
      * @example 'Avenue Bolduc'
      */
-    protected static $streetNameFormats = array(
+    protected static $streetNameFormats = [
         '{{streetSuffix}} {{firstName}}',
-        '{{streetSuffix}} {{lastName}}'
-    );
+        '{{streetSuffix}} {{lastName}}',
+    ];
 
-    protected static $streetAddressFormats = array(
+    protected static $streetAddressFormats = [
         '{{buildingNumber}} {{streetName}}',
         '{{buildingNumber}} {{streetName}} {{secondaryAddress}}',
-    );
+    ];
 
-    protected static $addressFormats = array(
-        "{{streetAddress}}, {{city}}, {{stateAbbr}} {{postcode}}",
-    );
+    protected static $addressFormats = [
+        '{{streetAddress}}, {{city}}, {{stateAbbr}} {{postcode}}',
+    ];
 
-    protected static $secondaryAddressFormats = array('Apt. ###', 'Suite ###', 'Bureau ###');
+    protected static $secondaryAddressFormats = ['Apt. ###', 'Suite ###', 'Bureau ###'];
 
-    protected static $state = array(
-        'Alberta', 'Colombie-Brittanique', 'Manitoba', 'Nouveau-Brunswick', 'Terre-Neuve-et-Labrador', 'Nouvelle-Écosse', 'Ontario', 'Île-du-Prince-Édouard', 'Québec', 'Saskatchewan'
-    );
+    protected static $state = [
+        'Alberta', 'Colombie-Brittanique', 'Manitoba', 'Nouveau-Brunswick', 'Terre-Neuve-et-Labrador', 'Nouvelle-Écosse', 'Ontario', 'Île-du-Prince-Édouard', 'Québec', 'Saskatchewan',
+    ];
 
-    protected static $stateAbbr = array(
-        'AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'ON', 'PE', 'QC', 'SK'
-    );
+    protected static $stateAbbr = [
+        'AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'ON', 'PE', 'QC', 'SK',
+    ];
 
     /**
-     * This list is the same as in \Faker\Provider\fr_FR\Address.php
+     * This list is the same as in \Faker\Provider\fr_FR\Address.php.
      */
-    protected static $country = array(
+    protected static $country = [
         'Afghanistan', 'Afrique du sud', 'Albanie', 'Algérie', 'Allemagne', 'Andorre', 'Angola', 'Anguilla', 'Antarctique', 'Antigua et Barbuda', 'Antilles néerlandaises', 'Arabie saoudite', 'Argentine', 'Arménie', 'Aruba', 'Australie', 'Autriche', 'Azerbaïdjan',
         'Bahamas', 'Bahrain', 'Bangladesh', 'Belgique', 'Belize', 'Benin', 'Bermudes (Les)', 'Bhoutan', 'Biélorussie', 'Bolivie', 'Bosnie-Herzégovine', 'Botswana', 'Bouvet (Îles)', 'Brunei', 'Brésil', 'Bulgarie', 'Burkina Faso', 'Burundi',
         'Cambodge', 'Cameroun', 'Canada', 'Cap Vert', 'Cayman (Îles)', 'Chili', 'Chine (Rép. pop.)', 'Christmas (Île)', 'Chypre', 'Cocos (Îles)', 'Colombie', 'Comores', 'Cook (Îles)', 'Corée du Nord', 'Corée, Sud', 'Costa Rica', 'Croatie', 'Cuba', 'Côte d\'Ivoire',
@@ -111,8 +111,8 @@ class Address extends \Faker\Provider\Address
         'Vanuatu', 'Vatican (Etat du)', 'Venezuela', 'Vierges (Îles)', 'Vierges britanniques (Îles)', 'Vietnam',
         'Wallis et Futuna (Îles)',
         'Yemen', 'Yougoslavie',
-        'Zambie', 'Zaïre', 'Zimbabwe'
-    );
+        'Zambie', 'Zaïre', 'Zimbabwe',
+    ];
 
     /**
      * @example 'Saint-'

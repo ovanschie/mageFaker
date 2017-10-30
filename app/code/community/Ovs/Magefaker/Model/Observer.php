@@ -1,25 +1,24 @@
 <?php
 
 /**
- * Class Ovs_Magefaker_Model_Observer
- *
+ * Class Ovs_Magefaker_Model_Observer.
  */
-class Ovs_Magefaker_Model_Observer{
-
+class Ovs_Magefaker_Model_Observer
+{
     /**
-     * set the faker autoloader
+     * set the faker autoloader.
      */
-    public function setAutoload(){
-
-        require_once Mage::getBaseDir('lib') . DS . 'Zend' . DS . 'Loader.php';
+    public function setAutoload()
+    {
+        require_once Mage::getBaseDir('lib').DS.'Zend'.DS.'Loader.php';
         $autoLoader = Zend_Loader_Autoloader::getInstance();
 
         // get all Varien autoloaders and unregister them
-        $autoloader_callbacks   = spl_autoload_functions();
-        $original_autoload      = null;
+        $autoloader_callbacks = spl_autoload_functions();
+        $original_autoload = null;
 
-        foreach($autoloader_callbacks as $callback) {
-            if(is_array($callback) && $callback[0] instanceof Varien_Autoload) {
+        foreach ($autoloader_callbacks as $callback) {
+            if (is_array($callback) && $callback[0] instanceof Varien_Autoload) {
                 $original_autoload = $callback;
             }
         }
@@ -27,18 +26,18 @@ class Ovs_Magefaker_Model_Observer{
         spl_autoload_unregister($original_autoload);
 
         // the faker autoloader
-        function fakerLoader($className) {
-
+        function fakerLoader($className)
+        {
             $className = ltrim($className, '\\');
-            $fileName  = '';
+            $fileName = '';
 
             if ($lastNsPos = strripos($className, '\\')) {
                 $namespace = substr($className, 0, $lastNsPos);
                 $className = substr($className, $lastNsPos + 1);
-                $fileName  = lcfirst(str_replace('\\', DS, $namespace) . DS);
+                $fileName = lcfirst(str_replace('\\', DS, $namespace).DS);
             }
 
-            $fileName = Mage::getBaseDir('lib') . DS . 'fzaninotto' . DS . $fileName . DS . $className . '.php';
+            $fileName = Mage::getBaseDir('lib').DS.'fzaninotto'.DS.$fileName.DS.$className.'.php';
 
             if (file_exists($fileName)) {
                 require_once $fileName;
@@ -53,7 +52,5 @@ class Ovs_Magefaker_Model_Observer{
 
         // re-add the original autoloader
         $autoLoader->pushAutoloader($original_autoload);
-
     }
-
 }

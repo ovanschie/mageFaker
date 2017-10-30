@@ -8,18 +8,19 @@ class Text extends \Faker\Provider\Text
     protected static $separatorLen = 0;
 
     /**
-     * All punctuation in $baseText: 、 。 「 」 『 』 ！ ？ ー ， ： ；
+     * All punctuation in $baseText: 、 。 「 」 『 』 ！ ？ ー ， ： ；.
      */
-    protected static $notEndPunct = array('、', '「', '『', 'ー', '，', '：', '；');
-    protected static $endPunct = array('。', '」', '』', '！', '？');
-    protected static $notBeginPunct = array('、', '。', '」', '』', '！', '？', 'ー', '，', '：', '；');
+    protected static $notEndPunct = ['、', '「', '『', 'ー', '，', '：', '；'];
+    protected static $endPunct = ['。', '」', '』', '！', '？'];
+    protected static $notBeginPunct = ['、', '。', '」', '』', '！', '？', 'ー', '，', '：', '；'];
 
     /**
      * Title: 三國演義 Romance of the Three Kingdoms
      * Author: 羅貫中 Luo Guanzhong
-     * Language: Chinese
+     * Language: Chinese.
      *
      * @see http://www.gutenberg.org/cache/epub/11/pg11.txt
+     *
      * @var string
      */
     protected static $baseText = <<<'EOT'
@@ -86,12 +87,13 @@ EOT;
 
     protected static function explode($text)
     {
-        $chars = array();
+        $chars = [];
         foreach (preg_split('//u', preg_replace('/\s+/', '', $text)) as $char) {
             if ($char !== '') {
                 $chars[] = $char;
             }
         }
+
         return $chars;
     }
 
@@ -109,7 +111,7 @@ EOT;
     {
         // extract the last char of $text
         if (function_exists('mb_substr')) {
-            $last = mb_substr($text, mb_strlen($text)-1, 'UTF-8');
+            $last = mb_substr($text, mb_strlen($text) - 1, 'UTF-8');
         } else {
             $chars = static::split($text);
             $last = end($chars);

@@ -11,25 +11,28 @@ class Barcode extends \Faker\Provider\Base
     {
         $code = $this->numerify(str_repeat('#', $length - 1));
 
-        return $code . static::eanChecksum($code);
+        return $code.static::eanChecksum($code);
     }
 
     /**
-     * Utility function for computing EAN checksums
+     * Utility function for computing EAN checksums.
      */
     protected static function eanChecksum($input)
     {
-        $sequence = (strlen($input) - 1) == 8 ? array(3, 1) : array(1, 3);
+        $sequence = (strlen($input) - 1) == 8 ? [3, 1] : [1, 3];
         $sums = 0;
         foreach (str_split($input) as $n => $digit) {
             $sums += $digit * $sequence[$n % 2];
         }
+
         return (10 - $sums % 10) % 10;
     }
 
     /**
      * Get a random EAN13 barcode.
+     *
      * @return string
+     *
      * @example '4006381333931'
      */
     public function ean13()
@@ -39,7 +42,9 @@ class Barcode extends \Faker\Provider\Base
 
     /**
      * Get a random EAN8 barcode.
+     *
      * @return string
+     *
      * @example '73513537'
      */
     public function ean8()

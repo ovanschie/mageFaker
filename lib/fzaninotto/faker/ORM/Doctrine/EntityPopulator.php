@@ -18,11 +18,11 @@ class EntityPopulator
     /**
      * @var array
      */
-    protected $columnFormatters = array();
+    protected $columnFormatters = [];
     /**
      * @var array
      */
-    protected $modifiers = array();
+    protected $modifiers = [];
 
     /**
      * Class constructor.
@@ -74,7 +74,7 @@ class EntityPopulator
 
     public function guessColumnFormatters(\Faker\Generator $generator)
     {
-        $formatters = array();
+        $formatters = [];
         $nameGuesser = new \Faker\Guesser\Name($generator);
         $columnTypeGuesser = new ColumnTypeGuesser($generator);
         foreach ($this->class->getFieldNames() as $fieldName) {
@@ -125,8 +125,6 @@ class EntityPopulator
                 } elseif (isset($inserted[$relatedClass])) {
                     return $inserted[$relatedClass][mt_rand(0, count($inserted[$relatedClass]) - 1)];
                 }
-
-                return null;
             };
         }
 

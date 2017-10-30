@@ -4,7 +4,7 @@ namespace Faker\Provider\de_DE;
 
 class Person extends \Faker\Provider\Person
 {
-    protected static $maleNameFormats = array(
+    protected static $maleNameFormats = [
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
@@ -13,9 +13,9 @@ class Person extends \Faker\Provider\Person
         '{{titleMale}} {{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}} {{suffix}}',
         '{{titleMale}} {{firstNameMale}} {{lastName}} {{suffix}}',
-    );
+    ];
 
-    protected static $femaleNameFormats = array(
+    protected static $femaleNameFormats = [
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
@@ -24,10 +24,10 @@ class Person extends \Faker\Provider\Person
         '{{titleFemale}} {{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}} {{suffix}}',
         '{{titleFemale}} {{firstNameFemale}} {{lastName}} {{suffix}}',
-    );
+    ];
 
     // From http://de.wiktionary.org/wiki/Verzeichnis:Deutsch/Liste_der_h%C3%A4ufigsten_m%C3%A4nnlichen_Vornamen_Deutschlands
-    protected static $firstNameMale = array(
+    protected static $firstNameMale = [
         'Abbas', 'Abdul', 'Abdullah', 'Abraham', 'Abram', 'Achim', 'Ada', 'Adalbert', 'Adam', 'Adelbert', 'Adem', 'Adolf', 'Adrian', 'Ahmad', 'Ahmed', 'Ahmet', 'Alan', 'Alban', 'Albert', 'Alberto', 'Albin', 'Albrecht', 'Aldo', 'Aleksandar', 'Aleksander', 'Aleksandr', 'Aleksej', 'Alessandro', 'Alex', 'Alexander', 'Alexandre', 'Alexandros', 'Alexei', 'Alexej', 'Alf', 'Alfons', 'Alfonso', 'Alfred', 'Alfredo', 'Ali', 'Alois', 'Aloys', 'Alwin', 'Amir', 'Anastasios', 'Anatol', 'Anatoli', 'Anatolij', 'Andre', 'Andreas', 'Andree', 'Andrei', 'Andrej', 'Andres', 'Andrew', 'Andrey', 'Andrzej', 'André', 'Andy', 'Angelo', 'Anselm', 'Ansgar', 'Ante', 'Anthony', 'Anto', 'Anton', 'Antonino', 'Antonio', 'Antonios', 'Antonius', 'Apostolos', 'Aribert', 'Arif', 'Armin', 'Arnd', 'Arndt', 'Arne', 'Arnfried', 'Arnim', 'Arno', 'Arnold', 'Arnulf', 'Arthur', 'Artur', 'Athanasios', 'Attila', 'August', 'Augustin', 'Axel', 'Aziz',
         'Baldur', 'Balthasar', 'Baptist', 'Bartholomäus', 'Bastian', 'Bayram', 'Bekir', 'Bela', 'Ben', 'Benedikt', 'Benjamin', 'Benno', 'Berend', 'Bernard', 'Bernd', 'Bernd-Dieter', 'Berndt', 'Bernfried', 'Bernhard', 'Bernt', 'Bernward', 'Bert', 'Berthold', 'Bertold', 'Bertram', 'Birger', 'Björn', 'Bodo', 'Bogdan', 'Boris', 'Branko', 'Brian', 'Bruno', 'Burckhard', 'Burghard', 'Burkard', 'Burkhard', 'Burkhardt',
         'Calogero', 'Carl', 'Carl-Heinz', 'Carlo', 'Carlos', 'Carmelo', 'Carsten', 'Celal', 'Cemal', 'Cemil', 'Cengiz', 'Cetin', 'Charles', 'Christian', 'Christof', 'Christoph', 'Christopher', 'Christos', 'Claas', 'Claudio', 'Claudius', 'Claus', 'Claus-Dieter', 'Claus-Peter', 'Clemens', 'Conrad', 'Constantin', 'Cord', 'Cornelius', 'Cosimo', 'Curt', 'Czeslaw',
@@ -53,10 +53,10 @@ class Person extends \Faker\Provider\Person
         'Xaver',
         'Yilmaz', 'Yusuf',
         'Zbigniew', 'Zdravko', 'Zeki', 'Zeljko', 'Zenon', 'Zlatko', 'Zoltan', 'Zoran',
-    );
+    ];
 
     // From http://de.wiktionary.org/wiki/Verzeichnis:Deutsch/Liste_der_h%C3%A4ufigsten_weiblichen_Vornamen_Deutschlands
-    protected static $firstNameFemale = array(
+    protected static $firstNameFemale = [
         'Adele', 'Adelgunde', 'Adelheid', 'Adelinde', 'Adeline', 'Adina', 'Adolfine', 'Adriana', 'Adriane', 'Aenne', 'Änne', 'Agata', 'Agatha', 'Agathe', 'Agnes', 'Agnieszka', 'Albertine', 'Albina', 'Aleksandra', 'Alena', 'Alexa', 'Alexandra', 'Alice', 'Alicia', 'Alicja', 'Alida', 'Alina', 'Aline', 'Alla', 'Alma', 'Almut', 'Almuth', 'Aloisia', 'Alwina', 'Alwine', 'Amalia', 'Amalie', 'Amanda', 'Amelie', 'Ana', 'Anastasia', 'Andrea', 'Aneta', 'Anett', 'Anette', 'Angela', 'Angelica', 'Angelika', 'Angelina', 'Angelique', 'Anica', 'Anika', 'Anita', 'Anja', 'Anka', 'Anke', 'Ann', 'Ann-Kathrin', 'Anna', 'Anna-Lena', 'Anna-Luise', 'Anna-Maria', 'Anna-Marie', 'Annaliese', 'Annamaria', 'Anne', 'Anne-Kathrin', 'Anne-Katrin', 'Anne-Marie', 'Anne-Rose', 'Annedore', 'Annegret', 'Annegrete', 'Annekatrin', 'Anneke', 'Annelene', 'Anneli', 'Annelie', 'Annelies', 'Anneliese', 'Annelise', 'Annelore', 'Annemarie', 'Annemie', 'Annerose', 'Annett', 'Annette', 'Anni', 'Annie', 'Annika', 'Annita', 'Anny', 'Antje', 'Antoinette', 'Antonia', 'Antonie', 'Antonietta', 'Antonina', 'Apollonia', 'Ariane', 'Arzu', 'Asta', 'Astrid', 'Augusta', 'Auguste', 'Aurelia', 'Aynur', 'Ayse', 'Aysel', 'Ayten',
         'Babett', 'Babette', 'Barbara', 'Beata', 'Beate', 'Beatrice', 'Beatrix', 'Belinda', 'Benita', 'Berit', 'Bernadette', 'Bernhardine', 'Berta', 'Bertha', 'Betina', 'Betti', 'Bettina', 'Betty', 'Bianca', 'Bianka', 'Birgid', 'Birgit', 'Birgitt', 'Birgitta', 'Birte', 'Birthe', 'Blanka', 'Bozena', 'Branka', 'Brigitta', 'Brigitte', 'Brit', 'Brita', 'Britt', 'Britta', 'Brunhild', 'Brunhilde', 'Bruni', 'Bärbel',
         'Camilla', 'Canan', 'Caren', 'Carin', 'Carina', 'Carla', 'Carmela', 'Carmen', 'Carmine', 'Carola', 'Carolin', 'Carolina', 'Caroline', 'Caterina', 'Catharina', 'Catherine', 'Cathleen', 'Cathrin', 'Catrin', 'Cecilia', 'Centa', 'Chantal', 'Charlotte', 'Christa', 'Christa-Maria', 'Christel', 'Christiana', 'Christiane', 'Christin', 'Christina', 'Christine', 'Christl', 'Cilli', 'Cilly', 'Cindy', 'Claire', 'Clara', 'Clarissa', 'Claudia', 'Cläre', 'Concetta', 'Conny', 'Constance', 'Constanze', 'Cora', 'Cordula', 'Corina', 'Corinna', 'Corinne', 'Cornelia', 'Cosima', 'Cristina', 'Cynthia', 'Cäcilia', 'Cäcilie',
@@ -82,9 +82,9 @@ class Person extends \Faker\Provider\Person
         'Xenia',
         'Yasemin', 'Yasmin', 'Yvette', 'Yvonne',
         'Zdenka', 'Zehra', 'Zenta', 'Zeynep', 'Zita', 'Zofia',
-    );
+    ];
 
-    protected static $lastName = array(
+    protected static $lastName = [
         'Ackermann', 'Adler', 'Adolph', 'Albers', 'Anders', 'Atzler', 'Aumann', 'Austermühle',
         'Bachmann', 'Bähr', 'Bärer', 'Barkholz', 'Barth', 'Bauer', 'Baum', 'Becker', 'Beckmann', 'Beer', 'Beier', 'Bender', 'Benthin', 'Berger', 'Beyer', 'Bien', 'Biggen', 'Binner', 'Birnbaum', 'Bloch', 'Blümel', 'Bohlander', 'Bonbach', 'Bolander', 'Bolnbach', 'Bolzmann', 'Börner', 'Bohnbach', 'Boucsein', 'Briemer', 'Bruder', 'Buchholz', 'Budig', 'Butte',
         'Carsten', 'Caspar', 'Christoph', 'Cichorius', 'Conradi',
@@ -107,12 +107,12 @@ class Person extends \Faker\Provider\Person
         'van der Dussen', 'Vogt', 'Vollbrecht',
         'Wagenknecht', 'Wagner', 'Wähner', 'Walter', 'Warmer', 'Weihmann', 'Weimer', 'Weinhage', 'Weinhold', 'Weiß', 'Weitzel', 'Weller', 'Wende', 'Wernecke', 'Werner', 'Wesack', 'Wiek', 'Wieloch', 'Wilms', 'Wilmsen', 'Winkler', 'Wirth', 'Wohlgemut', 'Wulf', 'Wulff',
         'Zahn', 'Zänker', 'Ziegert', 'Zimmer', 'Zirme', 'Zobel', 'Zorbach',
-    );
+    ];
 
-    protected static $titleMale = array('Herr', 'Dr.', 'Ing.', 'Dipl.-Ing.', 'Prof.', 'Univ.Prof.');
-    protected static $titleFemale = array('Frau', 'Dr.', 'Ing.', 'Dipl.-Ing.', 'Prof.', 'Univ.Prof.');
+    protected static $titleMale = ['Herr', 'Dr.', 'Ing.', 'Dipl.-Ing.', 'Prof.', 'Univ.Prof.'];
+    protected static $titleFemale = ['Frau', 'Dr.', 'Ing.', 'Dipl.-Ing.', 'Prof.', 'Univ.Prof.'];
 
-    protected static $suffix = array('B.Sc.', 'B.A.', 'B.Eng.', 'MBA.');
+    protected static $suffix = ['B.Sc.', 'B.A.', 'B.Eng.', 'MBA.'];
 
     /**
      * @example 'PhD'

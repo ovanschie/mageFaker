@@ -4,11 +4,11 @@ namespace Faker\Provider;
 
 class Company extends \Faker\Provider\Base
 {
-    protected static $formats = array(
+    protected static $formats = [
         '{{lastName}} {{companySuffix}}',
-    );
+    ];
 
-    protected static $companySuffix = array('Ltd');
+    protected static $companySuffix = ['Ltd'];
 
     /**
      * @example 'Acme Ltd'
