@@ -73,10 +73,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract
                 }
             }
         } else {
-            $faker = new Faker\Generator();
-            $faker->addProvider(new Faker\Provider\en_US\Person($faker));
-            $faker->addProvider(new Faker\Provider\Lorem($faker));
-            $faker->addProvider(new Faker\Provider\MageFaker($faker));
+            $faker = $this->_getFakerInstance();
 
             for ($i = 0; $i < $count; $i++) {
                 $this->_insertCategory($faker->categoryName(), $parentId, $anchor, $thumbnail);
@@ -102,10 +99,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract
     {
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
-        $faker = new Faker\Generator();
-        $faker->addProvider(new Faker\Provider\en_US\Person($faker));
-        $faker->addProvider(new Faker\Provider\Lorem($faker));
-        $faker->addProvider(new Faker\Provider\MageFaker($faker));
+        $faker = $this->_getFakerInstance();
 
         $name = $faker->productName;
         $sku = $faker->sku($name);
@@ -325,10 +319,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract
     protected function _insertCategory($name, $parentId, $anchor, $thumbnail)
     {
         try {
-            $faker = new Faker\Generator();
-            $faker->addProvider(new Faker\Provider\en_US\Person($faker));
-            $faker->addProvider(new Faker\Provider\Lorem($faker));
-            $faker->addProvider(new Faker\Provider\MageFaker($faker));
+            $faker = $this->_getFakerInstance();
 
             $parentCategory = Mage::getModel('catalog/category')->load($parentId);
 
@@ -424,10 +415,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract
      */
     protected function _addProductReviews($productId)
     {
-        $faker = new Faker\Generator();
-        $faker->addProvider(new Faker\Provider\en_US\Person($faker));
-        $faker->addProvider(new Faker\Provider\Lorem($faker));
-
+        $faker = $this->_getFakerInstance();
         $reviewCount = mt_rand(0, 10);
 
         $rating_options = [
@@ -461,5 +449,34 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract
 
             $review->aggregate();
         }
+    }
+
+    /**
+     * Return a new faker instance with the locale set to the current
+     * admin interface locale. This is only used by the review generator.
+     *
+     * This function is basically a reimplementation of \Faker\Factory::create($locale);
+     * which does not seem to play nice with the Varien autoload implementation.
+     *
+     * @return \Faker\Generator
+     */
+    protected function _getFakerInstance()
+    {
+        $fallbackLocale = 'en_US';
+        $currentLocale = Mage::app()->getLocale()->getLocaleCode();
+
+        $faker = new Faker\Generator();
+
+        if (class_exists("Faker\Provider\\${currentLocale}\Person")) {
+            $fakerPerson = "Faker\Provider\\${currentLocale}\Person";
+        } else {
+            $fakerPerson = "Faker\Provider\\${$fallbackLocale}\Person";
+        }
+
+        $faker->addProvider(new $fakerPerson($faker));
+        $faker->addProvider(new Faker\Provider\Lorem($faker));
+        $faker->addProvider(new Faker\Provider\MageFaker($faker));
+
+        return $faker;
     }
 }
