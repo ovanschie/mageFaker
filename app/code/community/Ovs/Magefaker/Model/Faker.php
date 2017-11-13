@@ -415,7 +415,6 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract
      */
     protected function _addProductReviews($productId)
     {
-
         $faker = $this->_getFakerInstance();
         $reviewCount = mt_rand(0, 10);
 
@@ -461,7 +460,6 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract
      *
      * @return \Faker\Generator
      */
-
     protected function _getFakerInstance()
     {
         $fallbackLocale = 'en_US';
@@ -469,7 +467,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract
 
         $faker = new Faker\Generator();
 
-        if(class_exists("Faker\Provider\\${currentLocale}\Person")) {
+        if (class_exists("Faker\Provider\\${currentLocale}\Person")) {
             $fakerPerson = "Faker\Provider\\${currentLocale}\Person";
         } else {
             $fakerPerson = "Faker\Provider\\${$fallbackLocale}\Person";
@@ -480,6 +478,5 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract
         $faker->addProvider(new Faker\Provider\MageFaker($faker));
 
         return $faker;
-
     }
 }
