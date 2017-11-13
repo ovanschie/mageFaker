@@ -429,12 +429,20 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract
         $faker->addProvider(new Faker\Provider\Lorem($faker));
 
         $reviewCount = mt_rand(0, 10);
+        
+        /**
+         * Get collection of reviews instead of hardcoding the default magento ones,
+         * this way we add ratings for custom added ones too.
+         */
 
-        $rating_options = [
-            1 => [1, 2, 3, 4, 5],
-            2 => [6, 7, 8, 9, 10],
-            3 => [11, 12, 13, 14, 15],
-        ];
+        $ratings = Mage::getModel('rating/rating')->getCollection();
+        $rating_options = [];
+        foreach ($ratings as $rating) {
+            $options = $rating->getOptions();
+            foreach ($options as $option) {
+                $rating_options[$rating->getData('rating_id')][] = $option->getData('option_id');
+            }
+        }
 
         for ($y = 0; $y < $reviewCount; $y++) {
             $review = Mage::getModel('review/review');
