@@ -435,7 +435,7 @@ class Ovs_Magefaker_Model_Faker extends Mage_Core_Model_Abstract
          * this way we add ratings for custom added ones too.
          */
 
-        $ratings        = Mage::getModel('rating/rating')->getCollection();
+        $ratings = Mage::getModel('rating/rating')->getCollection();
         $rating_options = [];
         foreach ($ratings as $rating) {
             $options = $rating->getOptions();
